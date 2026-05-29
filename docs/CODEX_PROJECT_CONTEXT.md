@@ -74,7 +74,7 @@ KD = 1.0
 - `18`: LeftElbow，影响小臂折叠/伸开。
 - `19`: LeftWristRoll，影响手腕旋转。
 
-最近一次演示用预抓偏移：
+最近一次预抓预览演示用偏移：
 
 ```text
 15=+0.06
@@ -90,6 +90,28 @@ python3 tools/arm_pregrasp_preview.py --net eth0 --offset 16=-0.42,15=0.06,18=0.
 ```
 
 `tools/arm_pregrasp_preview.py` 只预览手臂预抓姿态，不闭合手，不拿瓶子。闭合手需要外部单独调用 Revo2 手脚本。
+
+当前独立全流程脚本：
+
+```text
+g1_hand_arm_project/arm_pick_place_standalone.py
+```
+
+这是后续优先维护的固定轨迹抓放脚本。它内置 Revo2 左手串口控制，不通过 `left_hand_safe_once.py`，流程为：
+
+```text
+open -> 到固定抓取点 -> thumb_open_max -> thumb_ready -> bottle
+-> 小臂抬瓶 -> 悬停 3 秒 -> 放回原位 -> open -> 空手收回 -> 平滑释放 arm_sdk
+```
+
+最新小臂高度参数：
+
+```python
+UNFOLD_PREGRASP_DELTA = {18: -0.70, ...}
+LIFT_BOTTLE_DELTA = {18: -1.15, ...}
+```
+
+调参规律：`18` 更小会让小臂更往上折，`18` 更大则小臂更低。后续如果只想调固定点和抬瓶高度，优先改这两个字典里的 `18`。
 
 ## Revo2 左手控制
 
@@ -133,6 +155,14 @@ BAUDRATE = libstark.Baudrate.Baud460800
 ```text
 thumb_open_max -> wait -> thumb_ready -> wait -> bottle
 ```
+
+左手 `ThumbAux` 曾出现“反馈为 1000，但肉眼拇指动作不明显”的现象。右手诊断脚本为：
+
+```text
+g1_hand_arm_project/right_hand_thumb_test.py
+```
+
+右手配置为 `/dev/ttyUSB2`、`SLAVE_ID=0x7f`，只测试右手 `open -> thumb_ready -> bottle -> open`，不动机械臂。
 
 ## 视觉与自动化状态
 
@@ -178,7 +208,9 @@ g1_hand_arm_project/vision/
 
 1. 恢复 SDK 和项目目录，先跑 Python 单元测试，不动机器人。
 2. 验证 `left_hand_safe_once.py open/grasp`，只控制手。
-3. 验证 `tools/arm_pregrasp_preview.py --dry-run` 和小幅空手预览。
-4. 恢复 YOLO + 深度相机检测，确认 `latest_bottle_3d.json` 正常生成。
-5. 准备 ChArUco 或 AprilTag 标定板做手眼标定。
-6. 标定稳定后再做轨迹规划和自动抓取。
+3. 验证 `arm_pick_place_standalone.py --hand-only-test`，确认手型顺序。
+4. 验证 `tools/arm_pregrasp_preview.py --dry-run` 和小幅空手预览。
+5. 固定轨迹安全后，再跑 `arm_pick_place_standalone.py eth0`。
+6. 恢复 YOLO + 深度相机检测，确认 `latest_bottle_3d.json` 正常生成。
+7. 准备 ChArUco 或 AprilTag 标定板做手眼标定。
+8. 标定稳定后再做轨迹规划和自动抓取。

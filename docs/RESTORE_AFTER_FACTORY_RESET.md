@@ -19,6 +19,15 @@ Revo2 手部 SDK/示例需要按强脑 Revo2 的原始包恢复到类似路径�
 
 如果恢复后路径不同，要同步修改抓瓶脚本里的 `HAND_DIR`。
 
+当前推荐的独立全流程脚本 `arm_pick_place_standalone.py` 不使用 `HAND_DIR`，而是直接用：
+
+```python
+HAND_PORT = "/dev/ttyUSB1"
+HAND_SLAVE_ID = 0x7E
+```
+
+如果恢复后串口变化，优先检查并修改这个脚本里的 `HAND_PORT`。
+
 ## 2. 上传本仓库项目文件
 
 在 Windows 本机执行，按实际 IP 替换：
@@ -52,6 +61,8 @@ scp "$backup\g1act_ws_yolo_v11x_best.pt" "$robot:/home/unitree/g1act_ws/g1act_ws
 
 ```bash
 cd /home/unitree/unitree_sdk2_python/g1_hand_arm_project
+python3 -m py_compile arm_pick_place_standalone.py right_hand_thumb_test.py test_arm_pick_place_flow.py
+python3 -m unittest test_arm_pick_place_flow.py
 python3 -m unittest tools/test_arm_pregrasp_preview.py
 python3 -m unittest vision/test_detect_bottle_2d.py
 python3 tools/arm_pregrasp_preview.py --dry-run --offset 16=-0.02 --max-abs-offset 0.08
@@ -85,6 +96,25 @@ python3 left_hand_safe_once.py open
 
 如果变了，先用 `ls /dev/ttyUSB*` 查，再修改 `left_hand_safe_once.py` 的 `PORT`。
 
+也可以用独立全流程脚本的手部测试入口，只动左手、不动机械臂：
+
+```bash
+cd /home/unitree/unitree_sdk2_python/g1_hand_arm_project
+python3 arm_pick_place_standalone.py --hand-only-test
+```
+
+当前全流程内置手型顺序是：
+
+```text
+open -> thumb_open_max -> thumb_ready -> bottle
+```
+
+如果怀疑左手 `ThumbAux` 通道异常，可以只测右手诊断脚本：
+
+```bash
+python3 right_hand_thumb_test.py --connect-retries 5 --connect-retry-delay 1.0
+```
+
 ## 5. 验证手臂空手预抓
 
 确认 G1 已进入稳定站立/预备状态，周围没有人和障碍物。先用很小偏移：
@@ -104,8 +134,18 @@ python3 tools/arm_pregrasp_preview.py --net eth0 --offset 16=-0.42,15=0.06,18=0.
 
 推荐顺序：
 
-1. 先恢复 `vision/detect_bottle_2d.py`，确认水瓶框稳定。
-2. 再恢复 `vision/detect_bottle_depth.py`，确认深度有效。
-3. 记录新的目标抓取点和随机点。
-4. 做 ChArUco 或 AprilTag 手眼标定。
-5. 标定稳定后再接机械臂路径规划，不要直接用未标定相机坐标控制手臂。
+1. 先验证 `arm_pick_place_standalone.py eth0` 的固定轨迹流程，确认安全初始位、抓瓶、抬小臂、悬停、放回和收手都正常。
+2. 再恢复 `vision/detect_bottle_2d.py`，确认水瓶框稳定。
+3. 再恢复 `vision/detect_bottle_depth.py`，确认深度有效。
+4. 记录新的目标抓取点和随机点。
+5. 做 ChArUco 或 AprilTag 手眼标定。
+6. 标定稳定后再接机械臂路径规划，不要直接用未标定相机坐标控制手臂。
+
+当前 `arm_pick_place_standalone.py` 里和小臂高度最相关的参数：
+
+```python
+UNFOLD_PREGRASP_DELTA[18] = -0.70
+LIFT_BOTTLE_DELTA[18] = -1.15
+```
+
+如果固定抓取点或抬瓶姿态还需要再高一点，就把对应的 `18` 再调小；如果太高，就把它调大。
