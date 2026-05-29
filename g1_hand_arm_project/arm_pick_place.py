@@ -84,12 +84,12 @@ UNFOLD_PREGRASP_DELTA = {
     19: -0.25,
 }
 
-POST_GRASP_OUT_DELTA = {
+LIFT_BOTTLE_DELTA = {
     15: -1.00,
-    16:  0.42,   # ×¥×¡ºó´ó±ÛÍâÀ©£¬ÏÈ°ÑÆ¿×Ó´øÀëÉíÌå/´óÍÈ
+    16:  0.08,
     17:  0.00,
-    18: -0.60,   # ÔÝÊ±±£³ÖÐ¡±ÛÉì¿ª¸ß¶È
-    19:  0.00,
+    18: -1.05,   # after grasp, fold the forearm upward before returning
+    19: -0.25,
 }
 
 RETRACT_OUT_DELTA = {
@@ -138,7 +138,7 @@ class LeftPregraspSmallTest:
 
         self.q_unfold_pregrasp = dict(self.q0)
 
-        self.q_post_grasp_out = dict(self.q0)
+        self.q_lift_bottle = dict(self.q0)
 
         self.q_retract_out = dict(self.q0)
 
@@ -160,9 +160,9 @@ class LeftPregraspSmallTest:
 
             self.q_unfold_pregrasp[j] = self.q0[j] + d
 
-        for j, d in POST_GRASP_OUT_DELTA.items():
+        for j, d in LIFT_BOTTLE_DELTA.items():
 
-            self.q_post_grasp_out[j] = self.q0[j] + d
+            self.q_lift_bottle[j] = self.q0[j] + d
 
         for j, d in RETRACT_OUT_DELTA.items():
 
@@ -185,6 +185,7 @@ class LeftPregraspSmallTest:
                 "lift_folded =", round(self.q_lift_folded[j], 4),
 
                 "unfold_pregrasp =", round(self.q_unfold_pregrasp[j], 4),
+                "lift_bottle =", round(self.q_lift_bottle[j], 4),
                 "retract_out =", round(self.q_retract_out[j], 4),
 
             )
@@ -271,17 +272,9 @@ class LeftPregraspSmallTest:
         run_left_hand("bottle")
         self.phase("pick: hold after grasp", 1.0, self.q_unfold_pregrasp, self.q_unfold_pregrasp, 1.0, 1.0)
 
-        self.phase("pick: upper arm outward after grasp", 1.5, self.q_unfold_pregrasp, self.q_post_grasp_out, 1.0, 1.0)
-
-        self.phase("pick: fold forearm back with bottle", 3.0, self.q_post_grasp_out, self.q_lift_folded, 1.0, 1.0)
-        self.phase("pick: retract outward with bottle", 4.2, self.q_lift_folded, self.q_retract_out, 1.0, 1.0)
-
-        self.phase("hold bottle at outward home", 1.0, self.q_retract_out, self.q_retract_out, 1.0, 1.0)
-
-        # -------- µÚ¶þ´Î£º·Å»ØÆ¿×Ó --------
-        self.phase("place: start from outward home", 1.0, self.q_retract_out, self.q_retract_out, 1.0, 1.0)
-        self.phase("place: lift and move folded arm", 4.2, self.q_retract_out, self.q_lift_folded, 1.0, 1.0)
-        self.phase("place: unfold forearm to release position", 3.0, self.q_lift_folded, self.q_unfold_pregrasp, 1.0, 1.0)
+        self.phase("pick: lift forearm with bottle", 2.0, self.q_unfold_pregrasp, self.q_lift_bottle, 1.0, 1.0)
+        self.phase("pick: hover with bottle lifted", 3.0, self.q_lift_bottle, self.q_lift_bottle, 1.0, 1.0)
+        self.phase("pick: lower bottle back to release position", 2.0, self.q_lift_bottle, self.q_unfold_pregrasp, 1.0, 1.0)
 
         self.phase("place: hold before release", 0.5, self.q_unfold_pregrasp, self.q_unfold_pregrasp, 1.0, 1.0)
         run_left_hand("open")
