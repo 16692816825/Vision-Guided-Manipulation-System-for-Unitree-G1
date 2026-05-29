@@ -1,0 +1,41 @@
+# ============================================
+# g1_yolo_nav_py 参数配置
+# ============================================
+
+# ---- YOLO 检测节点参数 ----
+g1_yolo_detector_node:
+  ros__parameters:
+    model_path: "yolo_v11x_best.pt"           # YOLO 模型文件路径
+    confidence_threshold: 0.5                 # 检测置信度阈值
+    nms_threshold: 0.45                       # NMS IoU 阈值
+    input_image_topic: "/camera/color/image_raw"  # 相机图像话题
+    output_detection_topic: "/g1/vision/detections"  # 检测结果话题
+    target_classes: [0]                       # 目标类别 (COCO: 0=person)
+    max_image_size: 640                       # 推理图像尺寸
+
+# ---- 空间投影节点参数 ----
+g1_spatial_target_node:
+  ros__parameters:
+    detection_topic: "/g1/vision/detections"  # 检测结果输入话题
+    depth_topic: "/camera/depth/image_raw"    # 深度图像话题
+    camera_info_topic: "/camera/color/camera_info"  # 相机内参话题
+    target_frame: "odom"                      # 目标坐标系
+    base_frame: "base_link"                   # 机器人基座坐标系
+    camera_frame: "camera_color_optical_frame"  # 相机坐标系
+    target_class_id: "0"                      # 要追踪的目标类别 ID
+    default_depth: 2.0                        # 默认目标距离 (m)
+    use_depth_sensor: false                   # 是否使用深度传感器
+    nav_target_topic: "/g1/nav/target_pose"   # 导航目标发布话题
+    approach_distance: 0.8                    # 接近目标后停下的距离 (m)
+    publish_rate: 5.0                         # 目标位姿发布频率 (Hz)
+
+# ---- 导航规划节点参数 ----
+g1_nav_planner_node:
+  ros__parameters:
+    target_topic: "/g1/nav/target_pose"       # 目标位姿输入话题
+    cmd_vel_topic: "/cmd_vel"                 # 速度指令输出话题
+    max_linear_speed: 0.3                     # 最大线速度 (m/s), 范围 [0.0, 1.0]
+    max_angular_speed: 0.5                    # 最大角速度 (rad/s), 范围 [0.0, 2.0]
+    goal_tolerance: 0.3                       # 到达容差 (m)
+    navigation_server: "navigate_to_pose"     # Nav2 action 名称
+    use_nav2: true                            # 是否使用 Nav2 导航

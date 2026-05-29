@@ -1,0 +1,14 @@
+string dataset_root
+string frame_idx
+bool save_debug
+---
+bool success
+string message
+int32 class_id
+string class_name
+float32 confidence
+float32[4] bbox_xyxy
+geometry_msgs/Point32[] polygon_world
+geometry_msgs/Point32[] obb_corners_world
+int32 pcd_inlier_count
+string output_dir

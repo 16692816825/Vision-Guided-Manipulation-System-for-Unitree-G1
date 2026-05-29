@@ -1,0 +1,59 @@
+source /opt/ros/foxy/setup.sh
+source ~/unitree_ros2/setup.sh
+
+source install/setup.bash 
+
+ros2 run ctrl_keyboard ctrl_keyboard
+
+ros2 run ctrl_keyboard auto_ctrl
+
+
+sudo ifconfig wlan0 down
+sudo ip link set wlan0 down
+sudo ip link set wlan0 up
+
+
+'z':  # 零力矩模式
+'x':  # 阻尼模式
+'c':  # 站立
+'v':  # 坐下
+'b':  # 平衡站立
+'r':  # 启动模式
+'t':  # 走跑运控模式
+
+
+速度: 
+'1': 0,  # 1.0m/s
+'2': 1,  # 2.0m/s
+'3': 2,  # 2.7m/s
+'4': 3   # 3.0m/s
+'+':加速
+'-':减速
+'*':加角速
+'/':减角速
+
+    '5': 99   # 恢复初始手臂位姿
+    '6': 11   # 双手飞吻
+    '7': 12   # 单手飞吻
+    '8': 15   # 平举
+    '9': 17,  # 鼓掌
+    '6': 18,  # 击掌
+    '7': 19,  # 拥抱
+    '8': 20,  # 双手比心
+    '9': 21,  # 右手比心
+    '0': 22,  # 双手打X
+    '-': 23,  # 右手平举
+    '=': 24,  # 动感光波
+    '[': 25,  # 胸前挥手
+    ']': 26,  # 高举挥手
+    ';': 27   # 握手
+    处理停止手臂动作  ESC
+    获取手臂动作      F1
+
+    w
+a   s   d
+
+
+ros2 pkg create ctrl_keyboard --build-type ament_python --dependencies rclpy unitree_api
+
+

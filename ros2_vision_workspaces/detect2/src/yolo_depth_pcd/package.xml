@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<package format="3">
+  <name>yolo_depth_pcd</name>
+  <version>0.0.0</version>
+  <description>ROS2 node that runs YOLO detection on dataset frames, backprojects polygon vertices using depth, and queries points within an oriented bounding box in a point cloud.</description>
+  <maintainer email="todo@todo.todo">todo</maintainer>
+  <license>Apache-2.0</license>
+
+  <buildtool_depend>ament_python</buildtool_depend>
+
+  <depend>rclpy</depend>
+  <depend>geometry_msgs</depend>
+  <depend>sensor_msgs</depend>
+  <depend>std_msgs</depend>
+  <depend>visualization_msgs</depend>
+  <depend>message_filters</depend>
+
+  <depend>yolo_depth_pcd_interfaces</depend>
+
+  <exec_depend>python3-numpy</exec_depend>
+
+  <test_depend>ament_lint_auto</test_depend>
+  <test_depend>ament_lint_common</test_depend>
+
+  <export>
+    <build_type>ament_python</build_type>
+  </export>
+</package>

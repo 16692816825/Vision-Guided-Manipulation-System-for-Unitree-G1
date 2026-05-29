@@ -1,0 +1,33 @@
+__pycache__/
+*.py[cod]
+*.pyo
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# ROS2 / colcon generated output
+build/
+install/
+log/
+
+# Python environments and local IDE state
+.venv/
+venv/
+env/
+.idea/
+.vscode/
+
+# Runtime captures that should be copied intentionally if needed
+*.bag
+*.db3
+*.mp4
+*.avi
+*.mkv
+
+# Large exported inference artifacts. Small .pt files in models/ are intentional.
+*.engine
+*.onnx
+!models/*.pt
+
+# Local-only factory-reset backup folder lives outside the repo.
+factory_reset_backup_*/

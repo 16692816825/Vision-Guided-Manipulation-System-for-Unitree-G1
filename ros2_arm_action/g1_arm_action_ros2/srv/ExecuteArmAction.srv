@@ -1,0 +1,48 @@
+# ExecuteArmAction.srv
+# Service for executing G1 robot arm actions
+
+# Request
+# Command type:
+#   0 = Execute preset action (use action_id)
+#   1 = Execute custom/teach action (use action_name)
+#   2 = Stop current custom action
+uint8 command_type
+
+# Preset action ID (used when command_type = 0)
+# Common action IDs:
+#   99  - release arm
+#   11  - two-hand kiss
+#   12  - left kiss / right kiss
+#   15  - hands up
+#   17  - clap
+#   18  - high five
+#   19  - hug
+#   20  - heart
+#   21  - right heart
+#   22  - reject
+#   23  - right hand up
+#   24  - x-ray
+#   25  - face wave
+#   26  - high wave
+#   27  - shake hand
+int32 action_id
+
+# Custom action name (used when command_type = 1)
+string action_name
+
+---
+
+# Response
+# Whether the action was executed successfully
+bool success
+
+# Error code (0 = success)
+# Common error codes:
+#   7400 - rt/armsdk topic is occupied
+#   7401 - arm is holding, expecting release action(99) or same action id
+#   7402 - invalid action id
+#   7404 - invalid fsm id (actions only supported in fsm id {500, 501, 801})
+int32 error_code
+
+# Descriptive message (error description or success message)
+string message

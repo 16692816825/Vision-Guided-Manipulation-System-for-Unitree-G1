@@ -1,0 +1,1211 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+<title>G1 NavGrasp · Web 控制面板</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          accent: { 500: '#F97316', 600: '#EA580C' },
+        },
+        fontFamily: {
+          sans: ['"Inter"','"PingFang SC"','"Microsoft YaHei UI"','sans-serif'],
+          mono: ['"JetBrains Mono"','"Consolas"','monospace'],
+        },
+      },
+    },
+  };
+</script>
+<link rel="stylesheet" href="/static/css/lggc.css" />
+<link rel="stylesheet" href="/static/css/style.css" />
+</head>
+<body class="font-sans antialiased">
+
+<!-- 背景装饰层（液态玻璃风：径向光晕 + 三色渐变 + 浮动光斑 + 可选自定义图片） -->
+<div class="bg-canvas" id="bg-canvas" aria-hidden="true">
+  <div class="bg-image" id="bg-image"></div>
+  <div class="bg-blob bg-blob-1"></div>
+  <div class="bg-blob bg-blob-2"></div>
+  <div class="bg-blob bg-blob-3"></div>
+  <div class="bg-mask" id="bg-mask"></div>
+</div>
+
+<div class="app-layout">
+
+  <!-- ========== 左侧导航栏 ========== -->
+  <aside class="sidebar">
+    <div class="sidebar-brand">
+      <div class="brand-logo">G1</div>
+      <div class="brand-text">
+        <div class="brand-title">NavGrasp</div>
+        <div class="brand-sub">Web Dashboard</div>
+      </div>
+    </div>
+
+    <nav class="sidebar-nav">
+      <a href="#grasp" class="nav-item" data-view="grasp">
+        <span class="nav-icon" data-icon="target"></span>
+        <span class="nav-label">目标抓取</span>
+        <span class="nav-badge">主</span>
+      </a>
+      <a href="#detect" class="nav-item" data-view="detect">
+        <span class="nav-icon" data-icon="search"></span>
+        <span class="nav-label">目标识别</span>
+      </a>
+      <a href="#control" class="nav-item" data-view="control">
+        <span class="nav-icon" data-icon="gamepad"></span>
+        <span class="nav-label">运动控制</span>
+      </a>
+      <a href="#arm_debug" class="nav-item" data-view="arm_debug">
+        <span class="nav-icon" data-icon="bot"></span>
+        <span class="nav-label">上肢调试</span>
+        <span class="nav-badge">新</span>
+      </a>
+      <a href="#status" class="nav-item" data-view="status">
+        <span class="nav-icon" data-icon="activity"></span>
+        <span class="nav-label">系统状态</span>
+      </a>
+      <a href="#nodes" class="nav-item" data-view="nodes">
+        <span class="nav-icon" data-icon="server"></span>
+        <span class="nav-label">节点管理</span>
+      </a>
+      <a href="#settings" class="nav-item" data-view="settings">
+        <span class="nav-icon" data-icon="settings"></span>
+        <span class="nav-label">系统设置</span>
+      </a>
+      <div class="nav-divider"></div>
+      <a href="#coming" class="nav-item nav-muted" data-view="coming">
+        <span class="nav-icon" data-icon="sparkles"></span>
+        <span class="nav-label">更多模块</span>
+        <span class="nav-badge nav-badge-muted">待定</span>
+      </a>
+    </nav>
+
+    <div class="sidebar-footer">
+      <button id="sidebar-toggle" class="sidebar-toggle" type="button" title="收起侧边栏" aria-label="切换侧边栏">
+        <span class="sidebar-toggle-icon" data-icon="panel-left-close"></span>
+        <span class="sidebar-toggle-label">收起</span>
+      </button>
+      <div class="footer-pulse">
+        <span class="pulse-dot"></span>
+        <span id="conn-label">已连接</span>
+      </div>
+      <div class="footer-version">v0.3 · ROS2 Foxy</div>
+    </div>
+  </aside>
+
+  <!-- ========== 主内容区 ========== -->
+  <main class="main-wrap">
+
+    <header class="topbar">
+      <div class="topbar-left">
+        <h2 id="page-title" class="page-title">目标抓取</h2>
+        <p id="page-subtitle" class="page-subtitle">完整抓取任务流程</p>
+      </div>
+
+      <!-- 设置页 TOC（嵌入 topbar 中段，仅 settings 视图显示） -->
+      <nav class="topbar-toc" id="topbar-toc">
+        <div class="toc-title" data-icon="lightbulb" title="目录"></div>
+        <a href="#sg-detect-align" class="toc-link" data-toc="sg-detect-align">
+          <span class="toc-icon group-icon-red" data-icon="crosshair"></span>
+          <span class="toc-label">检测与对齐</span>
+        </a>
+        <a href="#sg-motion-camera" class="toc-link" data-toc="sg-motion-camera">
+          <span class="toc-icon group-icon-blue" data-icon="gamepad"></span>
+          <span class="toc-label">运动与相机</span>
+        </a>
+        <a href="#sg-env" class="toc-link" data-toc="sg-env">
+          <span class="toc-icon group-icon-amber" data-icon="server"></span>
+          <span class="toc-label">系统环境</span>
+        </a>
+        <a href="#sg-ui-bg" class="toc-link" data-toc="sg-ui-bg">
+          <span class="toc-icon group-icon-emerald" data-icon="palette"></span>
+          <span class="toc-label">偏好与背景</span>
+        </a>
+      </nav>
+
+      <div class="topbar-right">
+        <div class="pill">
+          <span id="state-dot" class="state-dot"></span>
+          <span id="state-label" class="font-mono text-sm font-medium">连接中</span>
+        </div>
+        <div class="topbar-meta">
+          <span id="fps-label">FPS —</span>
+          <span class="topbar-meta-sep">·</span>
+          <span id="det-label">检测 —</span>
+        </div>
+      </div>
+    </header>
+
+    <!-- ======================================================= -->
+    <!-- 视图 1：目标抓取 — 任务流程向导式                            -->
+    <!-- ======================================================= -->
+    <section class="view" data-view="grasp">
+
+      <!-- 任务流程步骤条 -->
+      <div class="workflow-bar">
+        <div class="wf-step" data-step="SEARCH">
+          <div class="wf-icon">
+            <span class="wf-icon-default" data-icon="search"></span>
+            <span class="wf-icon-done" data-icon="check"></span>
+          </div>
+          <div class="wf-text">
+            <div class="wf-title">搜索</div>
+            <div class="wf-sub">旋转寻找目标</div>
+          </div>
+        </div>
+        <div class="wf-arrow"></div>
+        <div class="wf-step" data-step="ALIGN">
+          <div class="wf-icon">
+            <span class="wf-icon-default" data-icon="crosshair"></span>
+            <span class="wf-icon-done" data-icon="check"></span>
+          </div>
+          <div class="wf-text">
+            <div class="wf-title">对齐</div>
+            <div class="wf-sub">步进式偏航</div>
+          </div>
+        </div>
+        <div class="wf-arrow"></div>
+        <div class="wf-step" data-step="APPROACH">
+          <div class="wf-icon">
+            <span class="wf-icon-default" data-icon="footprints"></span>
+            <span class="wf-icon-done" data-icon="check"></span>
+          </div>
+          <div class="wf-text">
+            <div class="wf-title">接近</div>
+            <div class="wf-sub">深度距离 ≤ 0.5m</div>
+          </div>
+        </div>
+        <div class="wf-arrow"></div>
+        <div class="wf-step" data-step="GRAB">
+          <div class="wf-icon">
+            <span class="wf-icon-default" data-icon="bot"></span>
+            <span class="wf-icon-done" data-icon="check"></span>
+          </div>
+          <div class="wf-text">
+            <div class="wf-title">抓取</div>
+            <div class="wf-sub">armup.py</div>
+          </div>
+        </div>
+        <div class="wf-arrow"></div>
+        <div class="wf-step" data-step="DONE">
+          <div class="wf-icon">
+            <span class="wf-icon-default" data-icon="check"></span>
+            <span class="wf-icon-done" data-icon="check"></span>
+          </div>
+          <div class="wf-text">
+            <div class="wf-title">完成</div>
+            <div class="wf-sub">等待放下</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="grasp-grid">
+        <!-- 左：双视频叠加 -->
+        <div class="space-y-4">
+          <div class="card video-card">
+            <div class="card-header">
+              <h3 class="card-title">原始图像</h3>
+              <span class="card-tag">raw</span>
+            </div>
+            <div class="aspect-[4/3]">
+              <img src="/stream/raw" class="stream-img" alt="raw" />
+            </div>
+          </div>
+          <div class="card video-card">
+            <div class="card-header">
+              <h3 class="card-title">检测结果</h3>
+              <span class="card-tag card-tag-accent">YOLO</span>
+            </div>
+            <div class="aspect-[4/3]">
+              <img src="/stream/detection" class="stream-img" alt="detection" />
+            </div>
+          </div>
+        </div>
+
+        <!-- 中：实时状态信息 -->
+        <div class="space-y-4">
+          <div class="card stat-highlight">
+            <div class="stat-top">
+              <div class="stat-label">当前任务状态</div>
+              <div id="g-state-pill" class="stat-pill">IDLE</div>
+            </div>
+            <div class="stat-metric">
+              <div class="metric-block">
+                <div class="metric-value" id="g-info-dist">—</div>
+                <div class="metric-unit">目标距离 (m)</div>
+              </div>
+              <div class="metric-block">
+                <div class="metric-value" id="g-info-u">—</div>
+                <div class="metric-unit">水平位置 u</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="card">
+            <h3 class="card-title mb-3">目标详情</h3>
+            <dl class="info-list">
+              <div><dt>目标类别</dt><dd id="g-info-target">—</dd></div>
+              <div><dt>BBox 大小</dt><dd id="g-info-bbox">—</dd></div>
+              <div><dt>检测数量</dt><dd id="g-info-count">—</dd></div>
+              <div><dt>图像 FPS</dt><dd id="g-info-fps">—</dd></div>
+            </dl>
+          </div>
+        </div>
+
+        <!-- 右：任务队列 -->
+        <div class="space-y-4">
+          <div class="card">
+            <div class="flex items-center justify-between mb-3">
+              <h3 class="card-title">任务操作</h3>
+              <span class="card-subtag">Tasks</span>
+            </div>
+            <div class="task-queue">
+              <button class="task-btn task-search" data-cmd="search">
+                <span class="task-icon" data-icon="search"></span>
+                <div class="task-body">
+                  <div class="task-name">开始搜索</div>
+                  <div class="task-desc">旋转寻找目标物</div>
+                </div>
+                <span class="task-arrow" data-icon="chevron-right"></span>
+              </button>
+              <button class="task-btn task-grab" data-cmd="grab">
+                <span class="task-icon" data-icon="bot"></span>
+                <div class="task-body">
+                  <div class="task-name">立即抓取</div>
+                  <div class="task-desc">执行 armup.py</div>
+                </div>
+                <span class="task-arrow" data-icon="chevron-right"></span>
+              </button>
+              <button class="task-btn task-putdown" data-cmd="putdown">
+                <span class="task-icon" data-icon="package"></span>
+                <div class="task-body">
+                  <div class="task-name">原地放下</div>
+                  <div class="task-desc">执行 armdown.py</div>
+                </div>
+                <span class="task-arrow" data-icon="chevron-right"></span>
+              </button>
+              <button class="task-btn task-turn" data-cmd="turn_putdown">
+                <span class="task-icon" data-icon="rotate-cw"></span>
+                <div class="task-body">
+                  <div class="task-name">右转 90° 放下</div>
+                  <div class="task-desc">转身后再放下</div>
+                </div>
+                <span class="task-arrow" data-icon="chevron-right"></span>
+              </button>
+              <button class="task-btn task-left" data-cmd="left_putdown">
+                <span class="task-icon" data-icon="arrow-left"></span>
+                <div class="task-body">
+                  <div class="task-name">左移放下</div>
+                  <div class="task-desc">向左侧移后放下</div>
+                </div>
+                <span class="task-arrow" data-icon="chevron-right"></span>
+              </button>
+            </div>
+            <button class="btn btn-outline-danger w-full mt-3" data-cmd="stop">
+              <span data-icon="square" class="btn-icon"></span>
+              <span>紧急停止</span>
+            </button>
+          </div>
+
+          <div class="card log-card">
+            <div class="log-header">
+              <div class="log-dots">
+                <span class="log-dot dot-red"></span>
+                <span class="log-dot dot-yellow"></span>
+                <span class="log-dot dot-green"></span>
+              </div>
+              <div class="log-title">任务日志 · g1.log</div>
+              <button onclick="clearLog()" class="log-clear" title="清空">
+                <span data-icon="trash-2"></span>
+              </button>
+            </div>
+            <div id="log-box" class="log-box log-box-compact"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================= -->
+    <!-- 视图 2：目标识别 — 沉浸全屏单视频流                          -->
+    <!-- ======================================================= -->
+    <section class="view hidden" data-view="detect">
+      <div class="detect-hero">
+        <div class="hero-video">
+          <img src="/stream/detection" class="stream-img" alt="detection" />
+          <div class="hero-overlay">
+            <div class="hero-stat">
+              <div class="hero-stat-value" id="d-fps">—</div>
+              <div class="hero-stat-label">FPS</div>
+            </div>
+            <div class="hero-stat">
+              <div class="hero-stat-value" id="d-count">—</div>
+              <div class="hero-stat-label">检测数量</div>
+            </div>
+            <div class="hero-stat">
+              <div class="hero-stat-value" id="d-target">—</div>
+              <div class="hero-stat-label">目标类别</div>
+            </div>
+            <div class="hero-stat">
+              <div class="hero-stat-value" id="d-dist">—</div>
+              <div class="hero-stat-label">深度距离 (m)</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="detect-footer">
+          <div class="detect-info-panel">
+            <h3 class="card-title mb-3">最佳目标</h3>
+            <div class="grid grid-cols-2 gap-3">
+              <div class="mini-metric">
+                <div class="mini-label">水平位置</div>
+                <div class="mini-value" id="d-u">—</div>
+              </div>
+              <div class="mini-metric">
+                <div class="mini-label">BBox 大小</div>
+                <div class="mini-value" id="d-bbox">—</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="detect-info-panel">
+            <h3 class="card-title mb-2">说明</h3>
+            <p class="panel-desc">
+              本页仅显示 YOLO 视觉检测结果，不触发运动控制。<br/>
+              大屏沉浸式视图方便远程观察目标识别效果。
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================= -->
+    <!-- 视图 3：运动控制 — 游戏手柄风格                              -->
+    <!-- ======================================================= -->
+    <section class="view hidden" data-view="control">
+      <div class="control-stage">
+
+        <!-- 左参数盘 -->
+        <div class="gamepad-side">
+          <div class="pad-panel">
+            <div class="pad-panel-title">状态</div>
+            <dl class="pad-metrics">
+              <div><dt>模式</dt><dd id="c-info-mode">手动</dd></div>
+              <div><dt>任务</dt><dd id="c-info-state">—</dd></div>
+              <div><dt>FPS</dt><dd id="c-info-fps">—</dd></div>
+            </dl>
+          </div>
+          <div class="pad-panel pad-warn">
+            <div class="pad-panel-title">安全</div>
+            <ul class="pad-warn-list">
+              <li>确认前方无障碍</li>
+              <li>首次调试 ≤ 0.2 m/s</li>
+              <li>急停随时可用</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- 中：悬浮视频 + 方向盘 -->
+        <div class="gamepad-center">
+          <div class="floating-video">
+            <img src="/stream/raw" class="stream-img" alt="raw" />
+            <div class="floating-tag">实时画面</div>
+          </div>
+
+          <div class="gamepad-controls">
+            <div class="speed-gauge">
+              <div class="gauge-label">线速度</div>
+              <input id="c-speed-slider" type="range" min="0.05" max="0.5" step="0.05" value="0.2" />
+              <div class="gauge-value" id="c-speed-value">0.20</div>
+              <div class="gauge-unit">m/s</div>
+            </div>
+
+            <div class="dpad">
+              <div></div>
+              <button class="dpad-btn dpad-up" data-dcmd="forward" aria-label="前进">
+                <span data-icon="chevron-up"></span>
+              </button>
+              <div></div>
+              <button class="dpad-btn dpad-left" data-dcmd="left" aria-label="左移">
+                <span data-icon="chevron-left"></span>
+              </button>
+              <button class="dpad-btn dpad-stop" data-dcmd="stop" aria-label="停止">
+                <span data-icon="square"></span>
+              </button>
+              <button class="dpad-btn dpad-right" data-dcmd="right" aria-label="右移">
+                <span data-icon="chevron-right"></span>
+              </button>
+              <div></div>
+              <button class="dpad-btn dpad-down" data-dcmd="backward" aria-label="后退">
+                <span data-icon="chevron-down"></span>
+              </button>
+              <div></div>
+            </div>
+
+            <div class="rotate-row">
+              <button class="rotate-btn" data-dcmd="turn_left" aria-label="左转">
+                <span data-icon="rotate-ccw"></span>
+                <span class="rotate-label">左转</span>
+              </button>
+              <button class="rotate-btn" data-dcmd="turn_right" aria-label="右转">
+                <span data-icon="rotate-cw"></span>
+                <span class="rotate-label">右转</span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- 右参数盘 -->
+        <div class="gamepad-side">
+          <div class="pad-panel">
+            <div class="pad-panel-title">速度映射</div>
+            <dl class="pad-metrics">
+              <div><dt>vx</dt><dd id="c-vx">0.00</dd></div>
+              <div><dt>vy</dt><dd id="c-vy">0.00</dd></div>
+              <div><dt>vyaw</dt><dd id="c-vyaw">0.00</dd></div>
+            </dl>
+          </div>
+          <div class="pad-panel">
+            <div class="pad-panel-title">提示</div>
+            <ul class="pad-tips-list">
+              <li>▲▼ 前后，◄► 左右平移</li>
+              <li>↺↻ 原地左转 / 右转</li>
+              <li>■ 停止所有运动</li>
+              <li>vyaw = 2 × 线速度</li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ======================================================= -->
+    <!-- 视图 4：系统状态 — 仪表盘网格                                -->
+    <!-- ======================================================= -->
+    <section class="view hidden" data-view="status">
+
+      <div class="status-grid">
+
+        <div class="status-tile status-tile-primary">
+          <div class="tile-label">图像 FPS</div>
+          <div class="tile-value" id="s-fps">—</div>
+          <div class="tile-bar">
+            <div id="s-fps-bar" class="tile-bar-fill bar-accent"></div>
+          </div>
+          <div class="tile-foot">RealSense D455</div>
+        </div>
+
+        <div class="status-tile">
+          <div class="tile-label">检测数量</div>
+          <div class="tile-value" id="s-det-count">—</div>
+          <div class="tile-foot">YOLO Detection2DArray</div>
+        </div>
+
+        <div class="status-tile">
+          <div class="tile-label">目标类别</div>
+          <div class="tile-value tile-text" id="s-target">—</div>
+          <div class="tile-foot">target_class_id</div>
+        </div>
+
+        <div class="status-tile">
+          <div class="tile-label">任务状态</div>
+          <div class="tile-value tile-text" id="s-state">—</div>
+          <div class="tile-foot">GraspStateMachine</div>
+        </div>
+
+        <div class="status-tile">
+          <div class="tile-label">深度距离</div>
+          <div class="tile-value" id="s-dist">—</div>
+          <div class="tile-bar">
+            <div id="s-dist-bar" class="tile-bar-fill bar-emerald"></div>
+          </div>
+          <div class="tile-foot">阈值 0.5m</div>
+        </div>
+
+        <div class="status-tile">
+          <div class="tile-label">目标 u 位置</div>
+          <div class="tile-value" id="s-u">—</div>
+          <div class="tile-bar">
+            <div id="s-u-bar" class="tile-bar-fill bar-amber"></div>
+          </div>
+          <div class="tile-foot">中心 = 0.5</div>
+        </div>
+
+        <div class="status-tile">
+          <div class="tile-label">BBox 大小</div>
+          <div class="tile-value" id="s-bbox">—</div>
+          <div class="tile-foot">归一化比例</div>
+        </div>
+
+        <div class="status-tile status-tile-health">
+          <div class="tile-label">系统健康度</div>
+          <div class="health-ring">
+            <svg viewBox="0 0 100 100">
+              <circle class="ring-bg" cx="50" cy="50" r="40"/>
+              <circle id="health-ring-fill" class="ring-fill" cx="50" cy="50" r="40"/>
+            </svg>
+            <div class="health-percent" id="health-percent">—</div>
+          </div>
+          <div class="tile-foot">检测·深度·任务</div>
+        </div>
+
+        <div class="status-log">
+          <div class="log-header">
+            <div class="log-dots">
+              <span class="log-dot dot-red"></span>
+              <span class="log-dot dot-yellow"></span>
+              <span class="log-dot dot-green"></span>
+            </div>
+            <div class="log-title">实时日志流 · system.log</div>
+            <button onclick="clearLog()" class="log-clear" title="清空">
+              <span data-icon="trash-2"></span>
+            </button>
+          </div>
+          <div id="s-log-box" class="log-box log-box-tall"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================= -->
+    <!-- 视图 5：节点管理 — ROS2 子进程启动器                          -->
+    <!-- ======================================================= -->
+    <section class="view hidden" data-view="nodes">
+      <div class="nodes-wrap">
+
+        <!-- 顶部说明卡 -->
+        <div class="nodes-banner">
+          <div class="banner-icon" data-icon="server"></div>
+          <div class="banner-body">
+            <div class="banner-title">ROS2 节点管理</div>
+            <div class="banner-desc">通过 subprocess 启动 / 停止 ROS2 节点。修改参数后需先停止再启动才能生效。</div>
+          </div>
+        </div>
+
+        <!-- 进程卡片列表（垂直堆叠，每张大卡） -->
+        <div class="node-cards">
+
+          <!-- 相机驱动 -->
+          <div class="node-card" data-proc="camera">
+            <div class="node-head">
+              <div class="node-head-main">
+                <div class="node-icon launcher-icon-blue" data-icon="camera"></div>
+                <div class="node-info">
+                  <div class="node-title">RealSense 相机驱动</div>
+                  <div class="node-cmd" data-bind="cmd">ros2 launch realsense2_camera rs_launch.py</div>
+                </div>
+              </div>
+              <div class="node-actions">
+                <span class="cam-pill cam-pill-off" data-bind="state-pill">
+                  <span class="cam-dot"></span>
+                  <span data-bind="state-label">未启动</span>
+                </span>
+                <button class="btn btn-primary" data-bind="start-btn" onclick="procStart('camera')">
+                  <span data-icon="chevron-right" class="btn-icon"></span>
+                  <span>启动</span>
+                </button>
+                <button class="btn btn-outline-danger" data-bind="stop-btn" onclick="procStop('camera')" disabled>
+                  <span data-icon="square" class="btn-icon"></span>
+                  <span>停止</span>
+                </button>
+              </div>
+            </div>
+            <div class="node-body">
+              <div class="node-meta">
+                <div><dt>PID</dt><dd data-bind="pid">—</dd></div>
+                <div><dt>运行时长</dt><dd data-bind="uptime">—</dd></div>
+                <div><dt>模式</dt><dd>ros2 launch</dd></div>
+              </div>
+              <form class="node-params" data-proc-form="camera">
+                <div class="params-title">参数（修改后下次启动生效）</div>
+                <label>
+                  <span>camera_namespace</span>
+                  <input type="text" data-pkey="camera_namespace" placeholder="robot1" />
+                </label>
+                <label>
+                  <span>camera_name</span>
+                  <input type="text" data-pkey="camera_name" placeholder="D455_1" />
+                </label>
+                <label class="param-inline">
+                  <span>align_depth.enable</span>
+                  <label class="toggle">
+                    <input type="checkbox" data-pkey="align_depth.enable" />
+                    <span class="toggle-slider"></span>
+                  </label>
+                </label>
+                <button type="button" class="btn btn-outline-brand btn-mini" onclick="saveProcParams('camera')">
+                  保存参数
+                </button>
+              </form>
+            </div>
+            <details class="node-logs">
+              <summary>子进程日志（最近 80 行）</summary>
+              <div data-bind="log-box" class="log-box log-box-tall"></div>
+            </details>
+          </div>
+
+          <!-- YOLO 检测器 -->
+          <div class="node-card" data-proc="yolo">
+            <div class="node-head">
+              <div class="node-head-main">
+                <div class="node-icon launcher-icon-red" data-icon="search"></div>
+                <div class="node-info">
+                  <div class="node-title">YOLO 目标检测器</div>
+                  <div class="node-cmd" data-bind="cmd">ros2 run g1_yolo_nav_py yolo_detector</div>
+                </div>
+              </div>
+              <div class="node-actions">
+                <span class="cam-pill cam-pill-off" data-bind="state-pill">
+                  <span class="cam-dot"></span>
+                  <span data-bind="state-label">未启动</span>
+                </span>
+                <button class="btn btn-primary" data-bind="start-btn" onclick="procStart('yolo')">
+                  <span data-icon="chevron-right" class="btn-icon"></span>
+                  <span>启动</span>
+                </button>
+                <button class="btn btn-outline-danger" data-bind="stop-btn" onclick="procStop('yolo')" disabled>
+                  <span data-icon="square" class="btn-icon"></span>
+                  <span>停止</span>
+                </button>
+              </div>
+            </div>
+            <div class="node-body">
+              <div class="node-meta">
+                <div><dt>PID</dt><dd data-bind="pid">—</dd></div>
+                <div><dt>运行时长</dt><dd data-bind="uptime">—</dd></div>
+                <div><dt>模式</dt><dd>ros2 run</dd></div>
+              </div>
+              <form class="node-params" data-proc-form="yolo">
+                <div class="params-title">参数（修改后下次启动生效）</div>
+                <label>
+                  <span>image_topic</span>
+                  <input type="text" data-pkey="image_topic" placeholder="/D455_1/color/image_raw" />
+                </label>
+                <label>
+                  <span>conf_threshold</span>
+                  <input type="number" step="0.05" min="0.1" max="0.95" data-pkey="conf_threshold" placeholder="0.5" />
+                </label>
+                <button type="button" class="btn btn-outline-brand btn-mini" onclick="saveProcParams('yolo')">
+                  保存参数
+                </button>
+              </form>
+            </div>
+            <details class="node-logs">
+              <summary>子进程日志（最近 80 行）</summary>
+              <div data-bind="log-box" class="log-box log-box-tall"></div>
+            </details>
+          </div>
+
+          <!-- RGBD 数据采集 -->
+          <div class="node-card" data-proc="rgbd">
+            <div class="node-head">
+              <div class="node-head-main">
+                <div class="node-icon launcher-icon-emerald" data-icon="package"></div>
+                <div class="node-info">
+                  <div class="node-title">RGBD 数据采集</div>
+                  <div class="node-cmd" data-bind="cmd">ros2 run g1_yolo_nav_py rgbd_capture</div>
+                </div>
+              </div>
+              <div class="node-actions">
+                <span class="cam-pill cam-pill-off" data-bind="state-pill">
+                  <span class="cam-dot"></span>
+                  <span data-bind="state-label">未启动</span>
+                </span>
+                <button class="btn btn-primary" data-bind="start-btn" onclick="procStart('rgbd')">
+                  <span data-icon="chevron-right" class="btn-icon"></span>
+                  <span>启动</span>
+                </button>
+                <button class="btn btn-outline-danger" data-bind="stop-btn" onclick="procStop('rgbd')" disabled>
+                  <span data-icon="square" class="btn-icon"></span>
+                  <span>停止</span>
+                </button>
+              </div>
+            </div>
+            <div class="node-body">
+              <div class="node-meta">
+                <div><dt>PID</dt><dd data-bind="pid">—</dd></div>
+                <div><dt>运行时长</dt><dd data-bind="uptime">—</dd></div>
+                <div><dt>模式</dt><dd>ros2 run</dd></div>
+              </div>
+              <form class="node-params" data-proc-form="rgbd">
+                <div class="params-title">参数（修改后下次启动生效）</div>
+                <label>
+                  <span>color_topic</span>
+                  <input type="text" data-pkey="color_topic" placeholder="/D455_1/color/image_raw" />
+                </label>
+                <label>
+                  <span>depth_topic</span>
+                  <input type="text" data-pkey="depth_topic" placeholder="/D455_1/depth/image_rect_raw" />
+                </label>
+                <label>
+                  <span>interval_sec（采集间隔，秒）</span>
+                  <input type="number" step="0.5" min="0.5" max="60" data-pkey="interval_sec" placeholder="5.0" />
+                </label>
+                <label>
+                  <span>duration_sec（持续时间，秒）</span>
+                  <input type="number" step="5" min="5" max="3600" data-pkey="duration_sec" placeholder="60.0" />
+                </label>
+                <button type="button" class="btn btn-outline-brand btn-mini" onclick="saveProcParams('rgbd')">
+                  保存参数
+                </button>
+              </form>
+            </div>
+            <details class="node-logs">
+              <summary>子进程日志（最近 80 行）</summary>
+              <div data-bind="log-box" class="log-box log-box-tall"></div>
+            </details>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================= -->
+    <!-- 视图 5：系统设置 — banner + 分组卡片（TOC 在顶栏中段）        -->
+    <!-- ======================================================= -->
+    <section class="view hidden" data-view="settings">
+      <div class="settings-wrap">
+
+        <!-- 顶部提示卡 -->
+        <div class="settings-banner">
+          <div class="banner-icon" data-icon="lightbulb"></div>
+          <div class="banner-body">
+            <div class="banner-title">系统设置 · 配置热更新</div>
+            <div class="banner-desc">运行时参数实时调整 + 界面偏好（本地保存），修改后点对应分组的「保存」立即生效。</div>
+          </div>
+          <button class="btn btn-outline-brand" onclick="reloadSettings()">
+            <span data-icon="refresh-cw" class="btn-icon"></span>
+            <span>重新加载</span>
+          </button>
+        </div>
+
+        <div class="settings-layout">
+
+          <div class="settings-grid">
+
+          <!-- 1. 检测与对齐 -->
+          <div class="settings-group" id="sg-detect-align">
+            <div class="settings-group-head">
+              <div class="group-icon group-icon-red" data-icon="crosshair"></div>
+              <div>
+                <div class="group-title">检测与对齐</div>
+                <div class="group-sub">目标识别 + 步进式偏航对齐</div>
+              </div>
+            </div>
+
+            <div class="subgroup-title" data-icon="search">
+              <span data-icon="search"></span>
+              <span>检测识别</span>
+              <span class="subgroup-sub">目标类别、深度距离判断</span>
+            </div>
+            <form class="settings-form form-2col" data-settings-group="detect">
+              <label class="field-full">
+                <span class="field-label">目标类别 (target_class_id)</span>
+                <input type="text" data-key="target_class_id" />
+                <span class="field-help">YOLO 识别的类别名称，如 chair/bottle/person</span>
+              </label>
+              <label class="field-inline field-full">
+                <span class="field-label">启用深度距离判断</span>
+                <label class="toggle">
+                  <input type="checkbox" data-key="use_depth_distance" />
+                  <span class="toggle-slider"></span>
+                </label>
+              </label>
+              <label>
+                <span class="field-label">停止距离 stop_distance (m)</span>
+                <input type="number" step="0.05" min="0.1" max="3" data-key="stop_distance" />
+                <span class="field-help">深度距离 ≤ 该值时进入抓取</span>
+              </label>
+              <label>
+                <span class="field-label">深度采样半径 (px)</span>
+                <input type="number" step="1" min="1" max="50" data-key="depth_sample_radius" />
+              </label>
+              <label>
+                <span class="field-label">丢失超时 lost_timeout (s)</span>
+                <input type="number" step="0.5" min="0.5" max="30" data-key="lost_timeout" />
+              </label>
+              <div class="form-actions field-full">
+                <button type="button" class="btn btn-primary" data-save="detect">保存检测</button>
+              </div>
+            </form>
+
+            <div class="subgroup-divider"></div>
+
+            <div class="subgroup-title">
+              <span data-icon="crosshair"></span>
+              <span>对齐控制</span>
+              <span class="subgroup-sub">步进式偏航对齐参数</span>
+            </div>
+            <form class="settings-form form-2col" data-settings-group="align">
+              <label>
+                <span class="field-label">每步旋转速度 (rad/s)</span>
+                <input type="number" step="0.05" min="0.05" max="1" data-key="step_yaw_speed" />
+              </label>
+              <label>
+                <span class="field-label">每步持续时间 (s)</span>
+                <input type="number" step="0.05" min="0.05" max="2" data-key="step_duration" />
+              </label>
+              <label>
+                <span class="field-label">相机等待时间 (s)</span>
+                <input type="number" step="0.5" min="0.5" max="15" data-key="camera_settle_time" />
+                <span class="field-help">旋转后等待相机帧刷新</span>
+              </label>
+              <label>
+                <span class="field-label">最大连续步数</span>
+                <input type="number" step="1" min="1" max="30" data-key="max_consecutive_steps" />
+              </label>
+              <label class="field-full">
+                <span class="field-label">居中容差 center_tolerance</span>
+                <input type="number" step="0.01" min="0.01" max="0.3" data-key="align_center_tolerance" />
+                <span class="field-help">归一化，越小越严格</span>
+              </label>
+              <div class="form-actions field-full">
+                <button type="button" class="btn btn-primary" data-save="align">保存对齐</button>
+              </div>
+            </form>
+          </div>
+
+          <!-- 2. 运动与相机 -->
+          <div class="settings-group" id="sg-motion-camera">
+            <div class="settings-group-head">
+              <div class="group-icon group-icon-blue" data-icon="gamepad"></div>
+              <div>
+                <div class="group-title">运动与相机</div>
+                <div class="group-sub">前进 / 转身 / 侧移 + 相机驱动参数</div>
+              </div>
+            </div>
+
+            <div class="subgroup-title">
+              <span data-icon="gamepad"></span>
+              <span>运动控制</span>
+              <span class="subgroup-sub">前进、搜索、转身、左移</span>
+            </div>
+            <form class="settings-form form-2col" data-settings-group="motion">
+              <label>
+                <span class="field-label">前进速度 forward_speed (m/s)</span>
+                <input type="number" step="0.05" min="0.05" max="1" data-key="forward_speed" />
+              </label>
+              <label>
+                <span class="field-label">到达 BBox 阈值</span>
+                <input type="number" step="0.05" min="0.1" max="0.95" data-key="arrive_bbox_ratio" />
+                <span class="field-help">深度不可用时的 fallback</span>
+              </label>
+              <label>
+                <span class="field-label">居中稳定时长 (s)</span>
+                <input type="number" step="0.1" min="0.1" max="5" data-key="align_stable_time" />
+              </label>
+              <label>
+                <span class="field-label">搜索旋转速度 (rad/s)</span>
+                <input type="number" step="0.05" min="0.05" max="1" data-key="search_yaw_speed" />
+              </label>
+              <label>
+                <span class="field-label">转身速度 (rad/s)</span>
+                <input type="number" step="0.05" min="0.05" max="1" data-key="turn_yaw_speed" />
+              </label>
+              <label>
+                <span class="field-label">转身时长 (s)</span>
+                <input type="number" step="0.1" min="0.5" max="10" data-key="turn_duration" />
+                <span class="field-help">右转 90° 所需时间</span>
+              </label>
+              <label>
+                <span class="field-label">左移速度 side_step_speed (m/s)</span>
+                <input type="number" step="0.05" min="0.05" max="0.5" data-key="side_step_speed" />
+                <span class="field-help">vy>0 表示向左侧移</span>
+              </label>
+              <label>
+                <span class="field-label">左移时长 side_step_duration (s)</span>
+                <input type="number" step="0.1" min="0.1" max="10" data-key="side_step_duration" />
+                <span class="field-help">侧移持续时间，决定平移距离</span>
+              </label>
+              <div class="form-actions field-full">
+                <button type="button" class="btn btn-primary" data-save="motion">保存运动</button>
+              </div>
+            </form>
+
+            <div class="subgroup-divider"></div>
+
+            <div class="subgroup-title">
+              <span data-icon="camera"></span>
+              <span>相机驱动</span>
+              <span class="subgroup-sub">RealSense ros2 launch 参数</span>
+            </div>
+            <form class="settings-form form-2col" data-settings-group="camera">
+              <label>
+                <span class="field-label">camera_namespace</span>
+                <input type="text" data-camera-key="camera_namespace" />
+                <span class="field-help">话题前缀，如 robot1</span>
+              </label>
+              <label>
+                <span class="field-label">camera_name</span>
+                <input type="text" data-camera-key="camera_name" />
+                <span class="field-help">设备名称，如 D455_1</span>
+              </label>
+              <label class="field-inline field-full">
+                <span class="field-label">align_depth.enable</span>
+                <label class="toggle">
+                  <input type="checkbox" data-camera-key="align_depth.enable" />
+                  <span class="toggle-slider"></span>
+                </label>
+              </label>
+              <div class="field-help field-full">提示：参数仅在「下次启动」时生效。修改后需先停止再启动。</div>
+              <div class="form-actions field-full">
+                <button type="button" class="btn btn-primary" onclick="saveCameraParams()">保存相机参数</button>
+                <button type="button" class="btn btn-outline-brand" onclick="reloadCameraParams()">
+                  <span data-icon="refresh-cw" class="btn-icon"></span>
+                  <span>读取当前</span>
+                </button>
+              </div>
+            </form>
+          </div>
+
+          <!-- 3. 系统环境 -->
+          <div class="settings-group" id="sg-env">
+            <div class="settings-group-head">
+              <div class="group-icon group-icon-amber" data-icon="server"></div>
+              <div>
+                <div class="group-title">系统环境</div>
+                <div class="group-sub">网络接口 / DDS / SDK 路径（自动检测 + 可手动覆盖）</div>
+              </div>
+            </div>
+            <form class="settings-form form-2col" data-settings-group="env">
+              <div class="env-detect-hint field-full">
+                <span data-icon="lightbulb" class="btn-icon"></span>
+                <span>以下字段默认使用自动检测值。留空 = 使用自动检测，填写 = 手动覆盖。</span>
+              </div>
+              <label class="field-full">
+                <span class="field-label">网络接口 network_interface</span>
+                <input type="text" data-key="network_interface" placeholder="自动（如 eth0 / wlan0 / enp3s0）" />
+                <span class="field-help">全局网络接口，DDS / unitree_sdk2py / arm 子进程共用。</span>
+              </label>
+              <label class="field-full">
+                <span class="field-label">CycloneDDS 安装目录 cyclonedds_home</span>
+                <input type="text" data-key="cyclonedds_home" placeholder="自动检测（如 ~/unitree_ros2/cyclonedds_ws/install/cyclonedds）" />
+                <span class="field-help">设置子进程 CYCLONEDDS_HOME + LD_LIBRARY_PATH。留空则自动探测。</span>
+              </label>
+              <label class="field-full">
+                <span class="field-label">SDK Python 路径 sdk_python_path</span>
+                <input type="text" data-key="sdk_python_path" placeholder="自动检测（如 ~/unitree_sdk2_python）" />
+                <span class="field-help">unitree_sdk2_python 源码目录，加入子进程 PYTHONPATH。留空则自动探测。</span>
+              </label>
+              <label class="field-full">
+                <span class="field-label">arm 脚本目录 arm_script_dir</span>
+                <input type="text" data-key="arm_script_dir" placeholder="自动检测" />
+                <span class="field-help">armup.py / armdown.py 所在目录。留空则自动探测。</span>
+              </label>
+              <div class="form-actions field-full">
+                <button type="button" class="btn btn-primary" data-save="env">保存</button>
+                <button type="button" class="btn btn-outline-brand" id="env-detect-btn" onclick="detectEnv()">
+                  <span data-icon="search" class="btn-icon"></span>
+                  <span>重新检测</span>
+                </button>
+              </div>
+            </form>
+          </div>
+
+          <!-- 4. 偏好与背景 -->
+          <div class="settings-group" id="sg-ui-bg">
+            <div class="settings-group-head">
+              <div class="group-icon group-icon-emerald" data-icon="palette"></div>
+              <div>
+                <div class="group-title">偏好与背景</div>
+                <div class="group-sub">界面外观 + 动态壁纸（本地保存）</div>
+              </div>
+            </div>
+
+            <div class="subgroup-title">
+              <span data-icon="palette"></span>
+              <span>界面偏好</span>
+              <span class="subgroup-sub">视频流 + UI 外观（本地保存）</span>
+            </div>
+            <form class="settings-form form-2col" data-settings-group="ui">
+              <label>
+                <span class="field-label">视频流 JPEG 质量 (1-100)</span>
+                <input type="number" step="1" min="10" max="100" data-key="stream_quality" />
+                <span class="field-help">越低带宽越省，画质越差</span>
+              </label>
+              <label>
+                <span class="field-label">默认启动视图</span>
+                <select data-key="default_view" data-local="true">
+                  <option value="grasp">目标抓取</option>
+                  <option value="detect">目标识别</option>
+                  <option value="control">运动控制</option>
+                  <option value="status">系统状态</option>
+                </select>
+                <span class="field-help">保存在浏览器本地</span>
+              </label>
+              <label class="field-inline field-full">
+                <span class="field-label">显示实时日志气泡</span>
+                <label class="toggle">
+                  <input type="checkbox" data-key="log_toast" data-local="true" />
+                  <span class="toggle-slider"></span>
+                </label>
+              </label>
+              <label>
+                <span class="field-label">状态轮询间隔 (ms)</span>
+                <input type="number" step="100" min="200" max="5000" data-key="poll_interval" data-local="true" />
+                <span class="field-help">保存在浏览器本地，刷新生效</span>
+              </label>
+              <div class="form-actions field-full">
+                <button type="button" class="btn btn-primary" data-save="ui">保存偏好</button>
+                <button type="button" class="btn btn-outline-danger" onclick="resetLocalPrefs()">重置本地</button>
+              </div>
+            </form>
+
+            <div class="subgroup-divider"></div>
+
+            <div class="subgroup-title">
+              <span data-icon="image"></span>
+              <span>动态背景</span>
+              <span class="subgroup-sub">自定义壁纸 / 在线壁纸源（本地保存）</span>
+            </div>
+            <form class="settings-form form-2col" data-settings-group="bg">
+              <label class="field-full">
+                <span class="field-label">背景类型</span>
+                <select id="bg-type-select" data-local="true">
+                  <option value="default">默认液态玻璃（蓝米粉渐变 + 浮动光斑）</option>
+                  <option value="url">自定义图片 URL</option>
+                  <option value="bing">Bing 每日壁纸（每日更新）</option>
+                  <option value="unsplash">Unsplash 随机风景（每次刷新切换）</option>
+                  <option value="picsum">Picsum 随机图（艺术摄影）</option>
+                </select>
+              </label>
+              <label class="field-full">
+                <span class="field-label">图片 URL（仅类型为「自定义图片 URL」时生效）</span>
+                <input type="text" id="bg-url-input" placeholder="https://example.com/wallpaper.jpg" />
+                <span class="field-help">支持 https 直链，可粘贴 Unsplash/Pexels 等图床地址</span>
+              </label>
+              <label>
+                <span class="field-label">白色蒙版（0=纯图片，100=纯白）</span>
+                <input type="range" min="0" max="100" step="5" id="bg-mask-input" value="0" />
+                <span class="field-help" id="bg-mask-value">0%</span>
+              </label>
+              <label>
+                <span class="field-label">背景模糊（0-30 px）</span>
+                <input type="range" min="0" max="30" step="1" id="bg-blur-input" value="0" />
+                <span class="field-help" id="bg-blur-value">0 px</span>
+              </label>
+              <div class="bg-presets field-full">
+                <span class="field-label">快速预设：</span>
+                <button type="button" class="bg-preset" data-preset="default">液态玻璃</button>
+                <button type="button" class="bg-preset" data-preset="bing">Bing 每日</button>
+                <button type="button" class="bg-preset" data-preset="unsplash-nature">Unsplash 自然</button>
+                <button type="button" class="bg-preset" data-preset="unsplash-tech">Unsplash 科技</button>
+                <button type="button" class="bg-preset" data-preset="picsum">Picsum 摄影</button>
+              </div>
+              <div class="form-actions field-full">
+                <button type="button" class="btn btn-primary" onclick="applyBgFromForm()">应用并保存</button>
+                <button type="button" class="btn btn-outline-brand" onclick="previewBgFromForm()">仅预览</button>
+                <button type="button" class="btn btn-outline-danger" onclick="resetBg()">恢复默认</button>
+              </div>
+            </form>
+          </div>
+
+          </div><!-- /settings-grid -->
+        </div><!-- /settings-layout -->
+
+        <!-- 保存状态提示 -->
+        <div id="settings-toast" class="settings-toast hidden"></div>
+
+      </div>
+    </section>
+
+    <!-- ======================================================= -->
+    <!-- 视图 5：上肢调试 — 分组滑块 + 预设 CRUD                      -->
+    <!-- ======================================================= -->
+    <section class="view hidden" data-view="arm_debug">
+      <div class="arm-debug-layout">
+
+        <!-- 顶部栏：开始/停止 + 预设选择 -->
+        <div class="arm-debug-topbar">
+          <div class="arm-debug-title">
+            <h2 class="page-title">上肢调试</h2>
+            <p class="page-subtitle">分组滑块 + 预设管理（按需启动，不占内存）</p>
+          </div>
+          <div class="arm-debug-actions">
+            <select id="arm-preset-select" class="arm-select">
+              <option value="">— 加载预设姿势 —</option>
+            </select>
+            <button type="button" class="btn btn-outline-brand" id="arm-preset-save-btn" title="将当前滑块角度保存为新预设">💾 保存预设</button>
+            <button type="button" class="btn btn-primary" id="arm-start-btn">开始调试</button>
+            <button type="button" class="btn btn-danger hidden" id="arm-stop-btn">停止调试</button>
+          </div>
+        </div>
+
+        <!-- 三组滑块 -->
+        <div class="arm-debug-grid">
+
+          <!-- 左臂 -->
+          <div class="arm-group-card">
+            <div class="arm-group-header">
+              <span class="arm-group-icon" data-icon="chevron-left"></span>
+              <span class="arm-group-name">左臂</span>
+            </div>
+            <div class="arm-slider-list" id="arm-group-left">
+              <!-- JS 动态生成 5 个滑块 -->
+            </div>
+          </div>
+
+          <!-- 右臂 -->
+          <div class="arm-group-card">
+            <div class="arm-group-header">
+              <span class="arm-group-icon" data-icon="chevron-right"></span>
+              <span class="arm-group-name">右臂</span>
+            </div>
+            <div class="arm-slider-list" id="arm-group-right">
+              <!-- JS 动态生成 5 个滑块 -->
+            </div>
+          </div>
+
+          <!-- 腰部 -->
+          <div class="arm-group-card">
+            <div class="arm-group-header">
+              <span class="arm-group-icon" data-icon="rotate-cw"></span>
+              <span class="arm-group-name">腰部</span>
+            </div>
+            <div class="arm-slider-list" id="arm-group-waist">
+              <!-- JS 动态生成 3 个滑块 -->
+            </div>
+          </div>
+
+        </div><!-- /arm-debug-grid -->
+
+        <!-- 状态指示 -->
+        <div class="arm-debug-status" id="arm-status-bar">
+          <span class="arm-status-dot" id="arm-status-dot"></span>
+          <span class="arm-status-text" id="arm-status-text">未启动</span>
+        </div>
+
+      </div><!-- /arm-debug-layout -->
+    </section>
+
+    <!-- ======================================================= -->
+    <!-- 视图 6：敬请期待 — 英雄区                                    -->
+    <!-- ======================================================= -->
+    <section class="view hidden" data-view="coming">
+      <div class="coming-soon">
+        <div class="coming-icon" data-icon="sparkles"></div>
+        <h2 class="coming-title">敬请期待</h2>
+        <p class="coming-desc">
+          更多功能模块开发中…<br/>
+          包括语音交互、多目标调度、路径规划可视化、点云视图等。
+        </p>
+        <div class="coming-grid">
+          <div class="coming-tile"><span data-icon="mic"></span><span>语音交互</span></div>
+          <div class="coming-tile"><span data-icon="map"></span><span>路径规划</span></div>
+          <div class="coming-tile"><span data-icon="cloud"></span><span>点云视图</span></div>
+          <div class="coming-tile"><span data-icon="users"></span><span>多目标调度</span></div>
+          <div class="coming-tile"><span data-icon="camera"></span><span>数据采集</span></div>
+          <div class="coming-tile"><span data-icon="sliders"></span><span>参数调优</span></div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<script src="/static/js/app.js"></script>
+</body>
+</html>

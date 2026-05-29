@@ -1,0 +1,18 @@
+{
+  "camera_xyz_m": null,
+  "color_source": "auto",
+  "depth": null,
+  "depth_alignment": "direct_v4l2_depth_not_hardware_aligned_to_color",
+  "depth_source": "/dev/video0",
+  "detection": null,
+  "fps": 8.905,
+  "frame_index": 45516,
+  "intrinsics": {
+    "fx": 605.888977050781,
+    "fy": 605.459533691406,
+    "ppx": 330.280029296875,
+    "ppy": 244.936431884766
+  },
+  "timestamp_s": 1779899969.319688,
+  "valid": false
+}

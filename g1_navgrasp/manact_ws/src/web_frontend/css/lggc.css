@@ -1,0 +1,63 @@
+/* ======================================================================
+ * LGGC: Liquid Glass
+ * 用单个 class="lggc" 把任意 DOM 元素变成液态玻璃效果。
+ *
+ * 可调 CSS 变量：
+ *   --lggc-radius / --lggc-padding / --lggc-bg
+ *   --lggc-border / --lggc-blur / --lggc-highlight
+ * ====================================================================== */
+
+:root {
+  color-scheme: light;
+}
+
+.lggc {
+  --lggc-radius: 9999px;
+  --lggc-padding: 1rem 1.25rem;
+  --lggc-bg: rgba(255, 255, 255, 0.08);
+  --lggc-border: rgba(51, 51, 51, 0.08);
+  --lggc-blur: 8px;
+  --lggc-highlight: rgba(255, 255, 255, 0.85);
+  position: relative;
+  border-radius: var(--lggc-radius);
+  background: var(--lggc-bg);
+  border: 1px solid var(--lggc-border);
+  box-sizing: border-box;
+  overflow: hidden;
+  isolation: isolate;
+  backdrop-filter: blur(calc(var(--lggc-blur) * 0.35)) saturate(160%);
+  -webkit-backdrop-filter: blur(calc(var(--lggc-blur) * 0.35)) saturate(160%);
+  box-shadow:
+    inset 1.5px -1.5px 1px -1px rgba(255, 255, 255, 0.92),
+    inset -1.5px 1.5px 1px -1px rgba(255, 255, 255, 0.9),
+    inset 0 0 3px rgba(15, 23, 42, 0.18),
+    0 16px 32px rgba(15, 23, 42, 0.10);
+}
+
+.lggc::before,
+.lggc::after {
+  content: "";
+  position: absolute;
+  pointer-events: none;
+  border-radius: inherit;
+}
+
+.lggc::before {
+  top: 35%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: calc(100% - 16px);
+  height: calc(100% - 16px);
+  border: 1px double rgba(255, 255, 255, 0.55);
+  filter: blur(var(--lggc-blur));
+  opacity: 0.45;
+}
+
+.lggc::after {
+  inset: 0;
+}
+
+.lggc > * {
+  position: relative;
+  z-index: 1;
+}

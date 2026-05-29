@@ -1,0 +1,33 @@
+{
+  "schema_version": "1.0",
+  "label": "target_grasp",
+  "generated_at": "2026-05-27T23:20:26+08:00",
+  "source_csv": "records/target_grasp_20260527_232026.csv",
+  "sample_count": 20,
+  "reference": {
+    "center_px": {
+      "cx": 168.0,
+      "cy": 59.0
+    },
+    "depth_mm": 532.3,
+    "camera_xyz_m": {
+      "x": -0.14257,
+      "y": -0.163469,
+      "z": 0.5323
+    },
+    "confidence": 0.901552
+  },
+  "stability": {
+    "cx_range_px": 0.0,
+    "cy_range_px": 0.0,
+    "depth_range_mm": 3.0,
+    "camera_x_range_m": 0.000803,
+    "camera_y_range_m": 0.000921,
+    "camera_z_range_m": 0.003
+  },
+  "notes": [
+    "Task-level visual reference for the current fixed grasp target.",
+    "This is not a formal hand-eye calibration transform.",
+    "Use only for offset reporting until small arm correction tests are validated."
+  ]
+}

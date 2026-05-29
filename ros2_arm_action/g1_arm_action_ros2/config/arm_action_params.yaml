@@ -1,0 +1,17 @@
+# G1 Arm Action Node Parameters
+# 
+# This configuration file contains parameters for the g1_arm_action_node.
+# Copy this file and modify as needed for your deployment.
+
+g1_arm_action_node:
+  ros__parameters:
+    # DDS network interface
+    # Set this to the network interface connected to the robot
+    # Examples: "eth0", "enp2s0", "wlan0"
+    # Leave empty ("") to use the default interface
+    network_interface: "eth0"
+
+    # Action execution timeout in seconds
+    # Unitree preset actions are typically < 10 seconds
+    # Custom/teach actions may require longer timeout
+    timeout: 10.0

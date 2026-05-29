@@ -1,0 +1,180 @@
+{
+  "records_dir": "/home/unitree/unitree_sdk2_python/g1_hand_arm_project/vision/records",
+  "reference": "/home/unitree/unitree_sdk2_python/g1_hand_arm_project/vision/target_grasp_reference.json",
+  "reports": [
+    {
+      "delta_camera_m": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "delta_depth_mm": 0.0,
+      "delta_px": {
+        "cx": 0.0,
+        "cy": 0.0
+      },
+      "failed_axes": [],
+      "invalid_count": 0,
+      "label": "target_grasp_20260527_232026",
+      "mean": {
+        "camera_x_m": -0.14257,
+        "camera_y_m": -0.163469,
+        "camera_z_m": 0.5323,
+        "confidence": 0.901552,
+        "cx": 168.0,
+        "cy": 59.0,
+        "depth_mm": 532.3,
+        "fps": 8.13145
+      },
+      "message": "bottle is inside the task-level target window",
+      "range": {
+        "camera_x_m": 0.000803,
+        "camera_y_m": 0.000921,
+        "camera_z_m": 0.003,
+        "confidence": 0.028201,
+        "cx": 0.0,
+        "cy": 0.0,
+        "depth_mm": 3.0,
+        "fps": 1.04
+      },
+      "sample_count": 20,
+      "status": "ready",
+      "valid_count": 20,
+      "within_tolerance": true
+    },
+    {
+      "delta_camera_m": {
+        "x": -0.006316,
+        "y": -0.051905,
+        "z": 0.115375
+      },
+      "delta_depth_mm": 115.375,
+      "delta_px": {
+        "cx": 23.0,
+        "cy": -15.4
+      },
+      "failed_axes": [
+        "y",
+        "z"
+      ],
+      "invalid_count": 0,
+      "label": "random1_20260527_232906",
+      "mean": {
+        "camera_x_m": -0.148886,
+        "camera_y_m": -0.215374,
+        "camera_z_m": 0.647675,
+        "confidence": 0.785266,
+        "cx": 191.0,
+        "cy": 43.6,
+        "depth_mm": 647.675,
+        "fps": 8.35645
+      },
+      "message": "bottle is outside the task-level target window",
+      "range": {
+        "camera_x_m": 0.003449,
+        "camera_y_m": 0.005003,
+        "camera_z_m": 0.015,
+        "confidence": 0.103624,
+        "cx": 0.0,
+        "cy": 4.0,
+        "depth_mm": 15.0,
+        "fps": 1.074
+      },
+      "sample_count": 20,
+      "status": "out_of_range",
+      "valid_count": 20,
+      "within_tolerance": false
+    },
+    {
+      "delta_camera_m": {
+        "x": -0.001152,
+        "y": -0.027951,
+        "z": 0.05755
+      },
+      "delta_depth_mm": 57.55,
+      "delta_px": {
+        "cx": 14.65,
+        "cy": -10.55
+      },
+      "failed_axes": [],
+      "invalid_count": 0,
+      "label": "random2_20260527_233015",
+      "mean": {
+        "camera_x_m": -0.143722,
+        "camera_y_m": -0.19142,
+        "camera_z_m": 0.58985,
+        "confidence": 0.737818,
+        "cx": 182.65,
+        "cy": 48.45,
+        "depth_mm": 589.85,
+        "fps": 8.16545
+      },
+      "message": "bottle is inside the task-level target window",
+      "range": {
+        "camera_x_m": 0.001704,
+        "camera_y_m": 0.001623,
+        "camera_z_m": 0.004,
+        "confidence": 0.10447,
+        "cx": 1.0,
+        "cy": 1.0,
+        "depth_mm": 4.0,
+        "fps": 1.136
+      },
+      "sample_count": 20,
+      "status": "ready",
+      "valid_count": 20,
+      "within_tolerance": true
+    },
+    {
+      "delta_camera_m": {
+        "x": -0.018451,
+        "y": -0.030277,
+        "z": 0.0632
+      },
+      "delta_depth_mm": 63.2,
+      "delta_px": {
+        "cx": -1.55,
+        "cy": -11.05
+      },
+      "failed_axes": [
+        "z"
+      ],
+      "invalid_count": 0,
+      "label": "random3_20260527_233145",
+      "mean": {
+        "camera_x_m": -0.161021,
+        "camera_y_m": -0.193746,
+        "camera_z_m": 0.5955,
+        "confidence": 0.856562,
+        "cx": 166.45,
+        "cy": 47.95,
+        "depth_mm": 595.5,
+        "fps": 8.24925
+      },
+      "message": "bottle is outside the task-level target window",
+      "range": {
+        "camera_x_m": 0.003011,
+        "camera_y_m": 0.00244,
+        "camera_z_m": 0.0075,
+        "confidence": 0.066043,
+        "cx": 1.0,
+        "cy": 1.0,
+        "depth_mm": 7.5,
+        "fps": 1.034
+      },
+      "sample_count": 20,
+      "status": "out_of_range",
+      "valid_count": 20,
+      "within_tolerance": false
+    }
+  ],
+  "tolerance_m": {
+    "x": 0.04,
+    "y": 0.04,
+    "z": 0.06
+  },
+  "tolerance_px": {
+    "cx": 45.0,
+    "cy": 45.0
+  }
+}

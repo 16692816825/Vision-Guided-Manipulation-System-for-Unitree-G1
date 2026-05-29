@@ -1,0 +1,87 @@
+# ============================================
+# g1_yolo_nav_py 参数配置
+# ============================================
+
+# ---- YOLO 检测节点参数 ----
+g1_yolo_detector_node:
+  ros__parameters:
+    model_path: "yolo_v11s_best.pt"           # YOLO 模型文件路径（s=快速，x=高精度）
+    confidence_threshold: 0.25                # 检测置信度阈值
+    nms_threshold: 0.45                       # NMS IoU 阈值
+    input_image_topic: "/D455_1/color/image_raw"  # D455 彩色图像话题
+    output_detection_topic: "/g1/vision/detections"  # 检测结果话题
+    target_classes: ["chair"]                   # 目标类别名称（也支持数字 ID）
+    max_image_size: 640                       # 推理图像尺寸
+    skip_frames: 3                            # 跳帧：每 N 帧推理一次（1=不跳，3=每3帧推理1次）
+
+# ---- 空间投影节点参数 ----
+g1_spatial_target_node:
+  ros__parameters:
+    detection_topic: "/g1/vision/detections"  # 检测结果输入话题
+    depth_topic: "/D455_1/depth/image_rect_raw"    # D455 校正深度图话题
+    camera_info_topic: "/D455_1/color/camera_info"  # D455 彩色相机内参话题
+    target_frame: "odom"                      # 目标坐标系
+    base_frame: "base_link"                   # 机器人基座坐标系
+    camera_frame: "robot1/D455_1_color_optical_frame"  # D455 相机坐标系
+    target_class_id: "chair"                  # 要追踪的目标类别名称
+    default_depth: 2.0                        # 默认目标距离 (m)
+    use_depth_sensor: false                   # 是否使用深度传感器
+    nav_target_topic: "/g1/nav/target_pose"   # 导航目标发布话题
+    approach_distance: 0.8                    # 接近目标后停下的距离 (m)
+    publish_rate: 5.0                         # 目标位姿发布频率 (Hz)
+
+# ---- 偏航对齐节点参数 ----
+g1_yaw_align_node:
+  ros__parameters:
+    detection_topic: "/g1/vision/detections"  # 检测结果输入
+    target_class_id: "chair"                  # 目标类别
+    camera_fov_deg: 87.0                      # D455 水平视场角
+    center_tolerance: 0.08                    # 居中容差（归一化）
+    step_yaw_speed: 0.3                       # 每步旋转速度 rad/s
+    step_duration: 0.3                        # 每步旋转持续时间 s
+    camera_settle_time: 5.0                   # 旋转后等待相机更新 s
+    max_consecutive_steps: 10                 # 单次最大连续步数
+    lost_timeout: 10.0                        # 目标丢失超时 s
+    check_rate: 2.0                           # tick 频率 Hz
+    auto_stand: true                          # 是否自动初始化 FSM
+
+# ---- 前进控制节点参数 ----
+g1_loco_forward_node:
+  ros__parameters:
+    detection_topic: "/g1/vision/detections"  # 检测结果输入
+    depth_topic: "/D455_1/depth/image_rect_raw"  # D455 深度图话题
+    target_class_id: "chair"                  # 目标类别
+    use_depth_distance: true                  # 使用深度距离判断停止
+    stop_distance: 0.5                        # 停止距离 m
+    depth_sample_radius: 5                    # 深度采样半径 px
+    forward_speed: 0.3                        # 前进速度 m/s
+    center_tolerance: 0.08                    # 居中容差
+    align_stable_time: 0.8                    # 对齐稳定时间 s
+    arrive_bbox_ratio: 0.45                   # 到达条件：检测框占比
+    lost_timeout: 1.0                         # 目标丢失超时 s
+    check_rate: 10.0                          # 检查频率 Hz
+    auto_stand: true                          # 是否自动初始化 FSM
+    sit_on_exit: false                         # 退出时是否自动坐下
+
+# ---- 抓取任务节点参数 ----
+g1_grasp_task_node:
+  ros__parameters:
+    detection_topic: "/g1/vision/detections"  # 检测结果输入
+    depth_topic: "/D455_1/depth/image_rect_raw"  # D455 深度图话题
+    target_class_id: "chair"                  # 目标类别
+    use_depth_distance: true                  # 使用深度距离判断停止并抓取
+    stop_distance: 0.5                        # 抓取停止距离 m
+    depth_sample_radius: 5                    # 深度采样半径 px
+    camera_fov_deg: 87.0                      # D455 水平视场角
+    center_tolerance: 0.08                    # 居中容差（归一化）
+    step_yaw_speed: 0.3                       # 步进式对齐：每步旋转速度 rad/s
+    step_duration: 0.3                        # 步进式对齐：每步持续时间 s
+    camera_settle_time: 5.0                   # 步进式对齐：等待相机更新 s
+    forward_speed: 0.2                        # 前进速度 m/s
+    arrive_bbox_ratio: 0.45                   # 到达条件：检测框占比
+    align_stable_time: 1.0                    # 对齐稳定时间 s
+    lost_timeout: 2.0                         # 目标丢失超时 s
+    search_yaw_speed: 0.6                     # 搜索旋转速度 rad/s
+    turn_yaw_speed: 0.6                       # 右转放下时偏航速度 rad/s
+    turn_duration: 2.6                        # 右转放下时持续时间 s（≈90°）
+    auto_stand: true                          # 是否自动初始化 FSM（DAMP→STAND_UP→START→WALK_RUN→CONTINUOUS_GAIT）

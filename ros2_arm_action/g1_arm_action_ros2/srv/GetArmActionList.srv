@@ -1,0 +1,15 @@
+# GetArmActionList.srv
+# Service for getting the list of available arm actions
+
+# Request (empty)
+---
+
+# Response
+# Whether the request was successful
+bool success
+
+# Error code (0 = success)
+int32 error_code
+
+# JSON string containing the list of available actions
+string action_list

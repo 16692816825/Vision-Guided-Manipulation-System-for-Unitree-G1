@@ -1,0 +1,9 @@
+2026-04-03T14:05:00.123960Z[INFO][src/python/py_mod.rs:24] bc_stark_sdk version: 1.1.9
+2026-04-03T14:05:00.125710Z[INFO][src/utils/logging_desktop.rs:17] bc_stark_sdk version: 1.1.9
+2026-04-03T14:05:00.126612Z[INFO][/home/unitree/hand/python/revo2/revo2_utils.py:45] Using fixed parameters: port=/dev/ttyUSB1, baudrate=460800, slave_id=126
+2026-04-03T14:05:00.132117Z[INFO][/home/unitree/hand/python/revo2/revo2_utils.py:55] Modbus connection established on /dev/ttyUSB1 with baudrate 460800, slave_id 126
+2026-04-03T14:05:00.132455Z[INFO][/home/unitree/hand/python/revo2/revo2_simple_control.py:38] 已连接手部，从站 ID: 126
+2026-04-03T14:05:00.132757Z[INFO][src/stark/api/motor_config.rs:44] set_finger_unit_mode, slave_id: 126, mode: Normalized
+2026-04-03T14:05:00.143229Z[INFO][/home/unitree/hand/python/revo2/revo2_simple_control.py:20] 控制模式: 归一化千分比 (0~1000)
+2026-04-03T14:05:00.143539Z[INFO][/home/unitree/hand/python/revo2/revo2_simple_control.py:43] === 开始演示 ===
+2026-04-03T14:05:20.764961Z[INFO][/home/unitree/hand/python/revo2/revo2_simple_control.py:104] === 演示完成 ===

@@ -1,0 +1,79 @@
+{
+  "arm_control": "disabled",
+  "correction_tolerance_m": {
+    "x": 0.04,
+    "y": 0.04,
+    "z": 0.08
+  },
+  "correction_tolerance_px": {
+    "cx": 45.0,
+    "cy": 45.0
+  },
+  "decision": "NEEDS_CORRECTION",
+  "exceeded_correction_axes": [],
+  "exceeded_ready_axes": [
+    "cy"
+  ],
+  "message": "bottle is close enough for a small correction, but not for direct fixed-trajectory grasp",
+  "next_step": "compute a small correction after arm-side mapping is validated",
+  "offset": {
+    "current": {
+      "camera_x_m": -0.154067,
+      "camera_y_m": -0.145766,
+      "camera_z_m": 0.545,
+      "confidence": 0.796059,
+      "cx": 159.0,
+      "cy": 83.0,
+      "depth_mm": 545.0,
+      "label": "bottle"
+    },
+    "delta_camera_m": {
+      "x": -0.011497,
+      "y": 0.017703,
+      "z": 0.0127
+    },
+    "delta_depth_mm": 12.7,
+    "delta_px": {
+      "cx": -9.0,
+      "cy": 24.0
+    },
+    "failed_axes": [],
+    "frame_index": 39863,
+    "message": "bottle is inside the task-level target window",
+    "note": "camera-frame offset only; no arm control and no hand-eye transform applied",
+    "reference": {
+      "camera_x_m": -0.14257,
+      "camera_y_m": -0.163469,
+      "camera_z_m": 0.5323,
+      "confidence": null,
+      "cx": 168.0,
+      "cy": 59.0,
+      "depth_mm": 532.3,
+      "label": null
+    },
+    "status": "ready",
+    "timestamp_s": 1779899254.430383,
+    "tolerance_m": {
+      "x": 0.04,
+      "y": 0.04,
+      "z": 0.08
+    },
+    "tolerance_px": {
+      "cx": 45.0,
+      "cy": 45.0
+    },
+    "valid": true,
+    "within_tolerance": true
+  },
+  "ready_tolerance_m": {
+    "x": 0.015,
+    "y": 0.02,
+    "z": 0.03
+  },
+  "ready_tolerance_px": {
+    "cx": 12.0,
+    "cy": 12.0
+  },
+  "reason": "inside_correction_window",
+  "risk_level": "medium"
+}

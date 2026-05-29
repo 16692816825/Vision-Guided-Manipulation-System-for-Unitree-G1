@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<package format="3">
+  <name>realtime_yolo_pcd_tf</name>
+  <version>0.0.0</version>
+  <description>Realtime RGB+Depth YOLO detection with colored pointcloud, 2D/3D bbox, markers, and TF transform from JSON.</description>
+  <maintainer email="todo@todo.todo">todo</maintainer>
+  <license>Apache-2.0</license>
+
+  <buildtool_depend>ament_python</buildtool_depend>
+
+  <depend>rclpy</depend>
+  <depend>sensor_msgs</depend>
+  <depend>geometry_msgs</depend>
+  <depend>std_msgs</depend>
+  <depend>visualization_msgs</depend>
+  <depend>tf2_ros</depend>
+
+  <exec_depend>python3-numpy</exec_depend>
+
+  <test_depend>ament_lint_auto</test_depend>
+  <test_depend>ament_lint_common</test_depend>
+
+  <export>
+    <build_type>ament_python</build_type>
+  </export>
+</package>

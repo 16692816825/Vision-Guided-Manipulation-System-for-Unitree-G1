@@ -1,0 +1,5 @@
+2026-05-28T00:33:27.380121Z[INFO][src/python/py_mod.rs:24] bc_stark_sdk version: 1.1.9
+2026-05-28T00:33:27.382476Z[INFO][src/utils/logging_desktop.rs:17] bc_stark_sdk version: 1.1.9
+2026-05-28T00:33:27.389688Z[INFO][src/stark/api/device_info.rs:28] slave[126] get_device_info...
+2026-05-28T00:33:27.399757Z[INFO][src/stark/api/device_info.rs:158] DeviceInfo: "{\"sku_type\":\"MediumLeft\",\"hardware_type\":\"Revo2Basic\",\"serial_number\":\"BCXRL2216J2500060\",\"firmware_version\":\"0.0.14\"}"
+2026-05-28T00:33:27.400925Z[INFO][src/stark/api/motor_config.rs:44] set_finger_unit_mode, slave_id: 126, mode: Normalized
