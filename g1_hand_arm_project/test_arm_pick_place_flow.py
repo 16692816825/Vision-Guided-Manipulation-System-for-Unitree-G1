@@ -7,6 +7,26 @@ SCRIPT = Path(__file__).with_name("arm_pick_place.py")
 
 
 class ArmPickPlaceFlowTest(unittest.TestCase):
+    def test_safety_return_runs_before_pick_flow(self):
+        text = SCRIPT.read_text(encoding="utf-8")
+
+        self.assertIn("SAFE_START_Q", text)
+        for joint in (15, 16, 17, 18, 19, 22, 23, 24, 25, 26):
+            self.assertRegex(text, rf"{joint}:\s*-?\d+\.\d+")
+
+        self.assertIn("SAFE_START_TOLERANCE_RAD", text)
+        self.assertIn("SAFE_RETURN_SECONDS", text)
+        self.assertIn("def is_near_safe_start", text)
+        self.assertIn("def ensure_safe_start", text)
+        self.assertIn("safety: slowly return arms to safe start", text)
+
+        run_tail = text[text.index("def run") :]
+        enable_index = run_tail.index("enable and hold both arms")
+        safety_index = run_tail.index("self.ensure_safe_start()")
+        pick_index = run_tail.index("pick: fold forearm near upper arm")
+        self.assertLess(enable_index, safety_index)
+        self.assertLess(safety_index, pick_index)
+
     def test_pick_place_lifts_then_returns_to_release_pose(self):
         text = SCRIPT.read_text(encoding="utf-8")
 
