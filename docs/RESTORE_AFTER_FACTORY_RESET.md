@@ -109,6 +109,8 @@ python3 arm_pick_place_standalone.py --hand-only-test
 open -> thumb_open_max -> thumb_ready -> bottle
 ```
 
+注意：当前版本里 `thumb_ready` 反馈不到位时只报警，不会中止流程，会继续执行 `bottle` 五指抓握。这样是为了优先验证完整固定轨迹，后续仍需要单独排查左手 `ThumbAux` 通道。
+
 如果怀疑左手 `ThumbAux` 通道异常，可以只测右手诊断脚本：
 
 ```bash
@@ -144,8 +146,8 @@ python3 tools/arm_pregrasp_preview.py --net eth0 --offset 16=-0.42,15=0.06,18=0.
 当前 `arm_pick_place_standalone.py` 里和小臂高度最相关的参数：
 
 ```python
-UNFOLD_PREGRASP_DELTA[18] = -0.70
-LIFT_BOTTLE_DELTA[18] = -1.15
+UNFOLD_PREGRASP_DELTA[18] = -1.35
+LIFT_BOTTLE_DELTA[18] = -1.80
 ```
 
 如果固定抓取点或抬瓶姿态还需要再高一点，就把对应的 `18` 再调小；如果太高，就把它调大。

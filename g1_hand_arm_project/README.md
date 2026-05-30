@@ -77,6 +77,8 @@ HAND_SLAVE_ID = 0x7E
 "bottle": [180, 850, 480, 560, 540, 420]
 ```
 
+当前左手 `thumb_ready` 反馈可能读不到预期值。全流程脚本会打印警告，但不会因此中止，会继续执行 `bottle` 五指抓握；这只是为了先验证完整抓瓶流程，后续仍应单独排查 `ThumbAux` 通道。
+
 流程：
 
 ```text
@@ -109,8 +111,8 @@ python3 arm_pick_place_standalone.py --hand-only-test
 当前小臂高度参数：
 
 ```python
-UNFOLD_PREGRASP_DELTA[18] = -0.70
-LIFT_BOTTLE_DELTA[18] = -1.15
+UNFOLD_PREGRASP_DELTA[18] = -1.35
+LIFT_BOTTLE_DELTA[18] = -1.80
 ```
 
 调参规律：
@@ -118,8 +120,8 @@ LIFT_BOTTLE_DELTA[18] = -1.15
 ```text
 UNFOLD_PREGRASP_DELTA[18] 控制到瓶子固定点时的小臂高度。
 LIFT_BOTTLE_DELTA[18] 控制抓住后抬瓶时的小臂高度。
-18 的值更小，例如 -0.75 / -1.20，小臂更往上折。
-18 的值更大，例如 -0.65 / -1.10，小臂会低一些。
+18 的值更小，例如 -1.45 / -1.90，小臂更往上折。
+18 的值更大，例如 -1.25 / -1.70，小臂会低一些。
 ```
 
 ## 调抓瓶姿态：arm_grasp_hold.py

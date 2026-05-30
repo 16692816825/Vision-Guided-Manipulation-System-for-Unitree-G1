@@ -4,7 +4,7 @@
 
 当前阶段不是完整闭环路径规划，而是已经完成了手臂/灵巧手基础联动、YOLO + 深度相机检测、目标点记录和预抓姿态微调。最新主流程使用 `g1_hand_arm_project/arm_pick_place_standalone.py`，该脚本内置 Revo2 左手控制，不再通过 `left_hand_safe_once.py` 间接调用手部动作。
 
-当前固定轨迹流程是：左手自然张开，左臂到固定抓取点，大拇指先执行 `thumb_ready`，随后五指收缩抓瓶；抓住后小臂抬起并悬停 3 秒，再放回原位、张手、空手收回。最新小臂高度参数为 `UNFOLD_PREGRASP_DELTA[18] = -0.70` 和 `LIFT_BOTTLE_DELTA[18] = -1.15`。
+当前固定轨迹流程是：左手自然张开，左臂到固定抓取点，大拇指先执行 `thumb_ready`，随后五指收缩抓瓶；如果 `thumb_ready` 反馈不到位，脚本会报警但继续执行 `bottle` 抓握，便于先验证完整流程。抓住后小臂抬起并悬停 3 秒，再放回原位、张手、空手收回。最新小臂高度参数为 `UNFOLD_PREGRASP_DELTA[18] = -1.35` 和 `LIFT_BOTTLE_DELTA[18] = -1.80`。
 
 ## 目录说明
 

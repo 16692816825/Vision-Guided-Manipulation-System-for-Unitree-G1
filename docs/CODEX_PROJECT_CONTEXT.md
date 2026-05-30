@@ -104,11 +104,13 @@ open -> 到固定抓取点 -> thumb_open_max -> thumb_ready -> bottle
 -> 小臂抬瓶 -> 悬停 3 秒 -> 放回原位 -> open -> 空手收回 -> 平滑释放 arm_sdk
 ```
 
+当前为了先验证完整抓瓶流程，`thumb_ready` 反馈不到位时只报警，不再中止流程，会继续执行 `bottle` 五指抓握。后续仍需要单独排查左手 `ThumbAux` 通道。
+
 最新小臂高度参数：
 
 ```python
-UNFOLD_PREGRASP_DELTA = {18: -0.70, ...}
-LIFT_BOTTLE_DELTA = {18: -1.15, ...}
+UNFOLD_PREGRASP_DELTA = {18: -1.35, ...}
+LIFT_BOTTLE_DELTA = {18: -1.80, ...}
 ```
 
 调参规律：`18` 更小会让小臂更往上折，`18` 更大则小臂更低。后续如果只想调固定点和抬瓶高度，优先改这两个字典里的 `18`。
