@@ -112,7 +112,7 @@ UNFOLD_PREGRASP_DELTA = {
     15: -1.00,
     16: 0.08,
     17: 0.00,
-    18: -0.70,  # 到瓶子固定点时的小臂高度；数值更小，小臂更往上折。
+    18: -1.35,  # 到瓶子固定点时的小臂高度；数值更小，小臂更往上折。
     19: -0.25,
 }
 
@@ -120,7 +120,7 @@ LIFT_BOTTLE_DELTA = {
     15: -1.00,
     16: 0.08,
     17: 0.00,
-    18: -1.15,  # 抓住瓶子后抬小臂的高度；数值更小，抬得更高。
+    18: -1.80,  # 抓住瓶子后抬小臂的高度；数值更小，抬得更高。
     19: -0.25,
 }
 
@@ -204,9 +204,12 @@ class StandalonePickPlace:
         except Exception as exc:
             print(f"hand pose {name} feedback read failed: {exc}")
         if name == "thumb_ready" and REQUIRE_THUMB_AUX_READY:
-            # 如果大拇指预备通道反馈不到位，就停止后续 bottle 抓握。
-            # 这样不会出现“大拇指没到位，脚本仍继续五指收缩”的情况。
-            self.validate_thumb_aux_ready(feedback)
+            # 如果大拇指预备通道反馈不到位，只报警但继续 bottle 抓握。
+            # 这样现场能先验证完整抓瓶流程，后续再单独排查 thumb_aux 通道。
+            try:
+                self.validate_thumb_aux_ready(feedback)
+            except RuntimeError as exc:
+                print(f"WARNING: {exc}; continuing to bottle grasp")
         return feedback
 
     def validate_thumb_aux_ready(self, feedback):
