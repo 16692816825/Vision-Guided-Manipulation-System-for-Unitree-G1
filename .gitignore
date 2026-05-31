@@ -24,6 +24,10 @@ env/
 *.avi
 *.mkv
 
+# Robot runtime outputs are preserved in local factory-reset backups, not added by default.
+g1_hand_arm_project/logs/
+g1_hand_arm_project/vision/debug/
+
 # Large exported inference artifacts. Small .pt files in models/ are intentional.
 *.engine
 *.onnx

@@ -1,0 +1,12 @@
+{
+  "frame_from": "camera_color_optical_frame",
+  "frame_to": "g1_base",
+  "note": "Fixed-head G1 hand-eye calibration from ChArUco board. O=(0.67,0.21,0.64), X=(0.69,-0.10,0.64), Y=(0.23,0.21,0.64).",
+  "T_base_camera": [
+    [-0.000781, -0.971795, 0.235827, 0.170172],
+    [-0.99994, -0.001808, -0.010764, 0.008979],
+    [0.010887, -0.235822, -0.971735, 1.230231],
+    [0.0, 0.0, 0.0, 1.0]
+  ],
+  "unit": "meter"
+}

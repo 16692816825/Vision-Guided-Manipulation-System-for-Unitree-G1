@@ -1,619 +1,653 @@
-3730	README.md
-45	requirements_minimal.txt
-5700	docs\CODEX_PROJECT_CONTEXT.md
-1742	docs\EXCLUDED_FILES_MANIFEST.md
-0	docs\REPO_FILE_INVENTORY.tsv
-3779	docs\RESTORE_AFTER_FACTORY_RESET.md
-1917	docs\USER_PROJECT_OVERVIEW.md
-4982	g1_hand_arm_project\arm_grasp_hold.py
-7758	g1_hand_arm_project\arm_pick_place.py
-1351	g1_hand_arm_project\manifest.txt
-8919	g1_hand_arm_project\README.md
-0	g1_hand_arm_project\archive_raw\arm_hand_synergy.py
-3115	g1_hand_arm_project\archive_raw\arm_joint_probe_safe.py
-2546	g1_hand_arm_project\archive_raw\arm_sdk_hold_test.py
-2340	g1_hand_arm_project\archive_raw\hand_grasping.py
-1598	g1_hand_arm_project\archive_raw\hand_serial_test.py
-4618	g1_hand_arm_project\archive_raw\left_arm_grasp_hold.py
-7394	g1_hand_arm_project\archive_raw\left_arm_pregrasp_small_test.py
-4820	g1_hand_arm_project\archive_raw\left_arm_pregrasp_small_test.py.bak_before_hand
-7394	g1_hand_arm_project\archive_raw\left_arm_pregrasp_small_test.py.bak_four_finger_20260516_205812
-6698	g1_hand_arm_project\archive_raw\left_arm_pregrasp_small_test.py.bak_grasp_in_out
-6479	g1_hand_arm_project\archive_raw\left_arm_pregrasp_small_test.py.bak_outward_clearance
-5288	g1_hand_arm_project\archive_raw\left_arm_pregrasp_small_test.py.bak_pick_place
-6698	g1_hand_arm_project\archive_raw\left_arm_pregrasp_small_test.py.bak_raise_pregrasp_5cm
-7458	g1_hand_arm_project\archive_raw\left_arm_pregrasp_small_test.py.bak_remove_contact_20260516_210755
-7394	g1_hand_arm_project\archive_raw\left_arm_pregrasp_small_test.py.bak_remove_contact_20260516_210820
-6247	g1_hand_arm_project\archive_raw\left_arm_pregrasp_small_test.py.bak_retract_out
-6479	g1_hand_arm_project\archive_raw\left_arm_pregrasp_small_test.py.bak_speedup
-7330	g1_hand_arm_project\archive_raw\left_arm_pregrasp_small_test.py.bak_thumb_open_first
-7269	g1_hand_arm_project\archive_raw\left_arm_pregrasp_small_test.py.bak_thumb_ready
-7269	g1_hand_arm_project\archive_raw\left_arm_pregrasp_small_test.py.bak_wrist_roll_pregrasp
-2070	g1_hand_arm_project\archive_raw\left_hand_grasp_pose_test.py
-2529	g1_hand_arm_project\archive_raw\left_wrist_roll_test.py
-3479	g1_hand_arm_project\archive_raw\right_arm_small_test.py
-618	g1_hand_arm_project\logs\python_20260528_002828_694.log
-618	g1_hand_arm_project\logs\python_20260528_002844_870.log
-618	g1_hand_arm_project\logs\python_20260528_002858_043.log
-618	g1_hand_arm_project\logs\python_20260528_003106_348.log
-618	g1_hand_arm_project\logs\python_20260528_003122_522.log
-618	g1_hand_arm_project\logs\python_20260528_003135_727.log
-618	g1_hand_arm_project\logs\python_20260528_003258_007.log
-618	g1_hand_arm_project\logs\python_20260528_003314_181.log
-618	g1_hand_arm_project\logs\python_20260528_003327_377.log
-3479	g1_hand_arm_project\tools\arm_joint_probe.py
-9617	g1_hand_arm_project\tools\arm_pregrasp_preview.py
-2910	g1_hand_arm_project\tools\arm_sdk_hold_test.py
-2893	g1_hand_arm_project\tools\left_wrist_roll_test.py
-1564	g1_hand_arm_project\tools\test_arm_pregrasp_preview.py
-9147	g1_hand_arm_project\vision\auto_grasp_decision.py
-7848	g1_hand_arm_project\vision\compare_bottle_to_target.py
-11284	g1_hand_arm_project\vision\detect_bottle_2d.py
-18195	g1_hand_arm_project\vision\detect_bottle_depth.py
-8446	g1_hand_arm_project\vision\evaluate_grasp_window.py
-4255	g1_hand_arm_project\vision\grasp_window_report.json
-426	g1_hand_arm_project\vision\latest_bottle_3d.json
-1781	g1_hand_arm_project\vision\latest_grasp_decision.json
-1018	g1_hand_arm_project\vision\latest_target_offset.json
-5893	g1_hand_arm_project\vision\record_bottle_positions.py
-838	g1_hand_arm_project\vision\target_grasp_reference.json
-16839	g1_hand_arm_project\vision\test_detect_bottle_2d.py
-101481	g1_hand_arm_project\vision\debug\bottle_debug_20260527_214023_000000.jpg
-101575	g1_hand_arm_project\vision\debug\bottle_debug_20260527_214024_000001.jpg
-101677	g1_hand_arm_project\vision\debug\bottle_debug_20260527_214024_000002.jpg
-89208	g1_hand_arm_project\vision\debug\bottle_debug_20260527_214025_000003.jpg
-89113	g1_hand_arm_project\vision\debug\bottle_debug_20260527_214025_000004.jpg
-51640	g1_hand_arm_project\vision\debug\bottle_debug_20260527_214039_000000.jpg
-40985	g1_hand_arm_project\vision\debug\bottle_debug_20260527_214039_000001.jpg
-38118	g1_hand_arm_project\vision\debug\bottle_debug_20260527_214039_000002.jpg
-38077	g1_hand_arm_project\vision\debug\bottle_debug_20260527_214040_000003.jpg
-41352	g1_hand_arm_project\vision\debug\bottle_debug_20260527_214040_000004.jpg
-109252	g1_hand_arm_project\vision\debug\bottle_debug_20260527_214728_000000.jpg
-97585	g1_hand_arm_project\vision\debug\bottle_debug_20260527_214736_000020.jpg
-97610	g1_hand_arm_project\vision\debug\bottle_debug_20260527_214744_000040.jpg
-109441	g1_hand_arm_project\vision\debug\bottle_debug_20260527_214855_000000.jpg
-97363	g1_hand_arm_project\vision\debug\bottle_debug_20260527_214908_000030.jpg
-97655	g1_hand_arm_project\vision\debug\bottle_debug_20260527_214920_000060.jpg
-97413	g1_hand_arm_project\vision\debug\bottle_debug_20260527_214932_000090.jpg
-97368	g1_hand_arm_project\vision\debug\bottle_debug_20260527_214945_000120.jpg
-97312	g1_hand_arm_project\vision\debug\bottle_debug_20260527_214957_000150.jpg
-63949	g1_hand_arm_project\vision\debug\bottle_debug_20260527_215242_000000.jpg
-79277	g1_hand_arm_project\vision\debug\bottle_debug_20260527_215254_000030.jpg
-79316	g1_hand_arm_project\vision\debug\bottle_debug_20260527_215319_000090.jpg
-79285	g1_hand_arm_project\vision\debug\bottle_debug_20260527_215332_000120.jpg
-79244	g1_hand_arm_project\vision\debug\bottle_debug_20260527_215345_000150.jpg
-79156	g1_hand_arm_project\vision\debug\bottle_debug_20260527_215358_000180.jpg
-79818	g1_hand_arm_project\vision\debug\bottle_debug_20260527_215411_000210.jpg
-79623	g1_hand_arm_project\vision\debug\bottle_debug_20260527_215424_000240.jpg
-86003	g1_hand_arm_project\vision\debug\bottle_debug_20260527_215437_000270.jpg
-80028	g1_hand_arm_project\vision\debug\bottle_debug_20260527_215449_000300.jpg
-80196	g1_hand_arm_project\vision\debug\bottle_debug_20260527_215502_000330.jpg
-63634	g1_hand_arm_project\vision\debug\bottle_debug_20260527_215511_000000.jpg
-79296	g1_hand_arm_project\vision\debug\bottle_debug_20260527_215524_000030.jpg
-80223	g1_hand_arm_project\vision\debug\bottle_debug_20260527_215537_000060.jpg
-79376	g1_hand_arm_project\vision\debug\bottle_debug_20260527_215550_000090.jpg
-79595	g1_hand_arm_project\vision\debug\bottle_debug_20260527_215604_000120.jpg
-79544	g1_hand_arm_project\vision\debug\bottle_debug_20260527_215617_000150.jpg
-79491	g1_hand_arm_project\vision\debug\bottle_debug_20260527_215630_000180.jpg
-79195	g1_hand_arm_project\vision\debug\bottle_debug_20260527_215643_000210.jpg
-79910	g1_hand_arm_project\vision\debug\bottle_debug_20260527_215656_000240.jpg
-79922	g1_hand_arm_project\vision\debug\bottle_debug_20260527_215709_000270.jpg
-79852	g1_hand_arm_project\vision\debug\bottle_debug_20260527_215722_000300.jpg
-79915	g1_hand_arm_project\vision\debug\bottle_debug_20260527_215735_000330.jpg
-80103	g1_hand_arm_project\vision\debug\bottle_debug_20260527_215748_000360.jpg
-79416	g1_hand_arm_project\vision\debug\bottle_debug_20260527_215801_000390.jpg
-80498	g1_hand_arm_project\vision\debug\bottle_debug_20260527_215814_000420.jpg
-80015	g1_hand_arm_project\vision\debug\bottle_debug_20260527_215827_000450.jpg
-79691	g1_hand_arm_project\vision\debug\bottle_debug_20260527_215840_000480.jpg
-79780	g1_hand_arm_project\vision\debug\bottle_debug_20260527_215853_000510.jpg
-79931	g1_hand_arm_project\vision\debug\bottle_debug_20260527_215906_000540.jpg
-79841	g1_hand_arm_project\vision\debug\bottle_debug_20260527_215920_000570.jpg
-74986	g1_hand_arm_project\vision\debug\bottle_depth_debug_20260527_221531_000000.jpg
-83297	g1_hand_arm_project\vision\debug\bottle_depth_debug_20260527_221536_000010.jpg
-74969	g1_hand_arm_project\vision\debug\bottle_depth_debug_20260527_221604_000000.jpg
-91348	g1_hand_arm_project\vision\debug\bottle_depth_debug_20260527_221617_000030.jpg
-89234	g1_hand_arm_project\vision\debug\bottle_depth_debug_20260527_221631_000060.jpg
-89362	g1_hand_arm_project\vision\debug\bottle_depth_debug_20260527_221644_000090.jpg
-89490	g1_hand_arm_project\vision\debug\bottle_depth_debug_20260527_221657_000120.jpg
-89232	g1_hand_arm_project\vision\debug\bottle_depth_debug_20260527_221710_000150.jpg
-89540	g1_hand_arm_project\vision\debug\bottle_depth_debug_20260527_221724_000180.jpg
-89237	g1_hand_arm_project\vision\debug\bottle_depth_debug_20260527_221737_000210.jpg
-89231	g1_hand_arm_project\vision\debug\bottle_depth_debug_20260527_221750_000240.jpg
-88889	g1_hand_arm_project\vision\debug\bottle_depth_debug_20260527_221804_000270.jpg
-89148	g1_hand_arm_project\vision\debug\bottle_depth_debug_20260527_221817_000300.jpg
-89075	g1_hand_arm_project\vision\debug\bottle_depth_debug_20260527_221831_000330.jpg
-89384	g1_hand_arm_project\vision\debug\bottle_depth_debug_20260527_221844_000360.jpg
-89472	g1_hand_arm_project\vision\debug\bottle_depth_debug_20260527_221857_000390.jpg
-89351	g1_hand_arm_project\vision\debug\bottle_depth_debug_20260527_221911_000420.jpg
-86512	g1_hand_arm_project\vision\debug\bottle_depth_debug_20260527_221924_000450.jpg
-85279	g1_hand_arm_project\vision\debug\bottle_depth_debug_20260527_221938_000480.jpg
-85292	g1_hand_arm_project\vision\debug\bottle_depth_debug_20260527_221951_000510.jpg
-85591	g1_hand_arm_project\vision\debug\bottle_depth_debug_20260527_222004_000540.jpg
-319373	g1_hand_arm_project\vision\debug\camera_contact_1_5.jpg
-2760	g1_hand_arm_project\vision\records\bottle_positions_20260527_231122.csv
-3386	g1_hand_arm_project\vision\records\position1_20260527_2313.csv
-3428	g1_hand_arm_project\vision\records\position2_20260527_231435.csv
-3351	g1_hand_arm_project\vision\records\position3_20260527_231533.csv
-3440	g1_hand_arm_project\vision\records\position4_20260527_231757.csv
-3397	g1_hand_arm_project\vision\records\random1_20260527_232906.csv
-3411	g1_hand_arm_project\vision\records\random2_20260527_233015.csv
-3414	g1_hand_arm_project\vision\records\random3_20260527_233145.csv
-3422	g1_hand_arm_project\vision\records\target_grasp_20260527_232026.csv
-6867	g1_navgrasp\g1act_ws\src\arm\arm.py
-12156	g1_navgrasp\g1act_ws\src\arm\armm.py
-8221	g1_navgrasp\g1act_ws\src\arm\armtest (copy).py
-10298	g1_navgrasp\g1act_ws\src\arm\armtest.py
-7376	g1_navgrasp\g1act_ws\src\arm\armtest2.py
-7796	g1_navgrasp\g1act_ws\src\arm\armtest3.py
-27843	g1_navgrasp\g1act_ws\src\base\g1_description\g1_12dof.urdf
-15579	g1_navgrasp\g1act_ws\src\base\g1_description\g1_12dof.xml
-27936	g1_navgrasp\g1act_ws\src\base\g1_description\g1_23dof_rev_1_0.urdf
-20834	g1_navgrasp\g1act_ws\src\base\g1_description\g1_23dof_rev_1_0.xml
-29428	g1_navgrasp\g1act_ws\src\base\g1_description\g1_23dof.urdf
-21281	g1_navgrasp\g1act_ws\src\base\g1_description\g1_23dof.xml
-35175	g1_navgrasp\g1act_ws\src\base\g1_description\g1_29dof_lock_waist_rev_1_0.urdf
-25476	g1_navgrasp\g1act_ws\src\base\g1_description\g1_29dof_lock_waist_rev_1_0.xml
-35997	g1_navgrasp\g1act_ws\src\base\g1_description\g1_29dof_lock_waist.urdf
-25823	g1_navgrasp\g1act_ws\src\base\g1_description\g1_29dof_lock_waist.xml
-35170	g1_navgrasp\g1act_ws\src\base\g1_description\g1_29dof_rev_1_0.urdf
-25820	g1_navgrasp\g1act_ws\src\base\g1_description\g1_29dof_rev_1_0.xml
-50419	g1_navgrasp\g1act_ws\src\base\g1_description\g1_29dof_with_hand_rev_1_0.urdf
-38249	g1_navgrasp\g1act_ws\src\base\g1_description\g1_29dof_with_hand_rev_1_0.xml
-51241	g1_navgrasp\g1act_ws\src\base\g1_description\g1_29dof_with_hand.urdf
-38596	g1_navgrasp\g1act_ws\src\base\g1_description\g1_29dof_with_hand.xml
-35992	g1_navgrasp\g1act_ws\src\base\g1_description\g1_29dof.urdf
-26167	g1_navgrasp\g1act_ws\src\base\g1_description\g1_29dof.xml
-21925	g1_navgrasp\g1act_ws\src\base\g1_description\g1_dual_arm.urdf
-13488	g1_navgrasp\g1act_ws\src\base\g1_description\g1_dual_arm.xml
-2034	g1_navgrasp\g1act_ws\src\base\g1_description\README.md
-859	g1_navgrasp\g1act_ws\src\base\g1_description\scene.xml
-933725	g1_navgrasp\g1act_ws\src\base\g1_description\images\g1_23dof.png
-943738	g1_navgrasp\g1act_ws\src\base\g1_description\images\g1_29dof_with_hand.png
-942323	g1_navgrasp\g1act_ws\src\base\g1_description\images\g1_29dof.png
-847101	g1_navgrasp\g1act_ws\src\base\g1_description\images\g1_dual_arm.png
-932784	g1_navgrasp\g1act_ws\src\base\g1_description\meshes\head_link.STL
-71184	g1_navgrasp\g1act_ws\src\base\g1_description\meshes\left_ankle_pitch_link.STL
-653384	g1_navgrasp\g1act_ws\src\base\g1_description\meshes\left_ankle_roll_link.STL
-88784	g1_navgrasp\g1act_ws\src\base\g1_description\meshes\left_elbow_link.STL
-475984	g1_navgrasp\g1act_ws\src\base\g1_description\meshes\left_hand_index_0_link.STL
-1521784	g1_navgrasp\g1act_ws\src\base\g1_description\meshes\left_hand_index_1_link.STL
-475984	g1_navgrasp\g1act_ws\src\base\g1_description\meshes\left_hand_middle_0_link.STL
-1521784	g1_navgrasp\g1act_ws\src\base\g1_description\meshes\left_hand_middle_1_link.STL
-2140184	g1_navgrasp\g1act_ws\src\base\g1_description\meshes\left_hand_palm_link.STL
-8884	g1_navgrasp\g1act_ws\src\base\g1_description\meshes\left_hand_thumb_0_link.STL
-475984	g1_navgrasp\g1act_ws\src\base\g1_description\meshes\left_hand_thumb_1_link.STL
-1521784	g1_navgrasp\g1act_ws\src\base\g1_description\meshes\left_hand_thumb_2_link.STL
-181684	g1_navgrasp\g1act_ws\src\base\g1_description\meshes\left_hip_pitch_link.STL
-192184	g1_navgrasp\g1act_ws\src\base\g1_description\meshes\left_hip_roll_link.STL
-296284	g1_navgrasp\g1act_ws\src\base\g1_description\meshes\left_hip_yaw_link.STL
-854884	g1_navgrasp\g1act_ws\src\base\g1_description\meshes\left_knee_link.STL
-2287484	g1_navgrasp\g1act_ws\src\base\g1_description\meshes\left_rubber_hand.STL
-176784	g1_navgrasp\g1act_ws\src\base\g1_description\meshes\left_shoulder_pitch_link.STL
-400284	g1_navgrasp\g1act_ws\src\base\g1_description\meshes\left_shoulder_roll_link.STL
-249184	g1_navgrasp\g1act_ws\src\base\g1_description\meshes\left_shoulder_yaw_link.STL
-85984	g1_navgrasp\g1act_ws\src\base\g1_description\meshes\left_wrist_pitch_link.STL
-356184	g1_navgrasp\g1act_ws\src\base\g1_description\meshes\left_wrist_roll_link.STL
-3484884	g1_navgrasp\g1act_ws\src\base\g1_description\meshes\left_wrist_roll_rubber_hand.STL
-318684	g1_navgrasp\g1act_ws\src\base\g1_description\meshes\left_wrist_yaw_link.STL
-243384	g1_navgrasp\g1act_ws\src\base\g1_description\meshes\logo_link.STL
-1805184	g1_navgrasp\g1act_ws\src\base\g1_description\meshes\pelvis_contour_link.STL
-1060884	g1_navgrasp\g1act_ws\src\base\g1_description\meshes\pelvis.STL
-71184	g1_navgrasp\g1act_ws\src\base\g1_description\meshes\right_ankle_pitch_link.STL
-653784	g1_navgrasp\g1act_ws\src\base\g1_description\meshes\right_ankle_roll_link.STL
-88784	g1_navgrasp\g1act_ws\src\base\g1_description\meshes\right_elbow_link.STL
-475984	g1_navgrasp\g1act_ws\src\base\g1_description\meshes\right_hand_index_0_link.STL
-1521784	g1_navgrasp\g1act_ws\src\base\g1_description\meshes\right_hand_index_1_link.STL
-475984	g1_navgrasp\g1act_ws\src\base\g1_description\meshes\right_hand_middle_0_link.STL
-1521784	g1_navgrasp\g1act_ws\src\base\g1_description\meshes\right_hand_middle_1_link.STL
-2140184	g1_navgrasp\g1act_ws\src\base\g1_description\meshes\right_hand_palm_link.STL
-8884	g1_navgrasp\g1act_ws\src\base\g1_description\meshes\right_hand_thumb_0_link.STL
-475984	g1_navgrasp\g1act_ws\src\base\g1_description\meshes\right_hand_thumb_1_link.STL
-1521784	g1_navgrasp\g1act_ws\src\base\g1_description\meshes\right_hand_thumb_2_link.STL
-181284	g1_navgrasp\g1act_ws\src\base\g1_description\meshes\right_hip_pitch_link.STL
-192684	g1_navgrasp\g1act_ws\src\base\g1_description\meshes\right_hip_roll_link.STL
-296284	g1_navgrasp\g1act_ws\src\base\g1_description\meshes\right_hip_yaw_link.STL
-852284	g1_navgrasp\g1act_ws\src\base\g1_description\meshes\right_knee_link.STL
-2192684	g1_navgrasp\g1act_ws\src\base\g1_description\meshes\right_rubber_hand.STL
-176784	g1_navgrasp\g1act_ws\src\base\g1_description\meshes\right_shoulder_pitch_link.STL
-401884	g1_navgrasp\g1act_ws\src\base\g1_description\meshes\right_shoulder_roll_link.STL
-249984	g1_navgrasp\g1act_ws\src\base\g1_description\meshes\right_shoulder_yaw_link.STL
-79584	g1_navgrasp\g1act_ws\src\base\g1_description\meshes\right_wrist_pitch_link.STL
-356084	g1_navgrasp\g1act_ws\src\base\g1_description\meshes\right_wrist_roll_link.STL
-3481584	g1_navgrasp\g1act_ws\src\base\g1_description\meshes\right_wrist_roll_rubber_hand.STL
-341484	g1_navgrasp\g1act_ws\src\base\g1_description\meshes\right_wrist_yaw_link.STL
-203584	g1_navgrasp\g1act_ws\src\base\g1_description\meshes\torso_constraint_L_link.STL
-74884	g1_navgrasp\g1act_ws\src\base\g1_description\meshes\torso_constraint_L_rod_link.STL
-203584	g1_navgrasp\g1act_ws\src\base\g1_description\meshes\torso_constraint_R_link.STL
-74884	g1_navgrasp\g1act_ws\src\base\g1_description\meshes\torso_constraint_R_rod_link.STL
-7825434	g1_navgrasp\g1act_ws\src\base\g1_description\meshes\torso_link_23dof_rev_1_0.STL
-2570584	g1_navgrasp\g1act_ws\src\base\g1_description\meshes\torso_link_rev_1_0.STL
-2232984	g1_navgrasp\g1act_ws\src\base\g1_description\meshes\torso_link.STL
-114684	g1_navgrasp\g1act_ws\src\base\g1_description\meshes\waist_constraint_L.STL
-114684	g1_navgrasp\g1act_ws\src\base\g1_description\meshes\waist_constraint_R.STL
-85884	g1_navgrasp\g1act_ws\src\base\g1_description\meshes\waist_roll_link_rev_1_0.STL
-24184	g1_navgrasp\g1act_ws\src\base\g1_description\meshes\waist_roll_link.STL
-150484	g1_navgrasp\g1act_ws\src\base\g1_description\meshes\waist_support_link.STL
-619984	g1_navgrasp\g1act_ws\src\base\g1_description\meshes\waist_yaw_link_rev_1_0.STL
-336284	g1_navgrasp\g1act_ws\src\base\g1_description\meshes\waist_yaw_link.STL
-783	g1_navgrasp\g1act_ws\src\base\g1_driver_py\package.xml
-93	g1_navgrasp\g1act_ws\src\base\g1_driver_py\setup.cfg
-888	g1_navgrasp\g1act_ws\src\base\g1_driver_py\setup.py
-0	g1_navgrasp\g1act_ws\src\base\g1_driver_py\g1_driver_py\__init__.py
-5483	g1_navgrasp\g1act_ws\src\base\g1_driver_py\g1_driver_py\driver.py
-2044	g1_navgrasp\g1act_ws\src\base\g1_driver_py\launch\driver.launch.py
-121	g1_navgrasp\g1act_ws\src\base\g1_driver_py\params\driver.yaml
-0	g1_navgrasp\g1act_ws\src\base\g1_driver_py\resource\g1_driver_py
-3976	g1_navgrasp\g1act_ws\src\base\g1_driver_py\rviz\display.rviz
-645	g1_navgrasp\g1act_ws\src\base\g1_teleop_ctrl_keyboard\package.xml
-115	g1_navgrasp\g1act_ws\src\base\g1_teleop_ctrl_keyboard\setup.cfg
-691	g1_navgrasp\g1act_ws\src\base\g1_teleop_ctrl_keyboard\setup.py
-0	g1_navgrasp\g1act_ws\src\base\g1_teleop_ctrl_keyboard\g1_teleop_ctrl_keyboard\__init__.py
-5941	g1_navgrasp\g1act_ws\src\base\g1_teleop_ctrl_keyboard\g1_teleop_ctrl_keyboard\g1_teleop_ctrl_keyboard.py
-0	g1_navgrasp\g1act_ws\src\base\g1_teleop_ctrl_keyboard\resource\g1_teleop_ctrl_keyboard
-716	g1_navgrasp\g1act_ws\src\base\g1_twist_bridge_py\package.xml
-105	g1_navgrasp\g1act_ws\src\base\g1_twist_bridge_py\setup.cfg
-667	g1_navgrasp\g1act_ws\src\base\g1_twist_bridge_py\setup.py
-0	g1_navgrasp\g1act_ws\src\base\g1_twist_bridge_py\g1_twist_bridge_py\__init__.py
-1648	g1_navgrasp\g1act_ws\src\base\g1_twist_bridge_py\g1_twist_bridge_py\sport_model.py
-1341	g1_navgrasp\g1act_ws\src\base\g1_twist_bridge_py\g1_twist_bridge_py\twist_bridge.py
-0	g1_navgrasp\g1act_ws\src\base\g1_twist_bridge_py\resource\g1_twist_bridge_py
-1049	g1_navgrasp\g1act_ws\src\g1_yolo_nav_py\package.xml
-97	g1_navgrasp\g1act_ws\src\g1_yolo_nav_py\setup.cfg
-1048	g1_navgrasp\g1act_ws\src\g1_yolo_nav_py\setup.py
-2261	g1_navgrasp\g1act_ws\src\g1_yolo_nav_py\config\yolo_nav.yaml
-57	g1_navgrasp\g1act_ws\src\g1_yolo_nav_py\g1_yolo_nav_py\__init__.py
-7242	g1_navgrasp\g1act_ws\src\g1_yolo_nav_py\g1_yolo_nav_py\nav_planner.py
-11205	g1_navgrasp\g1act_ws\src\g1_yolo_nav_py\g1_yolo_nav_py\spatial_target.py
-4862	g1_navgrasp\g1act_ws\src\g1_yolo_nav_py\g1_yolo_nav_py\yolo_detector.py
-2975	g1_navgrasp\g1act_ws\src\g1_yolo_nav_py\launch\yolo_nav.launch.py
-0	g1_navgrasp\g1act_ws\src\g1_yolo_nav_py\resource\g1_yolo_nav_py
-24193	g1_navgrasp\manact_ws\README.en.md
-27971	g1_navgrasp\manact_ws\README.md
-3344	g1_navgrasp\manact_ws\src\D455.md
-11871	g1_navgrasp\manact_ws\src\base\ctrl_keyboard\audio_control_test.py
-690	g1_navgrasp\manact_ws\src\base\ctrl_keyboard\package.xml
-95	g1_navgrasp\manact_ws\src\base\ctrl_keyboard\setup.cfg
-1009	g1_navgrasp\manact_ws\src\base\ctrl_keyboard\setup.py
-1112	g1_navgrasp\manact_ws\src\base\ctrl_keyboard\text.txt
-3606	g1_navgrasp\manact_ws\src\base\ctrl_keyboard\whole_test.py
-0	g1_navgrasp\manact_ws\src\base\ctrl_keyboard\ctrl_keyboard\__init__.py
-4335	g1_navgrasp\manact_ws\src\base\ctrl_keyboard\ctrl_keyboard\auto_ctrl.py
-2189	g1_navgrasp\manact_ws\src\base\ctrl_keyboard\ctrl_keyboard\ctrl_keyboard.py
-1122	g1_navgrasp\manact_ws\src\base\ctrl_keyboard\logs\python_20260403_135648_410.log
-1122	g1_navgrasp\manact_ws\src\base\ctrl_keyboard\logs\python_20260403_140048_681.log
-1122	g1_navgrasp\manact_ws\src\base\ctrl_keyboard\logs\python_20260403_140500_122.log
-0	g1_navgrasp\manact_ws\src\base\ctrl_keyboard\resource\ctrl_keyboard
-790	g1_navgrasp\manact_ws\src\base\ctrl_keyboard\test\test_copyright.py
-884	g1_navgrasp\manact_ws\src\base\ctrl_keyboard\test\test_flake8.py
-803	g1_navgrasp\manact_ws\src\base\ctrl_keyboard\test\test_pep257.py
-27843	g1_navgrasp\manact_ws\src\base\g1_description\g1_12dof.urdf
-15579	g1_navgrasp\manact_ws\src\base\g1_description\g1_12dof.xml
-27936	g1_navgrasp\manact_ws\src\base\g1_description\g1_23dof_rev_1_0.urdf
-20834	g1_navgrasp\manact_ws\src\base\g1_description\g1_23dof_rev_1_0.xml
-29428	g1_navgrasp\manact_ws\src\base\g1_description\g1_23dof.urdf
-21281	g1_navgrasp\manact_ws\src\base\g1_description\g1_23dof.xml
-35175	g1_navgrasp\manact_ws\src\base\g1_description\g1_29dof_lock_waist_rev_1_0.urdf
-25476	g1_navgrasp\manact_ws\src\base\g1_description\g1_29dof_lock_waist_rev_1_0.xml
-35997	g1_navgrasp\manact_ws\src\base\g1_description\g1_29dof_lock_waist.urdf
-25823	g1_navgrasp\manact_ws\src\base\g1_description\g1_29dof_lock_waist.xml
-35170	g1_navgrasp\manact_ws\src\base\g1_description\g1_29dof_rev_1_0.urdf
-25820	g1_navgrasp\manact_ws\src\base\g1_description\g1_29dof_rev_1_0.xml
-50419	g1_navgrasp\manact_ws\src\base\g1_description\g1_29dof_with_hand_rev_1_0.urdf
-38249	g1_navgrasp\manact_ws\src\base\g1_description\g1_29dof_with_hand_rev_1_0.xml
-51241	g1_navgrasp\manact_ws\src\base\g1_description\g1_29dof_with_hand.urdf
-38596	g1_navgrasp\manact_ws\src\base\g1_description\g1_29dof_with_hand.xml
-35992	g1_navgrasp\manact_ws\src\base\g1_description\g1_29dof.urdf
-26167	g1_navgrasp\manact_ws\src\base\g1_description\g1_29dof.xml
-21925	g1_navgrasp\manact_ws\src\base\g1_description\g1_dual_arm.urdf
-13488	g1_navgrasp\manact_ws\src\base\g1_description\g1_dual_arm.xml
-2034	g1_navgrasp\manact_ws\src\base\g1_description\README.md
-859	g1_navgrasp\manact_ws\src\base\g1_description\scene.xml
-933725	g1_navgrasp\manact_ws\src\base\g1_description\images\g1_23dof.png
-943738	g1_navgrasp\manact_ws\src\base\g1_description\images\g1_29dof_with_hand.png
-942323	g1_navgrasp\manact_ws\src\base\g1_description\images\g1_29dof.png
-847101	g1_navgrasp\manact_ws\src\base\g1_description\images\g1_dual_arm.png
-932784	g1_navgrasp\manact_ws\src\base\g1_description\meshes\head_link.STL
-71184	g1_navgrasp\manact_ws\src\base\g1_description\meshes\left_ankle_pitch_link.STL
-653384	g1_navgrasp\manact_ws\src\base\g1_description\meshes\left_ankle_roll_link.STL
-88784	g1_navgrasp\manact_ws\src\base\g1_description\meshes\left_elbow_link.STL
-475984	g1_navgrasp\manact_ws\src\base\g1_description\meshes\left_hand_index_0_link.STL
-1521784	g1_navgrasp\manact_ws\src\base\g1_description\meshes\left_hand_index_1_link.STL
-475984	g1_navgrasp\manact_ws\src\base\g1_description\meshes\left_hand_middle_0_link.STL
-1521784	g1_navgrasp\manact_ws\src\base\g1_description\meshes\left_hand_middle_1_link.STL
-2140184	g1_navgrasp\manact_ws\src\base\g1_description\meshes\left_hand_palm_link.STL
-8884	g1_navgrasp\manact_ws\src\base\g1_description\meshes\left_hand_thumb_0_link.STL
-475984	g1_navgrasp\manact_ws\src\base\g1_description\meshes\left_hand_thumb_1_link.STL
-1521784	g1_navgrasp\manact_ws\src\base\g1_description\meshes\left_hand_thumb_2_link.STL
-181684	g1_navgrasp\manact_ws\src\base\g1_description\meshes\left_hip_pitch_link.STL
-192184	g1_navgrasp\manact_ws\src\base\g1_description\meshes\left_hip_roll_link.STL
-296284	g1_navgrasp\manact_ws\src\base\g1_description\meshes\left_hip_yaw_link.STL
-854884	g1_navgrasp\manact_ws\src\base\g1_description\meshes\left_knee_link.STL
-2287484	g1_navgrasp\manact_ws\src\base\g1_description\meshes\left_rubber_hand.STL
-176784	g1_navgrasp\manact_ws\src\base\g1_description\meshes\left_shoulder_pitch_link.STL
-400284	g1_navgrasp\manact_ws\src\base\g1_description\meshes\left_shoulder_roll_link.STL
-249184	g1_navgrasp\manact_ws\src\base\g1_description\meshes\left_shoulder_yaw_link.STL
-85984	g1_navgrasp\manact_ws\src\base\g1_description\meshes\left_wrist_pitch_link.STL
-356184	g1_navgrasp\manact_ws\src\base\g1_description\meshes\left_wrist_roll_link.STL
-3484884	g1_navgrasp\manact_ws\src\base\g1_description\meshes\left_wrist_roll_rubber_hand.STL
-318684	g1_navgrasp\manact_ws\src\base\g1_description\meshes\left_wrist_yaw_link.STL
-243384	g1_navgrasp\manact_ws\src\base\g1_description\meshes\logo_link.STL
-1805184	g1_navgrasp\manact_ws\src\base\g1_description\meshes\pelvis_contour_link.STL
-1060884	g1_navgrasp\manact_ws\src\base\g1_description\meshes\pelvis.STL
-71184	g1_navgrasp\manact_ws\src\base\g1_description\meshes\right_ankle_pitch_link.STL
-653784	g1_navgrasp\manact_ws\src\base\g1_description\meshes\right_ankle_roll_link.STL
-88784	g1_navgrasp\manact_ws\src\base\g1_description\meshes\right_elbow_link.STL
-475984	g1_navgrasp\manact_ws\src\base\g1_description\meshes\right_hand_index_0_link.STL
-1521784	g1_navgrasp\manact_ws\src\base\g1_description\meshes\right_hand_index_1_link.STL
-475984	g1_navgrasp\manact_ws\src\base\g1_description\meshes\right_hand_middle_0_link.STL
-1521784	g1_navgrasp\manact_ws\src\base\g1_description\meshes\right_hand_middle_1_link.STL
-2140184	g1_navgrasp\manact_ws\src\base\g1_description\meshes\right_hand_palm_link.STL
-8884	g1_navgrasp\manact_ws\src\base\g1_description\meshes\right_hand_thumb_0_link.STL
-475984	g1_navgrasp\manact_ws\src\base\g1_description\meshes\right_hand_thumb_1_link.STL
-1521784	g1_navgrasp\manact_ws\src\base\g1_description\meshes\right_hand_thumb_2_link.STL
-181284	g1_navgrasp\manact_ws\src\base\g1_description\meshes\right_hip_pitch_link.STL
-192684	g1_navgrasp\manact_ws\src\base\g1_description\meshes\right_hip_roll_link.STL
-296284	g1_navgrasp\manact_ws\src\base\g1_description\meshes\right_hip_yaw_link.STL
-852284	g1_navgrasp\manact_ws\src\base\g1_description\meshes\right_knee_link.STL
-2192684	g1_navgrasp\manact_ws\src\base\g1_description\meshes\right_rubber_hand.STL
-176784	g1_navgrasp\manact_ws\src\base\g1_description\meshes\right_shoulder_pitch_link.STL
-401884	g1_navgrasp\manact_ws\src\base\g1_description\meshes\right_shoulder_roll_link.STL
-249984	g1_navgrasp\manact_ws\src\base\g1_description\meshes\right_shoulder_yaw_link.STL
-79584	g1_navgrasp\manact_ws\src\base\g1_description\meshes\right_wrist_pitch_link.STL
-356084	g1_navgrasp\manact_ws\src\base\g1_description\meshes\right_wrist_roll_link.STL
-3481584	g1_navgrasp\manact_ws\src\base\g1_description\meshes\right_wrist_roll_rubber_hand.STL
-341484	g1_navgrasp\manact_ws\src\base\g1_description\meshes\right_wrist_yaw_link.STL
-203584	g1_navgrasp\manact_ws\src\base\g1_description\meshes\torso_constraint_L_link.STL
-74884	g1_navgrasp\manact_ws\src\base\g1_description\meshes\torso_constraint_L_rod_link.STL
-203584	g1_navgrasp\manact_ws\src\base\g1_description\meshes\torso_constraint_R_link.STL
-74884	g1_navgrasp\manact_ws\src\base\g1_description\meshes\torso_constraint_R_rod_link.STL
-7825434	g1_navgrasp\manact_ws\src\base\g1_description\meshes\torso_link_23dof_rev_1_0.STL
-2570584	g1_navgrasp\manact_ws\src\base\g1_description\meshes\torso_link_rev_1_0.STL
-2232984	g1_navgrasp\manact_ws\src\base\g1_description\meshes\torso_link.STL
-114684	g1_navgrasp\manact_ws\src\base\g1_description\meshes\waist_constraint_L.STL
-114684	g1_navgrasp\manact_ws\src\base\g1_description\meshes\waist_constraint_R.STL
-85884	g1_navgrasp\manact_ws\src\base\g1_description\meshes\waist_roll_link_rev_1_0.STL
-24184	g1_navgrasp\manact_ws\src\base\g1_description\meshes\waist_roll_link.STL
-150484	g1_navgrasp\manact_ws\src\base\g1_description\meshes\waist_support_link.STL
-619984	g1_navgrasp\manact_ws\src\base\g1_description\meshes\waist_yaw_link_rev_1_0.STL
-336284	g1_navgrasp\manact_ws\src\base\g1_description\meshes\waist_yaw_link.STL
-992	g1_navgrasp\manact_ws\src\g1_yolo_nav_py\package.xml
-97	g1_navgrasp\manact_ws\src\g1_yolo_nav_py\setup.cfg
-3836	g1_navgrasp\manact_ws\src\g1_yolo_nav_py\setup.py
-19223889	g1_navgrasp\manact_ws\src\g1_yolo_nav_py\yolo_v11s_best.pt
-9695	g1_navgrasp\manact_ws\src\g1_yolo_nav_py\arm\arm_common.py
-8047	g1_navgrasp\manact_ws\src\g1_yolo_nav_py\arm\arm_debug.py
-2986	g1_navgrasp\manact_ws\src\g1_yolo_nav_py\arm\arm_multi_pose_demo.py
-5796	g1_navgrasp\manact_ws\src\g1_yolo_nav_py\arm\arm.py
-2477	g1_navgrasp\manact_ws\src\g1_yolo_nav_py\arm\armdown.py
-2949	g1_navgrasp\manact_ws\src\g1_yolo_nav_py\arm\armup.py
-5331	g1_navgrasp\manact_ws\src\g1_yolo_nav_py\config\yolo_nav.yaml
-57	g1_navgrasp\manact_ws\src\g1_yolo_nav_py\g1_yolo_nav_py\__init__.py
-8397	g1_navgrasp\manact_ws\src\g1_yolo_nav_py\g1_yolo_nav_py\_dds_compat.py
-2256	g1_navgrasp\manact_ws\src\g1_yolo_nav_py\g1_yolo_nav_py\_detection_utils.py
-4383	g1_navgrasp\manact_ws\src\g1_yolo_nav_py\g1_yolo_nav_py\_forward_approach.py
-25094	g1_navgrasp\manact_ws\src\g1_yolo_nav_py\g1_yolo_nav_py\_grasp_state.py
-4889	g1_navgrasp\manact_ws\src\g1_yolo_nav_py\g1_yolo_nav_py\_step_aligner.py
-2775	g1_navgrasp\manact_ws\src\g1_yolo_nav_py\g1_yolo_nav_py\_vis_utils.py
-31976	g1_navgrasp\manact_ws\src\g1_yolo_nav_py\g1_yolo_nav_py\control_panel.py
-11657	g1_navgrasp\manact_ws\src\g1_yolo_nav_py\g1_yolo_nav_py\detection_visualizer.py
-2284	g1_navgrasp\manact_ws\src\g1_yolo_nav_py\g1_yolo_nav_py\grasp_task.py
-8089	g1_navgrasp\manact_ws\src\g1_yolo_nav_py\g1_yolo_nav_py\loco_forward.py
-7447	g1_navgrasp\manact_ws\src\g1_yolo_nav_py\g1_yolo_nav_py\rgbd_capture.py
-10706	g1_navgrasp\manact_ws\src\g1_yolo_nav_py\g1_yolo_nav_py\spatial_target.py
-14831	g1_navgrasp\manact_ws\src\g1_yolo_nav_py\g1_yolo_nav_py\sport_client.py
-45663	g1_navgrasp\manact_ws\src\g1_yolo_nav_py\g1_yolo_nav_py\web_panel.py
-6213	g1_navgrasp\manact_ws\src\g1_yolo_nav_py\g1_yolo_nav_py\yaw_align.py
-9557	g1_navgrasp\manact_ws\src\g1_yolo_nav_py\g1_yolo_nav_py\yolo_detector.py
-5991	g1_navgrasp\manact_ws\src\g1_yolo_nav_py\launch\grasp_task.launch.py
-4705	g1_navgrasp\manact_ws\src\g1_yolo_nav_py\launch\yolo_nav.launch.py
-0	g1_navgrasp\manact_ws\src\g1_yolo_nav_py\resource\g1_yolo_nav_py
-25763	g1_navgrasp\manact_ws\src\web_frontend\dev_server.py
-55377	g1_navgrasp\manact_ws\src\web_frontend\index.html
-1616	g1_navgrasp\manact_ws\src\web_frontend\css\lggc.css
-69339	g1_navgrasp\manact_ws\src\web_frontend\css\style.css
-52688	g1_navgrasp\manact_ws\src\web_frontend\js\app.js
-1652	hand_control\revo2\left_hand_safe_once.py
-4249	hybrid_control_terminal\python_gui\config.py
-8480	hybrid_control_terminal\python_gui\launcher.py
-3488	hybrid_control_terminal\python_gui\main.py
-8931	hybrid_control_terminal\python_gui\README.md
-791	hybrid_control_terminal\python_gui\setting.json
-818	hybrid_control_terminal\python_gui\settings.json
-132	hybrid_control_terminal\python_gui\user_config.json
-2171	hybrid_control_terminal\python_gui\utils.py
-0	hybrid_control_terminal\python_gui\core\__init__.py
-2675	hybrid_control_terminal\python_gui\core\boot.py
-7333	hybrid_control_terminal\python_gui\core\bridge.py
-1784	hybrid_control_terminal\python_gui\core\coordinates.py
-2632	hybrid_control_terminal\python_gui\core\deepseek_brain.py
-8502	hybrid_control_terminal\python_gui\core\ik_solver.py
-2548	hybrid_control_terminal\python_gui\core\input_mapper.py
-3040	hybrid_control_terminal\python_gui\core\l10_client.py
-4397	hybrid_control_terminal\python_gui\core\recorder.py
-75377	hybrid_control_terminal\python_gui\core\robot_process.py
-9885	hybrid_control_terminal\python_gui\core\ros_bridge.py
-7342	hybrid_control_terminal\python_gui\core\ros_manager.py
-1477	hybrid_control_terminal\python_gui\core\safety_layer.py
-8294	hybrid_control_terminal\python_gui\core\sequencer.py
-3106	hybrid_control_terminal\python_gui\core\settings_manager.py
-3880	hybrid_control_terminal\python_gui\core\signal_server.py
-7048	hybrid_control_terminal\python_gui\core\sim_engine.py
-2393	hybrid_control_terminal\python_gui\core\task_manager.py
-1773	hybrid_control_terminal\python_gui\core\trajectory.py
-3112	hybrid_control_terminal\python_gui\core\vision_detector.py
-8051	hybrid_control_terminal\python_gui\core\worker.py
-413277	hybrid_control_terminal\python_gui\data_logger\lb.json
-222751	hybrid_control_terminal\python_gui\data_logger\motion_01.json
-233913	hybrid_control_terminal\python_gui\data_logger\motion_011.json
-197468	hybrid_control_terminal\python_gui\data_logger\motion_new.json
-198907	hybrid_control_terminal\python_gui\data_logger\motion_new1.json
-194542	hybrid_control_terminal\python_gui\data_logger\motion_new11.json
-1172486	hybrid_control_terminal\python_gui\data_logger\replica_left.json
-986770	hybrid_control_terminal\python_gui\data_logger\replica_low_speed.json
-1161839	hybrid_control_terminal\python_gui\data_logger\replica_pull_over.json
-1188754	hybrid_control_terminal\python_gui\data_logger\replica_right.json
-1252613	hybrid_control_terminal\python_gui\data_logger\replica_stop.json
-1132312	hybrid_control_terminal\python_gui\data_logger\replica_straight.json
-1051405	hybrid_control_terminal\python_gui\data_logger\replica_turn.json
-1017851	hybrid_control_terminal\python_gui\data_logger\replica_wait_left.json
-214225	hybrid_control_terminal\python_gui\data_logger\swing_r_hand.json
-781	hybrid_control_terminal\python_gui\data_logger\tasks.json
-657897	hybrid_control_terminal\python_gui\data_logger\welcome left 0122.json
-657897	hybrid_control_terminal\python_gui\data_logger\welcome.json
-7014	hybrid_control_terminal\python_gui\tools\check_workspace.py
-4581	hybrid_control_terminal\python_gui\tools\hand_server.py
-728	hybrid_control_terminal\python_gui\tools\sender.py
-0	hybrid_control_terminal\python_gui\ui\__init__.py
-31131	hybrid_control_terminal\python_gui\ui\main_window.py
-19974	hybrid_control_terminal\python_gui\ui\nav_widget.py
-14156	hybrid_control_terminal\python_gui\ui\styles.py
-9173	hybrid_control_terminal\python_gui\ui\widgets_task.py
-20098	hybrid_control_terminal\python_gui\ui\widgets.py
-5665	hybrid_control_terminal\python_gui\ui\tabs\hand_tab.py
-4900	hybrid_control_terminal\python_gui\ui\tabs\joints_tab.py
-11592	hybrid_control_terminal\python_gui\ui\tabs\monitor_tab.py
-30805	hybrid_control_terminal\python_gui\ui\tabs\nav_tab.py
-24674	hybrid_control_terminal\python_gui\ui\tabs\precision_tab.py
-15484	hybrid_control_terminal\python_gui\ui\tabs\teach_tab.py
-4908	hybrid_control_terminal\python_gui\ui\tabs\voice_tab.py
-7154	legacy\hand_eye_control\arm7_control.py
-6231850	models\bottle_v12_best.pt
-6231850	models\bottle_v12_last.pt
-6288217	models\detect_best.pt
-36628966	models\detect1_best.pt
-6301924	models\hybrid_gui_train_best.pt
-6301924	models\hybrid_gui_train_last.pt
-1365	models\MODEL_MANIFEST.md
-6218723	models\train4_best.pt
-6218723	models\train4_last.pt
-6288217	models\xinghg_best.pt
-19223889	models\yolo_v11s_best.pt
-6549796	models\yolov8n.pt
-4004	ros2_arm_action\g1_arm_action_ros2\CMakeLists.txt
-941	ros2_arm_action\g1_arm_action_ros2\package.xml
-5069	ros2_arm_action\g1_arm_action_ros2\README.md
-611	ros2_arm_action\g1_arm_action_ros2\config\arm_action_params.yaml
-1265	ros2_arm_action\g1_arm_action_ros2\launch\g1_arm_action_config.launch.py
-1592	ros2_arm_action\g1_arm_action_ros2\launch\g1_arm_action.launch.py
-8040	ros2_arm_action\g1_arm_action_ros2\src\g1_arm_action_node.cpp
-1196	ros2_arm_action\g1_arm_action_ros2\srv\ExecuteArmAction.srv
-299	ros2_arm_action\g1_arm_action_ros2\srv\GetArmActionList.srv
-2592	ros2_vision_workspaces\detect\config\a4_5tags.json
-414	ros2_vision_workspaces\detect\config\robot_center_to_camera.json
-732	ros2_vision_workspaces\detect\src\apriltag_static_calib\package.xml
-111	ros2_vision_workspaces\detect\src\apriltag_static_calib\setup.cfg
-1508	ros2_vision_workspaces\detect\src\apriltag_static_calib\setup.py
-0	ros2_vision_workspaces\detect\src\apriltag_static_calib\apriltag_static_calib\__init__.py
-14368	ros2_vision_workspaces\detect\src\apriltag_static_calib\apriltag_static_calib\apriltag_static_calib_node.py
-3734	ros2_vision_workspaces\detect\src\apriltag_static_calib\launch\apriltag_static_calib.launch.py
-0	ros2_vision_workspaces\detect\src\apriltag_static_calib\resource\apriltag_static_calib
-780	ros2_vision_workspaces\detect\src\realtime_yolo_pcd_tf\package.xml
-109	ros2_vision_workspaces\detect\src\realtime_yolo_pcd_tf\setup.cfg
-840	ros2_vision_workspaces\detect\src\realtime_yolo_pcd_tf\setup.py
-3326	ros2_vision_workspaces\detect\src\realtime_yolo_pcd_tf\launch\realtime_yolo_pcd_tf.launch.py
-2	ros2_vision_workspaces\detect\src\realtime_yolo_pcd_tf\realtime_yolo_pcd_tf\__init__.py
-22988	ros2_vision_workspaces\detect\src\realtime_yolo_pcd_tf\realtime_yolo_pcd_tf\realtime_node.py
-21	ros2_vision_workspaces\detect\src\realtime_yolo_pcd_tf\resource\realtime_yolo_pcd_tf
-886	ros2_vision_workspaces\detect\src\yolo_depth_pcd\package.xml
-90	ros2_vision_workspaces\detect\src\yolo_depth_pcd\pyproject.toml
-97	ros2_vision_workspaces\detect\src\yolo_depth_pcd\setup.cfg
-1758	ros2_vision_workspaces\detect\src\yolo_depth_pcd\setup.py
-2091	ros2_vision_workspaces\detect\src\yolo_depth_pcd\launch\continuous_demo.launch.py
-1857	ros2_vision_workspaces\detect\src\yolo_depth_pcd\launch\process_frame_server.launch.py
-3022	ros2_vision_workspaces\detect\src\yolo_depth_pcd\launch\realsense_live.launch.py
-1	ros2_vision_workspaces\detect\src\yolo_depth_pcd\resource\yolo_depth_pcd
-1	ros2_vision_workspaces\detect\src\yolo_depth_pcd\yolo_depth_pcd\__init__.py
-19128	ros2_vision_workspaces\detect\src\yolo_depth_pcd\yolo_depth_pcd\live_pipeline_node.py
-2410	ros2_vision_workspaces\detect\src\yolo_depth_pcd\yolo_depth_pcd\process_frame_client.py
-22374	ros2_vision_workspaces\detect\src\yolo_depth_pcd\yolo_depth_pcd\process_frame_server.py
-487	ros2_vision_workspaces\detect\src\yolo_depth_pcd_interfaces\CMakeLists.txt
-549	ros2_vision_workspaces\detect\src\yolo_depth_pcd_interfaces\package.xml
-279	ros2_vision_workspaces\detect\src\yolo_depth_pcd_interfaces\srv\ProcessFrame.srv
-732	ros2_vision_workspaces\detect1\src\apriltag_static_calib\package.xml
-111	ros2_vision_workspaces\detect1\src\apriltag_static_calib\setup.cfg
-1508	ros2_vision_workspaces\detect1\src\apriltag_static_calib\setup.py
-0	ros2_vision_workspaces\detect1\src\apriltag_static_calib\apriltag_static_calib\__init__.py
-14368	ros2_vision_workspaces\detect1\src\apriltag_static_calib\apriltag_static_calib\apriltag_static_calib_node.py
-3734	ros2_vision_workspaces\detect1\src\apriltag_static_calib\launch\apriltag_static_calib.launch.py
-0	ros2_vision_workspaces\detect1\src\apriltag_static_calib\resource\apriltag_static_calib
-886	ros2_vision_workspaces\detect1\src\yolo_depth_pcd\package.xml
-90	ros2_vision_workspaces\detect1\src\yolo_depth_pcd\pyproject.toml
-97	ros2_vision_workspaces\detect1\src\yolo_depth_pcd\setup.cfg
-1758	ros2_vision_workspaces\detect1\src\yolo_depth_pcd\setup.py
-2091	ros2_vision_workspaces\detect1\src\yolo_depth_pcd\launch\continuous_demo.launch.py
-1857	ros2_vision_workspaces\detect1\src\yolo_depth_pcd\launch\process_frame_server.launch.py
-3002	ros2_vision_workspaces\detect1\src\yolo_depth_pcd\launch\realsense_live.launch.py
-1	ros2_vision_workspaces\detect1\src\yolo_depth_pcd\resource\yolo_depth_pcd
-1	ros2_vision_workspaces\detect1\src\yolo_depth_pcd\yolo_depth_pcd\__init__.py
-19128	ros2_vision_workspaces\detect1\src\yolo_depth_pcd\yolo_depth_pcd\live_pipeline_node.py
-2410	ros2_vision_workspaces\detect1\src\yolo_depth_pcd\yolo_depth_pcd\process_frame_client.py
-22374	ros2_vision_workspaces\detect1\src\yolo_depth_pcd\yolo_depth_pcd\process_frame_server.py
-487	ros2_vision_workspaces\detect1\src\yolo_depth_pcd_interfaces\CMakeLists.txt
-549	ros2_vision_workspaces\detect1\src\yolo_depth_pcd_interfaces\package.xml
-279	ros2_vision_workspaces\detect1\src\yolo_depth_pcd_interfaces\srv\ProcessFrame.srv
-732	ros2_vision_workspaces\detect2\src\apriltag_static_calib\package.xml
-111	ros2_vision_workspaces\detect2\src\apriltag_static_calib\setup.cfg
-1508	ros2_vision_workspaces\detect2\src\apriltag_static_calib\setup.py
-0	ros2_vision_workspaces\detect2\src\apriltag_static_calib\apriltag_static_calib\__init__.py
-15110	ros2_vision_workspaces\detect2\src\apriltag_static_calib\apriltag_static_calib\apriltag_static_calib_node.py
-4113	ros2_vision_workspaces\detect2\src\apriltag_static_calib\launch\apriltag_static_calib.launch.py
-0	ros2_vision_workspaces\detect2\src\apriltag_static_calib\resource\apriltag_static_calib
-780	ros2_vision_workspaces\detect2\src\realtime_yolo_pcd_tf\package.xml
-109	ros2_vision_workspaces\detect2\src\realtime_yolo_pcd_tf\setup.cfg
-840	ros2_vision_workspaces\detect2\src\realtime_yolo_pcd_tf\setup.py
-3325	ros2_vision_workspaces\detect2\src\realtime_yolo_pcd_tf\launch\realtime_yolo_pcd_tf.launch.py
-2	ros2_vision_workspaces\detect2\src\realtime_yolo_pcd_tf\realtime_yolo_pcd_tf\__init__.py
-25303	ros2_vision_workspaces\detect2\src\realtime_yolo_pcd_tf\realtime_yolo_pcd_tf\realtime_node.py
-21	ros2_vision_workspaces\detect2\src\realtime_yolo_pcd_tf\resource\realtime_yolo_pcd_tf
-886	ros2_vision_workspaces\detect2\src\yolo_depth_pcd\package.xml
-90	ros2_vision_workspaces\detect2\src\yolo_depth_pcd\pyproject.toml
-97	ros2_vision_workspaces\detect2\src\yolo_depth_pcd\setup.cfg
-1758	ros2_vision_workspaces\detect2\src\yolo_depth_pcd\setup.py
-2091	ros2_vision_workspaces\detect2\src\yolo_depth_pcd\launch\continuous_demo.launch.py
-1857	ros2_vision_workspaces\detect2\src\yolo_depth_pcd\launch\process_frame_server.launch.py
-3022	ros2_vision_workspaces\detect2\src\yolo_depth_pcd\launch\realsense_live.launch.py
-1	ros2_vision_workspaces\detect2\src\yolo_depth_pcd\resource\yolo_depth_pcd
-1	ros2_vision_workspaces\detect2\src\yolo_depth_pcd\yolo_depth_pcd\__init__.py
-19128	ros2_vision_workspaces\detect2\src\yolo_depth_pcd\yolo_depth_pcd\live_pipeline_node.py
-2410	ros2_vision_workspaces\detect2\src\yolo_depth_pcd\yolo_depth_pcd\process_frame_client.py
-22374	ros2_vision_workspaces\detect2\src\yolo_depth_pcd\yolo_depth_pcd\process_frame_server.py
-487	ros2_vision_workspaces\detect2\src\yolo_depth_pcd_interfaces\CMakeLists.txt
-549	ros2_vision_workspaces\detect2\src\yolo_depth_pcd_interfaces\package.xml
-279	ros2_vision_workspaces\detect2\src\yolo_depth_pcd_interfaces\srv\ProcessFrame.srv
-732	ros2_vision_workspaces\detect3\src\apriltag_static_calib\package.xml
-111	ros2_vision_workspaces\detect3\src\apriltag_static_calib\setup.cfg
-1508	ros2_vision_workspaces\detect3\src\apriltag_static_calib\setup.py
-0	ros2_vision_workspaces\detect3\src\apriltag_static_calib\apriltag_static_calib\__init__.py
-15110	ros2_vision_workspaces\detect3\src\apriltag_static_calib\apriltag_static_calib\apriltag_static_calib_node.py
-4113	ros2_vision_workspaces\detect3\src\apriltag_static_calib\launch\apriltag_static_calib.launch.py
-0	ros2_vision_workspaces\detect3\src\apriltag_static_calib\resource\apriltag_static_calib
-903	ros2_vision_workspaces\detect3\src\interactive_tf_calib\package.xml
-109	ros2_vision_workspaces\detect3\src\interactive_tf_calib\setup.cfg
-988	ros2_vision_workspaces\detect3\src\interactive_tf_calib\setup.py
-2	ros2_vision_workspaces\detect3\src\interactive_tf_calib\interactive_tf_calib\__init__.py
-7201	ros2_vision_workspaces\detect3\src\interactive_tf_calib\interactive_tf_calib\interactive_tf_calib_node.py
-9190	ros2_vision_workspaces\detect3\src\interactive_tf_calib\interactive_tf_calib\lidar_overlay_node.py
-3761	ros2_vision_workspaces\detect3\src\interactive_tf_calib\launch\interactive_tf_calib.launch.py
-21	ros2_vision_workspaces\detect3\src\interactive_tf_calib\resource\interactive_tf_calib
-780	ros2_vision_workspaces\detect3\src\realtime_yolo_pcd_tf\package.xml
-109	ros2_vision_workspaces\detect3\src\realtime_yolo_pcd_tf\setup.cfg
-840	ros2_vision_workspaces\detect3\src\realtime_yolo_pcd_tf\setup.py
-3325	ros2_vision_workspaces\detect3\src\realtime_yolo_pcd_tf\launch\realtime_yolo_pcd_tf.launch.py
-2	ros2_vision_workspaces\detect3\src\realtime_yolo_pcd_tf\realtime_yolo_pcd_tf\__init__.py
-25303	ros2_vision_workspaces\detect3\src\realtime_yolo_pcd_tf\realtime_yolo_pcd_tf\realtime_node.py
-21	ros2_vision_workspaces\detect3\src\realtime_yolo_pcd_tf\resource\realtime_yolo_pcd_tf
-886	ros2_vision_workspaces\detect3\src\yolo_depth_pcd\package.xml
-90	ros2_vision_workspaces\detect3\src\yolo_depth_pcd\pyproject.toml
-97	ros2_vision_workspaces\detect3\src\yolo_depth_pcd\setup.cfg
-1758	ros2_vision_workspaces\detect3\src\yolo_depth_pcd\setup.py
-2091	ros2_vision_workspaces\detect3\src\yolo_depth_pcd\launch\continuous_demo.launch.py
-1857	ros2_vision_workspaces\detect3\src\yolo_depth_pcd\launch\process_frame_server.launch.py
-3022	ros2_vision_workspaces\detect3\src\yolo_depth_pcd\launch\realsense_live.launch.py
-1	ros2_vision_workspaces\detect3\src\yolo_depth_pcd\resource\yolo_depth_pcd
-1	ros2_vision_workspaces\detect3\src\yolo_depth_pcd\yolo_depth_pcd\__init__.py
-19128	ros2_vision_workspaces\detect3\src\yolo_depth_pcd\yolo_depth_pcd\live_pipeline_node.py
-2410	ros2_vision_workspaces\detect3\src\yolo_depth_pcd\yolo_depth_pcd\process_frame_client.py
-22374	ros2_vision_workspaces\detect3\src\yolo_depth_pcd\yolo_depth_pcd\process_frame_server.py
-487	ros2_vision_workspaces\detect3\src\yolo_depth_pcd_interfaces\CMakeLists.txt
-549	ros2_vision_workspaces\detect3\src\yolo_depth_pcd_interfaces\package.xml
-279	ros2_vision_workspaces\detect3\src\yolo_depth_pcd_interfaces\srv\ProcessFrame.srv
+relative_path	bytes	sha256
+.gitignore	653	b6a7c94eef38a003c5187b23a6438d001529edd970311597322c6d089013be53
+docs/CODEX_PROJECT_CONTEXT.md	5939	3f4cf86e89d2d118ada5e8c6797cc49c9e475c9792ba2d0cf66295faace08887
+docs/EXCLUDED_FILES_MANIFEST.md	2463	6cf9ecc88564f2a57f3a6b73eca364cf0977d60a0b1352d1720b99ef960dfcbe
+docs/REPO_FILE_INVENTORY.tsv	91124	4f235bb107da40ffd9a1f8897157b7c03710b5408e4a9a088e064a7b3db199be
+docs/RESTORE_AFTER_FACTORY_RESET.md	5304	c73a438007296d9627546f023ef13d45a6ae27a48132234deada5ed4bafb3ceb
+docs/USER_PROJECT_OVERVIEW.md	2484	b5a97ffe1094efa68ca391ce6e407c7d7551bf65e3bc8ca02a522e79e159a925
+g1_hand_arm_project/archive_raw/arm_hand_synergy.py	0	e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+g1_hand_arm_project/archive_raw/arm_joint_probe_safe.py	3115	25f21030f473a6d49fa1874f5eded82e97d723a922fca87e79ee1208a300f4ee
+g1_hand_arm_project/archive_raw/arm_pick_place.py.bak_before_lift_bottle_20260529_210317	7758	d8eea7bf67be6c825d426488833a8c24bc140c3588f3304c7f1cd4a52755d965
+g1_hand_arm_project/archive_raw/arm_pick_place.py.bak_before_safe_start_20260529_210734	7236	b26b5d928728199ef9b297da4dfc05fbc16e1a60a7d6e5933190ebf42f7813fa
+g1_hand_arm_project/archive_raw/arm_sdk_hold_test.py	2546	645b9522d7f98e83b835a5ac9c49f0192447b551559f10cde695158a8cff9f04
+g1_hand_arm_project/archive_raw/hand_grasping.py	2340	56b1134e0a5188e2b94b61874568ab3273de564f0a97bc16e1ea80811ed2534b
+g1_hand_arm_project/archive_raw/hand_serial_test.py	1598	1829766878deeae653d05e6db9f3e7024c369e0745f87ac321fcb9c8946a4d01
+g1_hand_arm_project/archive_raw/left_arm_grasp_hold.py	4618	ab99211ee45052eebb10146998a46e25b0665aaee25f4fbd5e41a55d78c2c494
+g1_hand_arm_project/archive_raw/left_arm_pregrasp_small_test.py	7394	7d361495aa6e2780fc1b547a10a52952e8211540185a67eb220d7059bc2e396c
+g1_hand_arm_project/archive_raw/left_arm_pregrasp_small_test.py.bak_before_hand	4820	c40bf6e1a2e7bdd03af59199e51a85d095aae8aa0b9e471ee361a6d43c618552
+g1_hand_arm_project/archive_raw/left_arm_pregrasp_small_test.py.bak_four_finger_20260516_205812	7394	7d361495aa6e2780fc1b547a10a52952e8211540185a67eb220d7059bc2e396c
+g1_hand_arm_project/archive_raw/left_arm_pregrasp_small_test.py.bak_grasp_in_out	6698	fd70419e85ba08708ef69f118e619bcb3ffda5616407818cb4ec1ed6f749b1c5
+g1_hand_arm_project/archive_raw/left_arm_pregrasp_small_test.py.bak_outward_clearance	6479	34241fe299221f70773d15c3de47b42945566d0929c5d0c718c72c0dc21e2b83
+g1_hand_arm_project/archive_raw/left_arm_pregrasp_small_test.py.bak_pick_place	5288	d86823737727b0e2fd59e7e8dabe333d08b12ed1755d9fe2f3d97756b058a4b9
+g1_hand_arm_project/archive_raw/left_arm_pregrasp_small_test.py.bak_raise_pregrasp_5cm	6698	8c41d12cb05c39ded453cc992ae0da7971726ceca999160f0e73dfe1a49c4149
+g1_hand_arm_project/archive_raw/left_arm_pregrasp_small_test.py.bak_remove_contact_20260516_210755	7458	3cda42ccbfc904b67271c04c8dbf2dd66add16a6f147b6f44e1296158f9786e8
+g1_hand_arm_project/archive_raw/left_arm_pregrasp_small_test.py.bak_remove_contact_20260516_210820	7394	7d361495aa6e2780fc1b547a10a52952e8211540185a67eb220d7059bc2e396c
+g1_hand_arm_project/archive_raw/left_arm_pregrasp_small_test.py.bak_retract_out	6247	916795a823df02cd8dfefb47b8c87547ab968446e8ac254ae7924b72afea2c17
+g1_hand_arm_project/archive_raw/left_arm_pregrasp_small_test.py.bak_speedup	6479	894829c00f24096e00b24c907fee1de4dcd3034c4b0a631815b53310776dd63c
+g1_hand_arm_project/archive_raw/left_arm_pregrasp_small_test.py.bak_thumb_open_first	7330	633b9c683614fe790959a1e8fa75b2fce9b759eaa6ba1a6cb3dbdc831e1ec167
+g1_hand_arm_project/archive_raw/left_arm_pregrasp_small_test.py.bak_thumb_ready	7269	df1c4393aff1e9164907203ea1e663009c960f7b89d21c41428ca4b5113291a5
+g1_hand_arm_project/archive_raw/left_arm_pregrasp_small_test.py.bak_wrist_roll_pregrasp	7269	8bd176759f1755ddd7aa1601606142d857b440bd2a73698a5a7ab15a87c79d49
+g1_hand_arm_project/archive_raw/left_hand_grasp_pose_test.py	2070	73d58793612c242ec66ad8f21025d62205f157f1f4279a4c30534c1f9ad6ea49
+g1_hand_arm_project/archive_raw/left_wrist_roll_test.py	2529	a712cd1c61237740e04b674cb115b86afea9787108ddfd885a452fe6121e5784
+g1_hand_arm_project/archive_raw/right_arm_small_test.py	3479	eadc33b6e45136bc6a54ed2249d5cf2c32bfcf31d648ba6e1d5ead880c0fdfe9
+g1_hand_arm_project/arm_grasp_hold.py	4982	db4581a586606596cf951a5d1d8d599ff32526ee38aa5fb18384001706f7aa89
+g1_hand_arm_project/arm_pick_place_standalone.py	16021	06b71e6b05ece41c3d3c77bc1deab0c680e90b050b2fee43206a84a854a40303
+g1_hand_arm_project/arm_pick_place_standalone.py.bak_before_outward_20260531_134417	14333	9d6b77df674cb52e1aa0aab5339802c82b8c8e5cf0debf1e9b312c1f4e0b272b
+g1_hand_arm_project/arm_pick_place_standalone.py.bak_thumb_ready_abort_20260530_113006	14204	4cd1c3516c1edf33da77f21d9743b76253da190b686e3d72b57ea3a223baae6f
+g1_hand_arm_project/arm_pick_place.py	9341	b370d96d9cd2b3b8c955347815c2e30d881f8f20a972f558c43dc1b9250a8a95
+g1_hand_arm_project/logs/python_20260528_002828_694.log	618	957ac12abdeaee47993cd30a36f2ca21ca562831c73379c57569063569e7eab9
+g1_hand_arm_project/logs/python_20260528_002844_870.log	618	8fcebe41743c63ec73560706e15acc7ca8985c4fbdd7df5739e0860f176a6010
+g1_hand_arm_project/logs/python_20260528_002858_043.log	618	ee91539b890f6ab82bf83c303238ad5098c1e4a8692640c081ea060231134db2
+g1_hand_arm_project/logs/python_20260528_003106_348.log	618	f19b7a7188879565d3f59d7a40620f08cd88fcbdc82f1f4d3601b31bc91479f4
+g1_hand_arm_project/logs/python_20260528_003122_522.log	618	a729a1f8edafc98139bce81bcab72672c1725e0be3129e6c9de5ed6ae382c3e7
+g1_hand_arm_project/logs/python_20260528_003135_727.log	618	fbcf34366edd62e0b7af202a28d382f663f6739aebcfa1b71cde2d43f0e6765a
+g1_hand_arm_project/logs/python_20260528_003258_007.log	618	9aecdb5475d5a8fcfb848ffc303510186353502e5b46e9fabe9965982fbffcaf
+g1_hand_arm_project/logs/python_20260528_003314_181.log	618	2b7b34fbb8fab21e0c1e51da6c5a65ecb53cb624775a2cca867e68953b7c1182
+g1_hand_arm_project/logs/python_20260528_003327_377.log	618	044dbcc1edb5b3839bacbc2ec28e74a602491ec09111343c5e03500dfa31b8e1
+g1_hand_arm_project/manifest.txt	1351	b4cb8b6dabeb3ee38aa6a08a3d1a8a1524027f08281fd380a465c2cdc327c8ca
+g1_hand_arm_project/README.md	7983	df9ff271c5da8bab9d0c562b03e7862c01939f727cbbfd1f350e1de546238f0a
+g1_hand_arm_project/right_hand_thumb_test.py	5967	75ee07b83efbf9593b87934462ba9357c24c7cc1fc71b9d0b384cf491f185b9b
+g1_hand_arm_project/test_arm_pick_place_flow.py	6005	730f0ff712beab79346cac9512fc3efb85ebac9c7e0a3c4944c1a2dd9dd18986
+g1_hand_arm_project/tools/arm_joint_probe.py	3479	8a4f62459c2cfe4bc156f145c06eee9edb809f11a93de1b7b7465bcf461d6973
+g1_hand_arm_project/tools/arm_pregrasp_preview.py	9617	753c54db92bdf3bab4c9f634e8f85bc6b6d79d7726da66640ef77725485f520a
+g1_hand_arm_project/tools/arm_sdk_hold_test.py	2910	e9c32dde9f3cac9ade937cc28570461051d92cc2cb2258af7f6dd231a4260950
+g1_hand_arm_project/tools/left_wrist_roll_test.py	2893	d7ba2c3776b335d96dda8c495fc06541b98e167c7ffbebd374a8a99d73b97190
+g1_hand_arm_project/tools/test_arm_pregrasp_preview.py	1564	b09aa3b8700965b2dc0d0962bbaeaf922fef9b5777aee3b48153c3de2ef5857c
+g1_hand_arm_project/vision/auto_grasp_decision.py	9147	fd37e6caada555fc8283689260d35e9f401d7d9e78b4670e4eb3d54faa3ee3eb
+g1_hand_arm_project/vision/compare_bottle_to_target.py	7848	d03abcd51eb14d5c5323dd11b86606c8dc44f77d041de7b1abdbcf66825d45c3
+g1_hand_arm_project/vision/debug/bottle_debug_20260527_214023_000000.jpg	101481	77cd0ec058f6f3e496649a57c0b382a88d8fda1fe02d225af145ed39aac61148
+g1_hand_arm_project/vision/debug/bottle_debug_20260527_214024_000001.jpg	101575	3f9d3074932c0e04a3544af28454d0fa4adc8b0dfe91470706cea8cb840ac3ed
+g1_hand_arm_project/vision/debug/bottle_debug_20260527_214024_000002.jpg	101677	3ae80fff71c198fb377f7da7db25be9ef51108fc3a0ea487798eb0593676a703
+g1_hand_arm_project/vision/debug/bottle_debug_20260527_214025_000003.jpg	89208	ccbc80e66ac23e64a5e806dc0d4f46110ce403b6392c2d7aa90d332a1be68b04
+g1_hand_arm_project/vision/debug/bottle_debug_20260527_214025_000004.jpg	89113	03cd02f6225934a6f3b100f2ef39a3a78227f450ba3fe3a9b8457574ad819ac5
+g1_hand_arm_project/vision/debug/bottle_debug_20260527_214039_000000.jpg	51640	db7e1c6545d92f430c29e71527b98ffa02cf8198d99bd2e4c4d7a29013d58514
+g1_hand_arm_project/vision/debug/bottle_debug_20260527_214039_000001.jpg	40985	f4746f9921a8c5a58eda1e3c2ff08899781a4c26d259f021ce78382c475ee532
+g1_hand_arm_project/vision/debug/bottle_debug_20260527_214039_000002.jpg	38118	fbf3d71cc84ea4fec7f9fae485936797504746df06317463c3d4728c4f916f75
+g1_hand_arm_project/vision/debug/bottle_debug_20260527_214040_000003.jpg	38077	e1977450e8668f0e443c6a8a294fdf971a13f943ef33a67c822f89a50461e26a
+g1_hand_arm_project/vision/debug/bottle_debug_20260527_214040_000004.jpg	41352	05559f883557dd68189f35133cea223f356e8784281439ced92ffd4791d7fbef
+g1_hand_arm_project/vision/debug/bottle_debug_20260527_214728_000000.jpg	109252	1562f6258c35c1f3e09b22543ad7ce009ab25e0effa2d04dd4d4e70e2c279889
+g1_hand_arm_project/vision/debug/bottle_debug_20260527_214736_000020.jpg	97585	60b00d7263c0d2efa8813eb14fd50dd68777173b627799ac62d17d3f6c223eff
+g1_hand_arm_project/vision/debug/bottle_debug_20260527_214744_000040.jpg	97610	e260d4bfe164861001d1cfc61d9a62ba11f6ca9d36aa9779e106847e667fb958
+g1_hand_arm_project/vision/debug/bottle_debug_20260527_214855_000000.jpg	109441	b7425f26235e3d74a8b8b418f7c257c8888b67cbe5eb678b0fc2a39c9ceef755
+g1_hand_arm_project/vision/debug/bottle_debug_20260527_214908_000030.jpg	97363	5cce72cb6fb33583d68ec2e75c5f9cee65929a659a8cc922c1cabedcec757181
+g1_hand_arm_project/vision/debug/bottle_debug_20260527_214920_000060.jpg	97655	d371890e98e161bab27125e69e6079a40d6a950d3d42970de5f069fa13ccc7b7
+g1_hand_arm_project/vision/debug/bottle_debug_20260527_214932_000090.jpg	97413	70dd82961ba3175ce8a1f5dbbdbd55bc1f8f80acf22e95b20fe9a578ba40fbe6
+g1_hand_arm_project/vision/debug/bottle_debug_20260527_214945_000120.jpg	97368	32c7ceed565f3bfffa828567771f7bf712b87cbe71eb4f18f85736f5cc81d271
+g1_hand_arm_project/vision/debug/bottle_debug_20260527_214957_000150.jpg	97312	a2732bba7e3006c35c20acc404ace5a738f820927c295398649fc706504942cd
+g1_hand_arm_project/vision/debug/bottle_debug_20260527_215242_000000.jpg	63949	5616786ca5f252e8c83d9f1d070c1564f22b6f5221567d26f1e5707dc982ef46
+g1_hand_arm_project/vision/debug/bottle_debug_20260527_215254_000030.jpg	79277	afa1f61afab04d95420e61257dc73883671765ee0b9349ef808a00fb3b33c4bb
+g1_hand_arm_project/vision/debug/bottle_debug_20260527_215319_000090.jpg	79316	3c3ef54b2754392d86032d8a90124e02c99c94299851c869610443a4ecc71740
+g1_hand_arm_project/vision/debug/bottle_debug_20260527_215332_000120.jpg	79285	114fab51d41b386cc8133dc061301f5f412b5ede184114651ca5a26ac3798910
+g1_hand_arm_project/vision/debug/bottle_debug_20260527_215345_000150.jpg	79244	04b5b6439c5f846d9607456a677d77ded107bfb7c94b594bce9f7beb8db472f5
+g1_hand_arm_project/vision/debug/bottle_debug_20260527_215358_000180.jpg	79156	0e019927826ffbe139566ec71674640a0a4c4f444bd67ebeafc1fcb8c42586e8
+g1_hand_arm_project/vision/debug/bottle_debug_20260527_215411_000210.jpg	79818	feebb6fd7a91c675282f560cb6a7c28b42574be791165b9b968670fbb4403b25
+g1_hand_arm_project/vision/debug/bottle_debug_20260527_215424_000240.jpg	79623	23e83c4e93d57e9d98d8db49352deed3c21530193e288df44e9ef6b414bed36d
+g1_hand_arm_project/vision/debug/bottle_debug_20260527_215437_000270.jpg	86003	61da59ea6d514ec7b54da45ec93fc3aefb617c58f1eac73d0ca22ea25578b116
+g1_hand_arm_project/vision/debug/bottle_debug_20260527_215449_000300.jpg	80028	930a46718941db3fde9b30464da5a85efc2624ced3a0dd1e2a7d4abf116a4a1e
+g1_hand_arm_project/vision/debug/bottle_debug_20260527_215502_000330.jpg	80196	39a8db0ded3cb80c2c600550866a082894b1fea70f2d46bca067550affcfe726
+g1_hand_arm_project/vision/debug/bottle_debug_20260527_215511_000000.jpg	63634	0ed34d83d27a836c8a644324951bf443ce6ef1b41f978a69bfc606dc66c3e8cc
+g1_hand_arm_project/vision/debug/bottle_debug_20260527_215524_000030.jpg	79296	11219db983b3e30077b342b80e86278200162eb720ecccc489c271c5b22dac0f
+g1_hand_arm_project/vision/debug/bottle_debug_20260527_215537_000060.jpg	80223	6d44838ef80d8710f26507d0ae2b88e1ffe5d1fcf7df65bfe68c5c384c092dd7
+g1_hand_arm_project/vision/debug/bottle_debug_20260527_215550_000090.jpg	79376	a006e314799e8ae36d5cc4973a8aa49af4f2b3a067dc0ba032579ad66cf11206
+g1_hand_arm_project/vision/debug/bottle_debug_20260527_215604_000120.jpg	79595	f319b8df689fad293435957f1cf7cf3064a93249e078c049285afba3ea623104
+g1_hand_arm_project/vision/debug/bottle_debug_20260527_215617_000150.jpg	79544	b009014e6af522f7c39157867e1f7abfb8e771781f351b150ba7ff49160f0311
+g1_hand_arm_project/vision/debug/bottle_debug_20260527_215630_000180.jpg	79491	4cc757277921cc5cd4866c6861de2973912c6b6fbbec0689e305217aad9b08bb
+g1_hand_arm_project/vision/debug/bottle_debug_20260527_215643_000210.jpg	79195	86db569535b8d160d9c3430574386b20faadcf381989effa89c3fd429955f71a
+g1_hand_arm_project/vision/debug/bottle_debug_20260527_215656_000240.jpg	79910	767009b2433b45b14df0d9b7b0374e42673bceb7ce9a7d11116b0f566b308bcf
+g1_hand_arm_project/vision/debug/bottle_debug_20260527_215709_000270.jpg	79922	837296287b2f2fc6d993e938f09e61546565577bbbfd65e44a7635d9d1b03cde
+g1_hand_arm_project/vision/debug/bottle_debug_20260527_215722_000300.jpg	79852	0dae4747320a024bc91b444c433f9d677bbcd99b161754ec09e1a0c48ba5268d
+g1_hand_arm_project/vision/debug/bottle_debug_20260527_215735_000330.jpg	79915	1ea576ef1dc44e045f8e5436d8d5f21c0d96397b50743820d139b3641e43010c
+g1_hand_arm_project/vision/debug/bottle_debug_20260527_215748_000360.jpg	80103	f0790962a84b2d2da951b6ad2d364ecd32d1bf36b50f5ee7c762c39366ae3203
+g1_hand_arm_project/vision/debug/bottle_debug_20260527_215801_000390.jpg	79416	1f74e6245723e10b8dccb288d7a36cfcae8ec647ff2629ce722655683187ba4e
+g1_hand_arm_project/vision/debug/bottle_debug_20260527_215814_000420.jpg	80498	b4cf9c1b5c30d841af896268d09fe75d85578d59bc4c6f4faf71e3459dd74b29
+g1_hand_arm_project/vision/debug/bottle_debug_20260527_215827_000450.jpg	80015	bd70dc6b7c579c0c60ce2353a644b8be860d39ac135545087d4010be648c8c8e
+g1_hand_arm_project/vision/debug/bottle_debug_20260527_215840_000480.jpg	79691	fc8fa6f459467d3cebff88a79e770f1333f313d9c098b5331744fdde62bc853d
+g1_hand_arm_project/vision/debug/bottle_debug_20260527_215853_000510.jpg	79780	5e9239992c3060b9f2d035243a7fcd1f2033e365e039dd9da4dab3e6b531da3f
+g1_hand_arm_project/vision/debug/bottle_debug_20260527_215906_000540.jpg	79931	c3f5bef885b7122c168501929cab5cd4bbcddf3f5987a7ce4b9004311bd3a1df
+g1_hand_arm_project/vision/debug/bottle_debug_20260527_215920_000570.jpg	79841	6f185e1c1439ffaa31f9f76993a75c22326fac9d9778746f649a79e7de754f2b
+g1_hand_arm_project/vision/debug/bottle_depth_debug_20260527_221531_000000.jpg	74986	75c3a808593ccc0f7eb74514f1c691c8540d261f0e98ac5c13e5a52732895dcb
+g1_hand_arm_project/vision/debug/bottle_depth_debug_20260527_221536_000010.jpg	83297	56772a6539706fe1d14b65c87c4221c62002addf50d719b848573e44affdf3aa
+g1_hand_arm_project/vision/debug/bottle_depth_debug_20260527_221604_000000.jpg	74969	83508bad5178e0ce7da57c3cd87639dbdf7f46401a9fe10862f06457f40d4d27
+g1_hand_arm_project/vision/debug/bottle_depth_debug_20260527_221617_000030.jpg	91348	db48671e5f232bd5952075534ed6af53e0f14a9cd1ed5a9ba9c38eec8eba4c8b
+g1_hand_arm_project/vision/debug/bottle_depth_debug_20260527_221631_000060.jpg	89234	7caac575d2c9b6e68656ebaebffb88eb3bb2a992a6cc2dc1f7a71ad0de9d696a
+g1_hand_arm_project/vision/debug/bottle_depth_debug_20260527_221644_000090.jpg	89362	50b81b684fb05cc44f0d4e6bc5a02f2e138539cfdef8cfb78f1537bb1dba8fbc
+g1_hand_arm_project/vision/debug/bottle_depth_debug_20260527_221657_000120.jpg	89490	e63845e79f8c811eec116403027b15feb8acfff527b968edf117ea4516426679
+g1_hand_arm_project/vision/debug/bottle_depth_debug_20260527_221710_000150.jpg	89232	f0a0b02ae10e4c242f0aac212ca80872b80607353e4ffc887da47baac325597c
+g1_hand_arm_project/vision/debug/bottle_depth_debug_20260527_221724_000180.jpg	89540	ea7353d33fb6c1ed8494a0d315b067c11b16cbc5da6ff03f28c65dcb43e1bfe3
+g1_hand_arm_project/vision/debug/bottle_depth_debug_20260527_221737_000210.jpg	89237	114cae79e2c09a85d8cf9e581b254b1876b791ec8ce62cc25665b142c2f91346
+g1_hand_arm_project/vision/debug/bottle_depth_debug_20260527_221750_000240.jpg	89231	5011961522314ab4436522b13943c8c2e20f2f1742c30ac02faf1c96676e82d7
+g1_hand_arm_project/vision/debug/bottle_depth_debug_20260527_221804_000270.jpg	88889	9701b7f5026df3065c968e305efabd1c7a72ae71b5c85406b661dcc7771c69a0
+g1_hand_arm_project/vision/debug/bottle_depth_debug_20260527_221817_000300.jpg	89148	0c6bc3596a0a8ed3b39fafc5681493f5a57b2c4058e9df221efdb0afff78cb1e
+g1_hand_arm_project/vision/debug/bottle_depth_debug_20260527_221831_000330.jpg	89075	3cc857e9a9c34de4f0c462a539509128a9a49c742d924907c33e76ea86b9f972
+g1_hand_arm_project/vision/debug/bottle_depth_debug_20260527_221844_000360.jpg	89384	af8d8769ae00f9724fe688653ab7050579ff9fc0820ae0bab8bf758b6e73f094
+g1_hand_arm_project/vision/debug/bottle_depth_debug_20260527_221857_000390.jpg	89472	75216d3aa8ba7bf9c1f481f7c02ef8eed83dc475cb263cc3a55f713bab0a80b8
+g1_hand_arm_project/vision/debug/bottle_depth_debug_20260527_221911_000420.jpg	89351	c1f842b67ff36f45517dd496c35341dbb6159d4f8ff2f8f6407c704751b939c5
+g1_hand_arm_project/vision/debug/bottle_depth_debug_20260527_221924_000450.jpg	86512	2ccec577cd59246ae725eaaaa78f1be13dd7ae3ee2873a51013950ceb88056b9
+g1_hand_arm_project/vision/debug/bottle_depth_debug_20260527_221938_000480.jpg	85279	4b0c2a6cfc47ee73f77c7981fd1f3c08cabb797d3babcd865f9614d1da95b433
+g1_hand_arm_project/vision/debug/bottle_depth_debug_20260527_221951_000510.jpg	85292	58cd95f98f23276d9ab000e3980d70d9d254881ea91bf77ad91853d727eb0d5e
+g1_hand_arm_project/vision/debug/bottle_depth_debug_20260527_222004_000540.jpg	85591	b5950cbc090777e35f97c8fe95fca6aad40b2281be3dc995b1eefb377ed6b240
+g1_hand_arm_project/vision/debug/camera_contact_1_5.jpg	319373	7340cc1ebcba047ff01e54d154918e193cb2de931b75483f0f3349161827250e
+g1_hand_arm_project/vision/detect_bottle_2d.py	18154	f7a51f7503a12b88c3ac8f1b5c233db3cf2963b45cb97223321409fd98bd278d
+g1_hand_arm_project/vision/detect_bottle_2d.py.bak_before_infer_every_20260531_140046	11284	c1e8b7837695aff0b0930d393aa4d8bb43e360d824a0e0ff4d84d32edfc7d0af
+g1_hand_arm_project/vision/detect_bottle_depth.py	18195	1b43ee62182cc24877b777e9277a591cf35e5ce3790cd91be2b550b5d08a6a0c
+g1_hand_arm_project/vision/evaluate_grasp_window.py	8446	2f0aa1436598190cd72388e1c4247fe5382a77e2c4e27b457b90bc06cee549aa
+g1_hand_arm_project/vision/grasp_window_report.json	4255	22abf0e9af9da865d15c207d74ee7d6f65d56e1abbb9e3e282b0e9d823d64220
+g1_hand_arm_project/vision/handeye_g1_head_camera.json	417	b27fbb0cd100600f7e3c1022b3c0fafbaeab8f64ba7c5f8b7835d624f4b57ad8
+g1_hand_arm_project/vision/latest_bottle_3d.json	719	70b583b615e6d359c38b67649e49b4d65c9d7601d1bd1face78defa67f3fceb4
+g1_hand_arm_project/vision/latest_bottle_base.json	1423	85f9842d1b08fb58e12560ace1e3377298349f98ea4f30a13a4574e4c3786ea4
+g1_hand_arm_project/vision/latest_grasp_decision.json	1917	649cc18b0e4ee74c529bdbe2a9d611d9a1a9fd010511a2f5df27a74a270b8465
+g1_hand_arm_project/vision/latest_target_offset.json	1049	a8a7de63bb69d177c8b26463a49d705cd4b9c078ac539467cfdb29a1d86963f5
+g1_hand_arm_project/vision/record_bottle_positions.py	5893	5f2ccacc1b5ab8cca4549c4c8471ce7bd1a2f80aa89c6fd6b3816b6333e5928e
+g1_hand_arm_project/vision/records/bottle_positions_20260527_231122.csv	2760	1b1be1f5ba58282b99ec2e276402fe8c85be339634696f99af4b47fe21e23e14
+g1_hand_arm_project/vision/records/position1_20260527_2313.csv	3386	6329a413011e79a0510c1d736df05bea5b78d6e427bed88fbe963421a89f7c38
+g1_hand_arm_project/vision/records/position2_20260527_231435.csv	3428	fd94576c3b41b3871627c14e48b2a89237a7ba441a043333ff6108dd6442330f
+g1_hand_arm_project/vision/records/position3_20260527_231533.csv	3351	4870fb92ac2eca6058d8846f6537cd5628838d6b474d0eb5af503d5620963754
+g1_hand_arm_project/vision/records/position4_20260527_231757.csv	3440	73bffcadb2d871fa2666cedabd2abd1c4d79def206132bef5317a8b444e7aa95
+g1_hand_arm_project/vision/records/random1_20260527_232906.csv	3397	e4522758422ff39aa306265928effe54432e167f2d37072324c46d992b843c3e
+g1_hand_arm_project/vision/records/random2_20260527_233015.csv	3411	951bf559576e91988ff44b723f39f2b9752c3eeb2670def215d4fc6a5d749f51
+g1_hand_arm_project/vision/records/random3_20260527_233145.csv	3414	167eb33ee5b0c9c46b9b2d8ee807970edffd87efe1c90abd8af0126d25409252
+g1_hand_arm_project/vision/records/target_grasp_20260527_232026.csv	3422	f0ca4ca0ef7449192a4ed38b6742c7af83325687194b9215c87fc2c597dd5719
+g1_hand_arm_project/vision/start_bottle_rgb_fast.sh	836	d8d4b74de93120e9d2affec1478eb3536b3a63d2638e2fe3be23d3c20ca59886
+g1_hand_arm_project/vision/target_grasp_reference.json	838	8b902574f2123b3ee40e077f461d0abbe3cfd54fc64dd561f7f61b0d33d380e7
+g1_hand_arm_project/vision/test_detect_bottle_2d.py	19673	9e6b66c280b1c180b3cfa4c77bbbe07aec37ea8c50dd96f03854bdc7b7a48b08
+g1_hand_arm_project/vision/transform_bottle_to_base.py	6745	a1acf6f1838231eef6a4801af2dde1915bf587551e9fde77f69600a9aa517a26
+g1_navgrasp/g1act_ws/src/arm/arm.py	6867	25a98ee00da78369c0a791246499a924a3af5471ac8ecdeb21c63cd34dc2659d
+g1_navgrasp/g1act_ws/src/arm/armm.py	12156	d69a63fb0d62790e3cbdfea5d215cae74812d5122f3e51d036e36cf281ab4953
+g1_navgrasp/g1act_ws/src/arm/armtest (copy).py	8221	91c552e40ae320fd3fc59314c02cea6ab595365c1216c6c9837c41ff4744d82e
+g1_navgrasp/g1act_ws/src/arm/armtest.py	10298	7363fad8e16e6ad4f90d9315a333a6df06b204237496c9a3fb8298bf7afeada6
+g1_navgrasp/g1act_ws/src/arm/armtest2.py	7376	1904f72c0cae1daf887a0e9c1033d78d68fa40be3e1cc0ae84bdaa7e1189676a
+g1_navgrasp/g1act_ws/src/arm/armtest3.py	7796	1f1486f232ae5e5d4596aecb33ce194481cfe7321440b43293ff73853081db39
+g1_navgrasp/g1act_ws/src/base/g1_description/g1_12dof.urdf	27843	4c20aa7d2b2b55de100cc5262d94740801c1eaf91b266dc5de6e428d9fbafdb5
+g1_navgrasp/g1act_ws/src/base/g1_description/g1_12dof.xml	15579	747ede40aa726b7352bae8353e95d0d0f908cec2257a27cbd78bc6e5a2d5a314
+g1_navgrasp/g1act_ws/src/base/g1_description/g1_23dof_rev_1_0.urdf	27936	a62b28e4ff86c19bd72b1f7961f3fd307957b051c2ace3cc70757f1a79c424af
+g1_navgrasp/g1act_ws/src/base/g1_description/g1_23dof_rev_1_0.xml	20834	8ca62fcccdca91a431ca04f1a42f9c2fda241fdd5e13411168dc82de00f978de
+g1_navgrasp/g1act_ws/src/base/g1_description/g1_23dof.urdf	29428	2d61264aaae95eac2545497a34ef316f270b0cd3d856bf9a4941ebff2592aca2
+g1_navgrasp/g1act_ws/src/base/g1_description/g1_23dof.xml	21281	aaca282f79cc4cdd20fafa27656e766e35eb1455edb6f341165e27b137a036b6
+g1_navgrasp/g1act_ws/src/base/g1_description/g1_29dof_lock_waist_rev_1_0.urdf	35175	0a51dd06897b1284f9e5cf94c41158c22d53670e51ad5db11306f1292786cd16
+g1_navgrasp/g1act_ws/src/base/g1_description/g1_29dof_lock_waist_rev_1_0.xml	25476	cc65e483cbe1f2a74d8e66e32f44e5ecc758a6ab163f2e9deaaf84c5602113e3
+g1_navgrasp/g1act_ws/src/base/g1_description/g1_29dof_lock_waist.urdf	35997	f908c9e09f695d4605adbef2a81e94c860a8e702900a1a96c449b5c2f67d26e3
+g1_navgrasp/g1act_ws/src/base/g1_description/g1_29dof_lock_waist.xml	25823	59791f27960982d9eb6164309fcd235561258181dd0ca510988a3f37444e59e4
+g1_navgrasp/g1act_ws/src/base/g1_description/g1_29dof_rev_1_0.urdf	35170	838f82ec8a26b8c709ac0a457a6e2809da37684519cc7be0bdf126293b533e06
+g1_navgrasp/g1act_ws/src/base/g1_description/g1_29dof_rev_1_0.xml	25820	165fa7a5275745e45fa25e1bc78010c1055d81bb81c013b3c7bc8b9347a3b9c3
+g1_navgrasp/g1act_ws/src/base/g1_description/g1_29dof_with_hand_rev_1_0.urdf	50419	3fccac5d5f389b294271e01df5fc754ce74e81e0b26349a8457b19e59b4e6fd3
+g1_navgrasp/g1act_ws/src/base/g1_description/g1_29dof_with_hand_rev_1_0.xml	38249	77c98e7d34e428c6cdbd1e0d665e989cbc43bf17abb8a7c048494b4bc51ead88
+g1_navgrasp/g1act_ws/src/base/g1_description/g1_29dof_with_hand.urdf	51241	3149d7b5bb73def3bf7dca3ebf3f396d213534f20f4e694fd7c11175cf060814
+g1_navgrasp/g1act_ws/src/base/g1_description/g1_29dof_with_hand.xml	38596	7b73b894c01c0be42eb8b7091ef9a3f94050b8243ebb25b4f2d3f387817b57bc
+g1_navgrasp/g1act_ws/src/base/g1_description/g1_29dof.urdf	35992	c776768170f8cd8c0ecb79c4b3394bf4b29b0fe68c0408149428629dd0e2c6f7
+g1_navgrasp/g1act_ws/src/base/g1_description/g1_29dof.xml	26167	dfcfd8b41d0980695d0e75d76fdfd9965f71431a1c67afc31c8dbe730eb66c72
+g1_navgrasp/g1act_ws/src/base/g1_description/g1_dual_arm.urdf	21925	784ce24e6244cf01ab7debca35749c478739b9fb0eb2767fa1c817fba433c71f
+g1_navgrasp/g1act_ws/src/base/g1_description/g1_dual_arm.xml	13488	741aa797dd1a58298f76da6980503fc9f47036ed21725742cbd4121eed230141
+g1_navgrasp/g1act_ws/src/base/g1_description/images/g1_23dof.png	933725	8cd8db7c7abd7a7123cc1bc702e9a7aefb22ac18e8a5b52745b7b60cd371e1d3
+g1_navgrasp/g1act_ws/src/base/g1_description/images/g1_29dof_with_hand.png	943738	8f2a8f66138f13a2ce1e92b1155f16c2428ebcd59786b8e47a9099326ce7e969
+g1_navgrasp/g1act_ws/src/base/g1_description/images/g1_29dof.png	942323	9d7d6c0755b6eadf2386d476cc64137f217f16ea2f7c8e0e06daf0d8e00e60ea
+g1_navgrasp/g1act_ws/src/base/g1_description/images/g1_dual_arm.png	847101	e8d427240c35ac5dd012a4bf4fc52dabe8bddd476a883ae9364d05fc3e8b85ee
+g1_navgrasp/g1act_ws/src/base/g1_description/meshes/head_link.STL	932784	005fb67fbd3eff94aa8bf4a6e83238174e9f91b6721f7111594322f223724411
+g1_navgrasp/g1act_ws/src/base/g1_description/meshes/left_ankle_pitch_link.STL	71184	d49e3abc6f5b12e532062cd575b87b5ef40cd2a3fc18f54a1ca5bba4f773d51d
+g1_navgrasp/g1act_ws/src/base/g1_description/meshes/left_ankle_roll_link.STL	653384	c4092af943141d4d9f74232f3cfa345afc6565f46a077793b8ae0e68b39dc33f
+g1_navgrasp/g1act_ws/src/base/g1_description/meshes/left_elbow_link.STL	88784	fa752198accd104d5c4c3a01382e45165b944fbbc5acce085059223324e5bed3
+g1_navgrasp/g1act_ws/src/base/g1_description/meshes/left_hand_index_0_link.STL	475984	6b35f2f77211d5a366f0b9a4e47c4ee35e536731266f1a34e9efa12db579b892
+g1_navgrasp/g1act_ws/src/base/g1_description/meshes/left_hand_index_1_link.STL	1521784	9e315ebc8a7a0cb98e033985b586b20d81cf8aa761181ae61ce56fcb14077a06
+g1_navgrasp/g1act_ws/src/base/g1_description/meshes/left_hand_middle_0_link.STL	475984	6b35f2f77211d5a366f0b9a4e47c4ee35e536731266f1a34e9efa12db579b892
+g1_navgrasp/g1act_ws/src/base/g1_description/meshes/left_hand_middle_1_link.STL	1521784	9e315ebc8a7a0cb98e033985b586b20d81cf8aa761181ae61ce56fcb14077a06
+g1_navgrasp/g1act_ws/src/base/g1_description/meshes/left_hand_palm_link.STL	2140184	23a486b75bd78a9bf03cec25d84d87f97f3dae038cf21a743b6d469b337e4004
+g1_navgrasp/g1act_ws/src/base/g1_description/meshes/left_hand_thumb_0_link.STL	8884	a90c721661c0622685488a3c74d1e122c7da89242d3a1daef75edb83422d05e0
+g1_navgrasp/g1act_ws/src/base/g1_description/meshes/left_hand_thumb_1_link.STL	475984	445c54a45bc13ce36001556f66bc0f49c83cb40321205ae4d676bb2874325684
+g1_navgrasp/g1act_ws/src/base/g1_description/meshes/left_hand_thumb_2_link.STL	1521784	3d8dbe5085acfc213d21aa8b0782e89cd79084e9678f3a85fc7b04a86b029db5
+g1_navgrasp/g1act_ws/src/base/g1_description/meshes/left_hip_pitch_link.STL	181684	4725168105ee768ee31638ef22b53f6be2d7641bfd7cfefe803488d884776fa4
+g1_navgrasp/g1act_ws/src/base/g1_description/meshes/left_hip_roll_link.STL	192184	91f25922ee8a7c3152790051bebad17b4d9cd243569c38fe340285ff93a97acf
+g1_navgrasp/g1act_ws/src/base/g1_description/meshes/left_hip_yaw_link.STL	296284	a16d88aa6ddac8083aa7ad55ed317bea44b1fa003d314fba88965b7ed0f3b55b
+g1_navgrasp/g1act_ws/src/base/g1_description/meshes/left_knee_link.STL	854884	8d92b9e3d3a636761150bb8025e32514c4602b91c7028d523ee42b3e632de477
+g1_navgrasp/g1act_ws/src/base/g1_description/meshes/left_rubber_hand.STL	2287484	cff2221a690fa69303f61fce68f2d155c1517b52efb6ca9262dd56e0bc6e70fe
+g1_navgrasp/g1act_ws/src/base/g1_description/meshes/left_shoulder_pitch_link.STL	176784	f0d1cfd02fcf0d42f95e678eeca33da3afbcc366ffba5c052847773ec4f31d52
+g1_navgrasp/g1act_ws/src/base/g1_description/meshes/left_shoulder_roll_link.STL	400284	fb9df21687773522598dc384f1a2945c7519f11cbc8bd372a49170316d6eee88
+g1_navgrasp/g1act_ws/src/base/g1_description/meshes/left_shoulder_yaw_link.STL	249184	1aa97e9748e924336567992181f78c7cd0652fd52a4afcca3df6b2ef6f9e712e
+g1_navgrasp/g1act_ws/src/base/g1_description/meshes/left_wrist_pitch_link.STL	85984	b251d8e05047f695d0f536cd78c11973cfa4e78d08cfe82759336cc3471de3a9
+g1_navgrasp/g1act_ws/src/base/g1_description/meshes/left_wrist_roll_link.STL	356184	edc387c9a0ba8c2237e9b296d32531426fabeb6f53e58df45c76106bca74148c
+g1_navgrasp/g1act_ws/src/base/g1_description/meshes/left_wrist_roll_rubber_hand.STL	3484884	e81030abd023bd9e4a308ef376d814a2c12d684d8a7670c335bbd5cd7809c909
+g1_navgrasp/g1act_ws/src/base/g1_description/meshes/left_wrist_yaw_link.STL	318684	83f8fb3a726bf9613d65dd14f0f447cb918c3c95b3938042a0c9c09749267d3b
+g1_navgrasp/g1act_ws/src/base/g1_description/meshes/logo_link.STL	243384	8571a0a19bc4916fa55f91449f51d5fdefd751000054865a842449429d5f155b
+g1_navgrasp/g1act_ws/src/base/g1_description/meshes/pelvis_contour_link.STL	1805184	5cc5c2c7a312329e3feeb2b03d3fc09fc29705bd01864f6767e51be959662420
+g1_navgrasp/g1act_ws/src/base/g1_description/meshes/pelvis.STL	1060884	5ba6bbc888e630550140d3c26763f10206da8c8bd30ed886b8ede41c61f57a31
+g1_navgrasp/g1act_ws/src/base/g1_description/meshes/right_ankle_pitch_link.STL	71184	15be426539ec1be70246d4d82a168806db64a41301af8b35c197a33348c787a9
+g1_navgrasp/g1act_ws/src/base/g1_description/meshes/right_ankle_roll_link.STL	653784	4b66222ea56653e627711b56d0a8949b4920da5df091da0ceb343f54e884e3a5
+g1_navgrasp/g1act_ws/src/base/g1_description/meshes/right_elbow_link.STL	88784	1be925d7aa268bb8fddf5362b9173066890c7d32092c05638608126e59d1e2ab
+g1_navgrasp/g1act_ws/src/base/g1_description/meshes/right_hand_index_0_link.STL	475984	12ab4300c95e437e834f9aef772b3b431c671bf34338930b52ad11aef73bbd0d
+g1_navgrasp/g1act_ws/src/base/g1_description/meshes/right_hand_index_1_link.STL	1521784	c9c34efce4563cacdcfd29fc838a982976d40f5442c71219811dcbbf3923a33d
+g1_navgrasp/g1act_ws/src/base/g1_description/meshes/right_hand_middle_0_link.STL	475984	12ab4300c95e437e834f9aef772b3b431c671bf34338930b52ad11aef73bbd0d
+g1_navgrasp/g1act_ws/src/base/g1_description/meshes/right_hand_middle_1_link.STL	1521784	c9c34efce4563cacdcfd29fc838a982976d40f5442c71219811dcbbf3923a33d
+g1_navgrasp/g1act_ws/src/base/g1_description/meshes/right_hand_palm_link.STL	2140184	86c0b231cc44477d64a6493e5a427ba16617a00738112dd187c652675b086fb9
+g1_navgrasp/g1act_ws/src/base/g1_description/meshes/right_hand_thumb_0_link.STL	8884	544298d0ea1088f5b276a10cc6a6a9e533efdd91594955fdc956c46211d07f83
+g1_navgrasp/g1act_ws/src/base/g1_description/meshes/right_hand_thumb_1_link.STL	475984	0a9a820da8dd10f298778b714f1364216e8a5976f4fd3a05689ea26327d44bf6
+g1_navgrasp/g1act_ws/src/base/g1_description/meshes/right_hand_thumb_2_link.STL	1521784	3f1bfb37668e8f61801c8d25f171fa1949e08666be86c67acad7e0079937cc45
+g1_navgrasp/g1act_ws/src/base/g1_description/meshes/right_hip_pitch_link.STL	181284	e4f3c99d7f4a7d34eadbef9461fc66e3486cb5442db1ec50c86317d459f1a9c6
+g1_navgrasp/g1act_ws/src/base/g1_description/meshes/right_hip_roll_link.STL	192684	4c254ef66a356f492947f360dd931965477b631e3fcc841f91ccc46d945d54f6
+g1_navgrasp/g1act_ws/src/base/g1_description/meshes/right_hip_yaw_link.STL	296284	e479c2936ca2057e9eb2f7dff6c189b7419d7b8484dea0b298cbb36a2a6aa668
+g1_navgrasp/g1act_ws/src/base/g1_description/meshes/right_knee_link.STL	852284	63c4008449c9bbe701a6e2b557b7a252e90cf3a5abcf54cee46862b9a69f8ec8
+g1_navgrasp/g1act_ws/src/base/g1_description/meshes/right_rubber_hand.STL	2192684	99533b778bca6246144fa511bb9d4e555e075c641f2a0251e04372869cd99d67
+g1_navgrasp/g1act_ws/src/base/g1_description/meshes/right_shoulder_pitch_link.STL	176784	24cdb387e0128dfe602770a81c56cdce3a0181d34d039a11d1aaf8819b7b8c02
+g1_navgrasp/g1act_ws/src/base/g1_description/meshes/right_shoulder_roll_link.STL	401884	962b97c48f9ce9e8399f45dd9522e0865d19aa9fd299406b2d475a8fc4a53e81
+g1_navgrasp/g1act_ws/src/base/g1_description/meshes/right_shoulder_yaw_link.STL	249984	a0b76489271da0c72461a344c9ffb0f0c6e64f019ea5014c1624886c442a2fe5
+g1_navgrasp/g1act_ws/src/base/g1_description/meshes/right_wrist_pitch_link.STL	79584	d22f8f3b3127f15a63e5be1ee273cd5075786c3142f1c3d9f76cbf43d2a26477
+g1_navgrasp/g1act_ws/src/base/g1_description/meshes/right_wrist_roll_link.STL	356084	a7ee9212ff5b94d6cb7f52bb1bbf3f352194d5b598acff74f4c77d340c5b344f
+g1_navgrasp/g1act_ws/src/base/g1_description/meshes/right_wrist_roll_rubber_hand.STL	3481584	0729aff1ac4356f9314de13a46906267642e58bc47f0d8a7f17f6590a6242ccf
+g1_navgrasp/g1act_ws/src/base/g1_description/meshes/right_wrist_yaw_link.STL	341484	bc9dece2d12509707e0057ba2e48df8f3d56db0c79410212963a25e8a50f61a6
+g1_navgrasp/g1act_ws/src/base/g1_description/meshes/torso_constraint_L_link.STL	203584	82be7f93e85b3d303a1d1e1847e2c916939bd61c424ed1ebd28691ec33909dd1
+g1_navgrasp/g1act_ws/src/base/g1_description/meshes/torso_constraint_L_rod_link.STL	74884	c10de1effa7ea797ac268006aa2a739036c7e1f326b2012d711ee2c20c5a6e96
+g1_navgrasp/g1act_ws/src/base/g1_description/meshes/torso_constraint_R_link.STL	203584	54ded433a3a0c76027365856fdbd55215643de88846f7d436598a4071e682725
+g1_navgrasp/g1act_ws/src/base/g1_description/meshes/torso_constraint_R_rod_link.STL	74884	cb83fd38a9f06c99e3f301c70f12d94ae770a8f0cf9501f83580a27f908990b4
+g1_navgrasp/g1act_ws/src/base/g1_description/meshes/torso_link_23dof_rev_1_0.STL	7825434	3cd0d56fde14b73c1623304684805029971c4f84b596f9914e823ca70a107fd2
+g1_navgrasp/g1act_ws/src/base/g1_description/meshes/torso_link_rev_1_0.STL	2570584	11ddb46f2098efbbd8816b1d65893632d8e78be936376c7cdcd6771899ccc723
+g1_navgrasp/g1act_ws/src/base/g1_description/meshes/torso_link.STL	2232984	e96d023f0368a4e3450b86ca5d4f10227d8141156a373e7da8cb3c93266523e0
+g1_navgrasp/g1act_ws/src/base/g1_description/meshes/waist_constraint_L.STL	114684	8ebafdcb4de6871113f0ca2c356618d6e46b1d50f6c0bf9e37f47b9d8e100d99
+g1_navgrasp/g1act_ws/src/base/g1_description/meshes/waist_constraint_R.STL	114684	791902a291ffbd35ab97383b7b44ea5d975de7c80eef838797c970790b382ca9
+g1_navgrasp/g1act_ws/src/base/g1_description/meshes/waist_roll_link_rev_1_0.STL	85884	b67c347a05abc3e8ddae600d98a082bee273bb39f8e651647708b0a7140a8a97
+g1_navgrasp/g1act_ws/src/base/g1_description/meshes/waist_roll_link.STL	24184	34f0aa73f41131230be4d25876c944fdf6c24d62553f199ff8b980c15e8913df
+g1_navgrasp/g1act_ws/src/base/g1_description/meshes/waist_support_link.STL	150484	1fae9e1bb609848a1667d32eed8d6083ae443538a306843056a2a660f1b2926a
+g1_navgrasp/g1act_ws/src/base/g1_description/meshes/waist_yaw_link_rev_1_0.STL	619984	ec6db442b11f25eed898b5add07940c85d804f300de24dcbd264ccd8be7d554c
+g1_navgrasp/g1act_ws/src/base/g1_description/meshes/waist_yaw_link.STL	336284	2883f20e03f09b669b5b4ce10677ee6b5191c0934b584d7cbaef2d0662856ffb
+g1_navgrasp/g1act_ws/src/base/g1_description/README.md	2034	881f2db615b183cd4c4c99ab4f7062ba5ca29d73a8a99266a1ac04ff9b0b27c0
+g1_navgrasp/g1act_ws/src/base/g1_description/scene.xml	859	482d49902ca2b9fdc49d84ef5d8779fa69d66bc53ef440b4bf50079d1bac9995
+g1_navgrasp/g1act_ws/src/base/g1_driver_py/g1_driver_py/__init__.py	0	e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+g1_navgrasp/g1act_ws/src/base/g1_driver_py/g1_driver_py/driver.py	5483	3acea801f7d848a1d3173e6a1bd8665dcca4df35d9288b8cd666b76206a407b2
+g1_navgrasp/g1act_ws/src/base/g1_driver_py/launch/driver.launch.py	2044	48578c0104c9c3f201ed444b4b7cf6e509bafe6ab693ece54c152883420023bd
+g1_navgrasp/g1act_ws/src/base/g1_driver_py/package.xml	783	6df9e04ec26e7170d4929c6cced990d29dc33d83f3a44dcc876696d758427f17
+g1_navgrasp/g1act_ws/src/base/g1_driver_py/params/driver.yaml	121	a6b9db60493562f2e231b9671f54b50ae5d951728903e2bf011b9c5b0725dae1
+g1_navgrasp/g1act_ws/src/base/g1_driver_py/resource/g1_driver_py	0	e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+g1_navgrasp/g1act_ws/src/base/g1_driver_py/rviz/display.rviz	3976	2d491ee4d914fcaed99e60a4c72441240067d323a05f4931d809149fc5a2e882
+g1_navgrasp/g1act_ws/src/base/g1_driver_py/setup.cfg	93	af398c0bd2785996c04d6f777020b015f7fc6382d799e8a81fcf3143cd7b5861
+g1_navgrasp/g1act_ws/src/base/g1_driver_py/setup.py	888	f30a7331b8850b550a92979932c7df8976d3ee638ed93a7dfe49ae4af1321b7a
+g1_navgrasp/g1act_ws/src/base/g1_teleop_ctrl_keyboard/g1_teleop_ctrl_keyboard/__init__.py	0	e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+g1_navgrasp/g1act_ws/src/base/g1_teleop_ctrl_keyboard/g1_teleop_ctrl_keyboard/g1_teleop_ctrl_keyboard.py	5941	c765424d1c3903e2383ff3088cb4c0dc948314c5288d72f8c40d77f1d8a79e5b
+g1_navgrasp/g1act_ws/src/base/g1_teleop_ctrl_keyboard/package.xml	645	b29531fc80ca90e24251e171fa632f450cb1a90b43e154e4bf0ba4a2b97b3c11
+g1_navgrasp/g1act_ws/src/base/g1_teleop_ctrl_keyboard/resource/g1_teleop_ctrl_keyboard	0	e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+g1_navgrasp/g1act_ws/src/base/g1_teleop_ctrl_keyboard/setup.cfg	115	7b217700df460cf73906a84c801deb129a47aaacae9ef8b340f2a6c6ee9c9fa9
+g1_navgrasp/g1act_ws/src/base/g1_teleop_ctrl_keyboard/setup.py	691	ecbc00db0105e499983e988e75722e235b325e41bef31ff0986e5268163f8280
+g1_navgrasp/g1act_ws/src/base/g1_twist_bridge_py/g1_twist_bridge_py/__init__.py	0	e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+g1_navgrasp/g1act_ws/src/base/g1_twist_bridge_py/g1_twist_bridge_py/sport_model.py	1648	183b33196a405b66088f1e6af3dd4627e9205d85870116c3c700ff448c41ead9
+g1_navgrasp/g1act_ws/src/base/g1_twist_bridge_py/g1_twist_bridge_py/twist_bridge.py	1341	013ab947999835595933c56dd5a4426236c92a74d8e0f8503575bf99404611ea
+g1_navgrasp/g1act_ws/src/base/g1_twist_bridge_py/package.xml	716	426b56a639c8e56a4517b3796393f7c80242b1215e757b18014cf89efd7e5a77
+g1_navgrasp/g1act_ws/src/base/g1_twist_bridge_py/resource/g1_twist_bridge_py	0	e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+g1_navgrasp/g1act_ws/src/base/g1_twist_bridge_py/setup.cfg	105	4d76a95f55b9410d8db4923f32b9e3a3ab9b69d9b730230159d1d99b2eec4ed3
+g1_navgrasp/g1act_ws/src/base/g1_twist_bridge_py/setup.py	667	22b0a79afa7cb3611f5d4ded1874accb36a09c59fa6b2277f87e7291c1b320e1
+g1_navgrasp/g1act_ws/src/g1_yolo_nav_py/config/yolo_nav.yaml	2261	1eb8f1d30899cb23885a20452343cf2632ad1165aeeb467fd8d005185d519da3
+g1_navgrasp/g1act_ws/src/g1_yolo_nav_py/g1_yolo_nav_py/__init__.py	57	58db9fe0fc63e8eceb32152e32ae24bae4d1582db5cb0ab22b90f0627a879d79
+g1_navgrasp/g1act_ws/src/g1_yolo_nav_py/g1_yolo_nav_py/nav_planner.py	7242	67a806e9f11fd5c74d5c30f649bac41c22184abccb41dac066452c28e9d86403
+g1_navgrasp/g1act_ws/src/g1_yolo_nav_py/g1_yolo_nav_py/spatial_target.py	11205	18f1b37254fb833d7c2bdaa2f2bc50f9c3dd67a0fc8840a1b60ba8356857d77e
+g1_navgrasp/g1act_ws/src/g1_yolo_nav_py/g1_yolo_nav_py/yolo_detector.py	4862	a73d334dde2541e8fc1553f6c8efe40108f38403aa04f721c049f3a828d1b73c
+g1_navgrasp/g1act_ws/src/g1_yolo_nav_py/launch/yolo_nav.launch.py	2975	9ef21f1198b26243f4edc3a49c867bf80e7b5f7604e2b5e1190bde30a2d6c846
+g1_navgrasp/g1act_ws/src/g1_yolo_nav_py/package.xml	1049	ead45711564fd3c6983b3ec64d9d36d3b9eed3ef0e42a474384aed5f4a02e4ed
+g1_navgrasp/g1act_ws/src/g1_yolo_nav_py/resource/g1_yolo_nav_py	0	e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+g1_navgrasp/g1act_ws/src/g1_yolo_nav_py/setup.cfg	97	be2e63dc7d92cb60684c70eb5ae940d2435fed74960c4479253aebf7e2feca16
+g1_navgrasp/g1act_ws/src/g1_yolo_nav_py/setup.py	1048	449f910766376eb1805e865d4e6d582d80f9c99a57046b3abd8bc23edfd25e89
+g1_navgrasp/manact_ws/README.en.md	24193	a73349740d0b49aef8abbb13004d4c0ebfa1ecf3ce160354c3d737d2bc4bd215
+g1_navgrasp/manact_ws/README.md	27971	92ad3db217fdb5d6667ab01c79208c28c12d1c5225818bf3461d29ea2349ebe7
+g1_navgrasp/manact_ws/src/base/ctrl_keyboard/audio_control_test.py	11871	696da1fe977d785cb74101cd3017e715a7a83c9ddd0d7c7c2a961d7b5f51baa7
+g1_navgrasp/manact_ws/src/base/ctrl_keyboard/ctrl_keyboard/__init__.py	0	e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+g1_navgrasp/manact_ws/src/base/ctrl_keyboard/ctrl_keyboard/auto_ctrl.py	4335	24c3254b09abb142bc21fab2958e052242da32f8664a7c5517de7e2c41b04ffb
+g1_navgrasp/manact_ws/src/base/ctrl_keyboard/ctrl_keyboard/ctrl_keyboard.py	2189	386e3c316727b823f0b4025eb8cd69fd599b4756abf1fa3da41b741d43876322
+g1_navgrasp/manact_ws/src/base/ctrl_keyboard/logs/python_20260403_135648_410.log	1122	2cb8c27fccdd620b96435c7b626945db5a7b7bc78ebc75c1fa9362e75c385d3c
+g1_navgrasp/manact_ws/src/base/ctrl_keyboard/logs/python_20260403_140048_681.log	1122	643dc1cb98c096d22f37d47c52cce3227bca0a02d30746754d6cf34fde64bda5
+g1_navgrasp/manact_ws/src/base/ctrl_keyboard/logs/python_20260403_140500_122.log	1122	364c6f8e540b9d1bab4ec5016704d1be2cc3bbd36b2c054aeb0db596e91d2500
+g1_navgrasp/manact_ws/src/base/ctrl_keyboard/package.xml	690	4e63a68d847dd6a5739ef5dbbf7be798b1b35410ce263bbf306f8749aa4f19ac
+g1_navgrasp/manact_ws/src/base/ctrl_keyboard/resource/ctrl_keyboard	0	e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+g1_navgrasp/manact_ws/src/base/ctrl_keyboard/setup.cfg	95	61b9c6265391b01cb5f2634a9dd923314dd1887266b3301b486a77e950be461f
+g1_navgrasp/manact_ws/src/base/ctrl_keyboard/setup.py	1009	4ecf3d687c5a1417810191b7c39e1f3fc7616e2b05b1234b45f34d827684232d
+g1_navgrasp/manact_ws/src/base/ctrl_keyboard/test/test_copyright.py	790	977a2313a0ae218ef9e2b944347d2b8f7aba43447283d2a832391f9904fd37e9
+g1_navgrasp/manact_ws/src/base/ctrl_keyboard/test/test_flake8.py	884	37a813a0507f0ce51a2d0b57312d2cc078a0307a3ca85580ea801b0d2f9755d2
+g1_navgrasp/manact_ws/src/base/ctrl_keyboard/test/test_pep257.py	803	e8b88d49ee296987b1b40069f81019b5fa09b1aa1bfee9a1faae45bb5cf53eda
+g1_navgrasp/manact_ws/src/base/ctrl_keyboard/text.txt	1112	2c4e269940ee5cb35fcb5f7a7bf88a5ad6e58cc1e468133490433390efbd4ca5
+g1_navgrasp/manact_ws/src/base/ctrl_keyboard/whole_test.py	3606	9f0b974668d74e0bcd7f9585255bbd439fcc5dfed33b08d5d05de9cc0c7bb8ab
+g1_navgrasp/manact_ws/src/base/g1_description/g1_12dof.urdf	27843	4c20aa7d2b2b55de100cc5262d94740801c1eaf91b266dc5de6e428d9fbafdb5
+g1_navgrasp/manact_ws/src/base/g1_description/g1_12dof.xml	15579	747ede40aa726b7352bae8353e95d0d0f908cec2257a27cbd78bc6e5a2d5a314
+g1_navgrasp/manact_ws/src/base/g1_description/g1_23dof_rev_1_0.urdf	27936	a62b28e4ff86c19bd72b1f7961f3fd307957b051c2ace3cc70757f1a79c424af
+g1_navgrasp/manact_ws/src/base/g1_description/g1_23dof_rev_1_0.xml	20834	8ca62fcccdca91a431ca04f1a42f9c2fda241fdd5e13411168dc82de00f978de
+g1_navgrasp/manact_ws/src/base/g1_description/g1_23dof.urdf	29428	2d61264aaae95eac2545497a34ef316f270b0cd3d856bf9a4941ebff2592aca2
+g1_navgrasp/manact_ws/src/base/g1_description/g1_23dof.xml	21281	aaca282f79cc4cdd20fafa27656e766e35eb1455edb6f341165e27b137a036b6
+g1_navgrasp/manact_ws/src/base/g1_description/g1_29dof_lock_waist_rev_1_0.urdf	35175	0a51dd06897b1284f9e5cf94c41158c22d53670e51ad5db11306f1292786cd16
+g1_navgrasp/manact_ws/src/base/g1_description/g1_29dof_lock_waist_rev_1_0.xml	25476	cc65e483cbe1f2a74d8e66e32f44e5ecc758a6ab163f2e9deaaf84c5602113e3
+g1_navgrasp/manact_ws/src/base/g1_description/g1_29dof_lock_waist.urdf	35997	f908c9e09f695d4605adbef2a81e94c860a8e702900a1a96c449b5c2f67d26e3
+g1_navgrasp/manact_ws/src/base/g1_description/g1_29dof_lock_waist.xml	25823	59791f27960982d9eb6164309fcd235561258181dd0ca510988a3f37444e59e4
+g1_navgrasp/manact_ws/src/base/g1_description/g1_29dof_rev_1_0.urdf	35170	838f82ec8a26b8c709ac0a457a6e2809da37684519cc7be0bdf126293b533e06
+g1_navgrasp/manact_ws/src/base/g1_description/g1_29dof_rev_1_0.xml	25820	165fa7a5275745e45fa25e1bc78010c1055d81bb81c013b3c7bc8b9347a3b9c3
+g1_navgrasp/manact_ws/src/base/g1_description/g1_29dof_with_hand_rev_1_0.urdf	50419	3fccac5d5f389b294271e01df5fc754ce74e81e0b26349a8457b19e59b4e6fd3
+g1_navgrasp/manact_ws/src/base/g1_description/g1_29dof_with_hand_rev_1_0.xml	38249	77c98e7d34e428c6cdbd1e0d665e989cbc43bf17abb8a7c048494b4bc51ead88
+g1_navgrasp/manact_ws/src/base/g1_description/g1_29dof_with_hand.urdf	51241	3149d7b5bb73def3bf7dca3ebf3f396d213534f20f4e694fd7c11175cf060814
+g1_navgrasp/manact_ws/src/base/g1_description/g1_29dof_with_hand.xml	38596	7b73b894c01c0be42eb8b7091ef9a3f94050b8243ebb25b4f2d3f387817b57bc
+g1_navgrasp/manact_ws/src/base/g1_description/g1_29dof.urdf	35992	c776768170f8cd8c0ecb79c4b3394bf4b29b0fe68c0408149428629dd0e2c6f7
+g1_navgrasp/manact_ws/src/base/g1_description/g1_29dof.xml	26167	dfcfd8b41d0980695d0e75d76fdfd9965f71431a1c67afc31c8dbe730eb66c72
+g1_navgrasp/manact_ws/src/base/g1_description/g1_dual_arm.urdf	21925	784ce24e6244cf01ab7debca35749c478739b9fb0eb2767fa1c817fba433c71f
+g1_navgrasp/manact_ws/src/base/g1_description/g1_dual_arm.xml	13488	741aa797dd1a58298f76da6980503fc9f47036ed21725742cbd4121eed230141
+g1_navgrasp/manact_ws/src/base/g1_description/images/g1_23dof.png	933725	8cd8db7c7abd7a7123cc1bc702e9a7aefb22ac18e8a5b52745b7b60cd371e1d3
+g1_navgrasp/manact_ws/src/base/g1_description/images/g1_29dof_with_hand.png	943738	8f2a8f66138f13a2ce1e92b1155f16c2428ebcd59786b8e47a9099326ce7e969
+g1_navgrasp/manact_ws/src/base/g1_description/images/g1_29dof.png	942323	9d7d6c0755b6eadf2386d476cc64137f217f16ea2f7c8e0e06daf0d8e00e60ea
+g1_navgrasp/manact_ws/src/base/g1_description/images/g1_dual_arm.png	847101	e8d427240c35ac5dd012a4bf4fc52dabe8bddd476a883ae9364d05fc3e8b85ee
+g1_navgrasp/manact_ws/src/base/g1_description/meshes/head_link.STL	932784	005fb67fbd3eff94aa8bf4a6e83238174e9f91b6721f7111594322f223724411
+g1_navgrasp/manact_ws/src/base/g1_description/meshes/left_ankle_pitch_link.STL	71184	d49e3abc6f5b12e532062cd575b87b5ef40cd2a3fc18f54a1ca5bba4f773d51d
+g1_navgrasp/manact_ws/src/base/g1_description/meshes/left_ankle_roll_link.STL	653384	c4092af943141d4d9f74232f3cfa345afc6565f46a077793b8ae0e68b39dc33f
+g1_navgrasp/manact_ws/src/base/g1_description/meshes/left_elbow_link.STL	88784	fa752198accd104d5c4c3a01382e45165b944fbbc5acce085059223324e5bed3
+g1_navgrasp/manact_ws/src/base/g1_description/meshes/left_hand_index_0_link.STL	475984	6b35f2f77211d5a366f0b9a4e47c4ee35e536731266f1a34e9efa12db579b892
+g1_navgrasp/manact_ws/src/base/g1_description/meshes/left_hand_index_1_link.STL	1521784	9e315ebc8a7a0cb98e033985b586b20d81cf8aa761181ae61ce56fcb14077a06
+g1_navgrasp/manact_ws/src/base/g1_description/meshes/left_hand_middle_0_link.STL	475984	6b35f2f77211d5a366f0b9a4e47c4ee35e536731266f1a34e9efa12db579b892
+g1_navgrasp/manact_ws/src/base/g1_description/meshes/left_hand_middle_1_link.STL	1521784	9e315ebc8a7a0cb98e033985b586b20d81cf8aa761181ae61ce56fcb14077a06
+g1_navgrasp/manact_ws/src/base/g1_description/meshes/left_hand_palm_link.STL	2140184	23a486b75bd78a9bf03cec25d84d87f97f3dae038cf21a743b6d469b337e4004
+g1_navgrasp/manact_ws/src/base/g1_description/meshes/left_hand_thumb_0_link.STL	8884	a90c721661c0622685488a3c74d1e122c7da89242d3a1daef75edb83422d05e0
+g1_navgrasp/manact_ws/src/base/g1_description/meshes/left_hand_thumb_1_link.STL	475984	445c54a45bc13ce36001556f66bc0f49c83cb40321205ae4d676bb2874325684
+g1_navgrasp/manact_ws/src/base/g1_description/meshes/left_hand_thumb_2_link.STL	1521784	3d8dbe5085acfc213d21aa8b0782e89cd79084e9678f3a85fc7b04a86b029db5
+g1_navgrasp/manact_ws/src/base/g1_description/meshes/left_hip_pitch_link.STL	181684	4725168105ee768ee31638ef22b53f6be2d7641bfd7cfefe803488d884776fa4
+g1_navgrasp/manact_ws/src/base/g1_description/meshes/left_hip_roll_link.STL	192184	91f25922ee8a7c3152790051bebad17b4d9cd243569c38fe340285ff93a97acf
+g1_navgrasp/manact_ws/src/base/g1_description/meshes/left_hip_yaw_link.STL	296284	a16d88aa6ddac8083aa7ad55ed317bea44b1fa003d314fba88965b7ed0f3b55b
+g1_navgrasp/manact_ws/src/base/g1_description/meshes/left_knee_link.STL	854884	8d92b9e3d3a636761150bb8025e32514c4602b91c7028d523ee42b3e632de477
+g1_navgrasp/manact_ws/src/base/g1_description/meshes/left_rubber_hand.STL	2287484	cff2221a690fa69303f61fce68f2d155c1517b52efb6ca9262dd56e0bc6e70fe
+g1_navgrasp/manact_ws/src/base/g1_description/meshes/left_shoulder_pitch_link.STL	176784	f0d1cfd02fcf0d42f95e678eeca33da3afbcc366ffba5c052847773ec4f31d52
+g1_navgrasp/manact_ws/src/base/g1_description/meshes/left_shoulder_roll_link.STL	400284	fb9df21687773522598dc384f1a2945c7519f11cbc8bd372a49170316d6eee88
+g1_navgrasp/manact_ws/src/base/g1_description/meshes/left_shoulder_yaw_link.STL	249184	1aa97e9748e924336567992181f78c7cd0652fd52a4afcca3df6b2ef6f9e712e
+g1_navgrasp/manact_ws/src/base/g1_description/meshes/left_wrist_pitch_link.STL	85984	b251d8e05047f695d0f536cd78c11973cfa4e78d08cfe82759336cc3471de3a9
+g1_navgrasp/manact_ws/src/base/g1_description/meshes/left_wrist_roll_link.STL	356184	edc387c9a0ba8c2237e9b296d32531426fabeb6f53e58df45c76106bca74148c
+g1_navgrasp/manact_ws/src/base/g1_description/meshes/left_wrist_roll_rubber_hand.STL	3484884	e81030abd023bd9e4a308ef376d814a2c12d684d8a7670c335bbd5cd7809c909
+g1_navgrasp/manact_ws/src/base/g1_description/meshes/left_wrist_yaw_link.STL	318684	83f8fb3a726bf9613d65dd14f0f447cb918c3c95b3938042a0c9c09749267d3b
+g1_navgrasp/manact_ws/src/base/g1_description/meshes/logo_link.STL	243384	8571a0a19bc4916fa55f91449f51d5fdefd751000054865a842449429d5f155b
+g1_navgrasp/manact_ws/src/base/g1_description/meshes/pelvis_contour_link.STL	1805184	5cc5c2c7a312329e3feeb2b03d3fc09fc29705bd01864f6767e51be959662420
+g1_navgrasp/manact_ws/src/base/g1_description/meshes/pelvis.STL	1060884	5ba6bbc888e630550140d3c26763f10206da8c8bd30ed886b8ede41c61f57a31
+g1_navgrasp/manact_ws/src/base/g1_description/meshes/right_ankle_pitch_link.STL	71184	15be426539ec1be70246d4d82a168806db64a41301af8b35c197a33348c787a9
+g1_navgrasp/manact_ws/src/base/g1_description/meshes/right_ankle_roll_link.STL	653784	4b66222ea56653e627711b56d0a8949b4920da5df091da0ceb343f54e884e3a5
+g1_navgrasp/manact_ws/src/base/g1_description/meshes/right_elbow_link.STL	88784	1be925d7aa268bb8fddf5362b9173066890c7d32092c05638608126e59d1e2ab
+g1_navgrasp/manact_ws/src/base/g1_description/meshes/right_hand_index_0_link.STL	475984	12ab4300c95e437e834f9aef772b3b431c671bf34338930b52ad11aef73bbd0d
+g1_navgrasp/manact_ws/src/base/g1_description/meshes/right_hand_index_1_link.STL	1521784	c9c34efce4563cacdcfd29fc838a982976d40f5442c71219811dcbbf3923a33d
+g1_navgrasp/manact_ws/src/base/g1_description/meshes/right_hand_middle_0_link.STL	475984	12ab4300c95e437e834f9aef772b3b431c671bf34338930b52ad11aef73bbd0d
+g1_navgrasp/manact_ws/src/base/g1_description/meshes/right_hand_middle_1_link.STL	1521784	c9c34efce4563cacdcfd29fc838a982976d40f5442c71219811dcbbf3923a33d
+g1_navgrasp/manact_ws/src/base/g1_description/meshes/right_hand_palm_link.STL	2140184	86c0b231cc44477d64a6493e5a427ba16617a00738112dd187c652675b086fb9
+g1_navgrasp/manact_ws/src/base/g1_description/meshes/right_hand_thumb_0_link.STL	8884	544298d0ea1088f5b276a10cc6a6a9e533efdd91594955fdc956c46211d07f83
+g1_navgrasp/manact_ws/src/base/g1_description/meshes/right_hand_thumb_1_link.STL	475984	0a9a820da8dd10f298778b714f1364216e8a5976f4fd3a05689ea26327d44bf6
+g1_navgrasp/manact_ws/src/base/g1_description/meshes/right_hand_thumb_2_link.STL	1521784	3f1bfb37668e8f61801c8d25f171fa1949e08666be86c67acad7e0079937cc45
+g1_navgrasp/manact_ws/src/base/g1_description/meshes/right_hip_pitch_link.STL	181284	e4f3c99d7f4a7d34eadbef9461fc66e3486cb5442db1ec50c86317d459f1a9c6
+g1_navgrasp/manact_ws/src/base/g1_description/meshes/right_hip_roll_link.STL	192684	4c254ef66a356f492947f360dd931965477b631e3fcc841f91ccc46d945d54f6
+g1_navgrasp/manact_ws/src/base/g1_description/meshes/right_hip_yaw_link.STL	296284	e479c2936ca2057e9eb2f7dff6c189b7419d7b8484dea0b298cbb36a2a6aa668
+g1_navgrasp/manact_ws/src/base/g1_description/meshes/right_knee_link.STL	852284	63c4008449c9bbe701a6e2b557b7a252e90cf3a5abcf54cee46862b9a69f8ec8
+g1_navgrasp/manact_ws/src/base/g1_description/meshes/right_rubber_hand.STL	2192684	99533b778bca6246144fa511bb9d4e555e075c641f2a0251e04372869cd99d67
+g1_navgrasp/manact_ws/src/base/g1_description/meshes/right_shoulder_pitch_link.STL	176784	24cdb387e0128dfe602770a81c56cdce3a0181d34d039a11d1aaf8819b7b8c02
+g1_navgrasp/manact_ws/src/base/g1_description/meshes/right_shoulder_roll_link.STL	401884	962b97c48f9ce9e8399f45dd9522e0865d19aa9fd299406b2d475a8fc4a53e81
+g1_navgrasp/manact_ws/src/base/g1_description/meshes/right_shoulder_yaw_link.STL	249984	a0b76489271da0c72461a344c9ffb0f0c6e64f019ea5014c1624886c442a2fe5
+g1_navgrasp/manact_ws/src/base/g1_description/meshes/right_wrist_pitch_link.STL	79584	d22f8f3b3127f15a63e5be1ee273cd5075786c3142f1c3d9f76cbf43d2a26477
+g1_navgrasp/manact_ws/src/base/g1_description/meshes/right_wrist_roll_link.STL	356084	a7ee9212ff5b94d6cb7f52bb1bbf3f352194d5b598acff74f4c77d340c5b344f
+g1_navgrasp/manact_ws/src/base/g1_description/meshes/right_wrist_roll_rubber_hand.STL	3481584	0729aff1ac4356f9314de13a46906267642e58bc47f0d8a7f17f6590a6242ccf
+g1_navgrasp/manact_ws/src/base/g1_description/meshes/right_wrist_yaw_link.STL	341484	bc9dece2d12509707e0057ba2e48df8f3d56db0c79410212963a25e8a50f61a6
+g1_navgrasp/manact_ws/src/base/g1_description/meshes/torso_constraint_L_link.STL	203584	82be7f93e85b3d303a1d1e1847e2c916939bd61c424ed1ebd28691ec33909dd1
+g1_navgrasp/manact_ws/src/base/g1_description/meshes/torso_constraint_L_rod_link.STL	74884	c10de1effa7ea797ac268006aa2a739036c7e1f326b2012d711ee2c20c5a6e96
+g1_navgrasp/manact_ws/src/base/g1_description/meshes/torso_constraint_R_link.STL	203584	54ded433a3a0c76027365856fdbd55215643de88846f7d436598a4071e682725
+g1_navgrasp/manact_ws/src/base/g1_description/meshes/torso_constraint_R_rod_link.STL	74884	cb83fd38a9f06c99e3f301c70f12d94ae770a8f0cf9501f83580a27f908990b4
+g1_navgrasp/manact_ws/src/base/g1_description/meshes/torso_link_23dof_rev_1_0.STL	7825434	3cd0d56fde14b73c1623304684805029971c4f84b596f9914e823ca70a107fd2
+g1_navgrasp/manact_ws/src/base/g1_description/meshes/torso_link_rev_1_0.STL	2570584	11ddb46f2098efbbd8816b1d65893632d8e78be936376c7cdcd6771899ccc723
+g1_navgrasp/manact_ws/src/base/g1_description/meshes/torso_link.STL	2232984	e96d023f0368a4e3450b86ca5d4f10227d8141156a373e7da8cb3c93266523e0
+g1_navgrasp/manact_ws/src/base/g1_description/meshes/waist_constraint_L.STL	114684	8ebafdcb4de6871113f0ca2c356618d6e46b1d50f6c0bf9e37f47b9d8e100d99
+g1_navgrasp/manact_ws/src/base/g1_description/meshes/waist_constraint_R.STL	114684	791902a291ffbd35ab97383b7b44ea5d975de7c80eef838797c970790b382ca9
+g1_navgrasp/manact_ws/src/base/g1_description/meshes/waist_roll_link_rev_1_0.STL	85884	b67c347a05abc3e8ddae600d98a082bee273bb39f8e651647708b0a7140a8a97
+g1_navgrasp/manact_ws/src/base/g1_description/meshes/waist_roll_link.STL	24184	34f0aa73f41131230be4d25876c944fdf6c24d62553f199ff8b980c15e8913df
+g1_navgrasp/manact_ws/src/base/g1_description/meshes/waist_support_link.STL	150484	1fae9e1bb609848a1667d32eed8d6083ae443538a306843056a2a660f1b2926a
+g1_navgrasp/manact_ws/src/base/g1_description/meshes/waist_yaw_link_rev_1_0.STL	619984	ec6db442b11f25eed898b5add07940c85d804f300de24dcbd264ccd8be7d554c
+g1_navgrasp/manact_ws/src/base/g1_description/meshes/waist_yaw_link.STL	336284	2883f20e03f09b669b5b4ce10677ee6b5191c0934b584d7cbaef2d0662856ffb
+g1_navgrasp/manact_ws/src/base/g1_description/README.md	2034	881f2db615b183cd4c4c99ab4f7062ba5ca29d73a8a99266a1ac04ff9b0b27c0
+g1_navgrasp/manact_ws/src/base/g1_description/scene.xml	859	482d49902ca2b9fdc49d84ef5d8779fa69d66bc53ef440b4bf50079d1bac9995
+g1_navgrasp/manact_ws/src/D455.md	3344	b40185343e632e17fad1b02780876115078155efb2b8f1282a323c97df117654
+g1_navgrasp/manact_ws/src/g1_yolo_nav_py/arm/arm_common.py	9695	09b58b26903cd19e821717051a36f7408347fbf2e6d9828af2e2883f59f0e686
+g1_navgrasp/manact_ws/src/g1_yolo_nav_py/arm/arm_debug.py	8047	fdeda4bcf66c8bc84cc6422692985af530ffc21287e01835dcf2659bafe8e200
+g1_navgrasp/manact_ws/src/g1_yolo_nav_py/arm/arm_multi_pose_demo.py	2986	1d7aa1a5c8e0abb6e60029de0cb94c3172f18f18b01ff0a8b069ccad2ed3f183
+g1_navgrasp/manact_ws/src/g1_yolo_nav_py/arm/arm.py	5796	42844aab88393d8b9f069a7ebfa84cb81a798e18d93e25086d2df0e354b637e7
+g1_navgrasp/manact_ws/src/g1_yolo_nav_py/arm/armdown.py	2477	899fc53022b5de321027ef30810a89f2d8d6d247cf19d4b0f78058b0b34b948f
+g1_navgrasp/manact_ws/src/g1_yolo_nav_py/arm/armup.py	2949	0cbf3b01893d56c9810369940a31e36721ec14ec23ab27e0bb43d917cfa6debe
+g1_navgrasp/manact_ws/src/g1_yolo_nav_py/config/yolo_nav.yaml	5331	5d9c624903de6e07dfbccdbdeecc0f0a06ad93b9c39629a04935e084411b7835
+g1_navgrasp/manact_ws/src/g1_yolo_nav_py/g1_yolo_nav_py/__init__.py	57	58db9fe0fc63e8eceb32152e32ae24bae4d1582db5cb0ab22b90f0627a879d79
+g1_navgrasp/manact_ws/src/g1_yolo_nav_py/g1_yolo_nav_py/_dds_compat.py	8397	fd690b9740f05c78d895e8993e32afc4f76ae17d270616b0a76d8ffcf47e01dd
+g1_navgrasp/manact_ws/src/g1_yolo_nav_py/g1_yolo_nav_py/_detection_utils.py	2256	3a04319390938e321b587a0688a7a224693c96ba1f0249b16269a2f472c716b3
+g1_navgrasp/manact_ws/src/g1_yolo_nav_py/g1_yolo_nav_py/_forward_approach.py	4383	48716cf3549bf539a766187662076c468fe914b1ecae6fb6d7fd11d20cd7f781
+g1_navgrasp/manact_ws/src/g1_yolo_nav_py/g1_yolo_nav_py/_grasp_state.py	25094	c6b662009700e68c31c43504e5e61f267ee672ec6ad0c3da2914dd58e35fa051
+g1_navgrasp/manact_ws/src/g1_yolo_nav_py/g1_yolo_nav_py/_step_aligner.py	4889	f22d7889cfe294b130ca3640162feba948929d08f3bb4640b20889aed5c13e4c
+g1_navgrasp/manact_ws/src/g1_yolo_nav_py/g1_yolo_nav_py/_vis_utils.py	2775	82ca8aa7b2df915b82457eccdac3eb0a1f64c7312044c6f6fc5b8f0231171fda
+g1_navgrasp/manact_ws/src/g1_yolo_nav_py/g1_yolo_nav_py/control_panel.py	31976	2acf225452a55e478e0c9522972db967e9c96ff481c0be2b1609e5497c45a853
+g1_navgrasp/manact_ws/src/g1_yolo_nav_py/g1_yolo_nav_py/detection_visualizer.py	11657	31fac1a75b95a5e168a549bc21bf5e7cf60793e9de1e89f4c8833be184dd4c87
+g1_navgrasp/manact_ws/src/g1_yolo_nav_py/g1_yolo_nav_py/grasp_task.py	2284	2314aaed7a571e630bcfa2e95f9c5069d77d85c48eedc36086d0c38185775045
+g1_navgrasp/manact_ws/src/g1_yolo_nav_py/g1_yolo_nav_py/loco_forward.py	8089	be082d9188de71914a6c79197f22d3ae3bbb146a3c240eb8a0678ac98dd74767
+g1_navgrasp/manact_ws/src/g1_yolo_nav_py/g1_yolo_nav_py/rgbd_capture.py	7447	a529a5616f6a33860a2587eab3fefebed0b2b252e86678788cf972c89ee94781
+g1_navgrasp/manact_ws/src/g1_yolo_nav_py/g1_yolo_nav_py/spatial_target.py	10706	44c80223ea13f2bb87e9b23b0d27c45adc5221504888b14c3feb3b69d490b7e7
+g1_navgrasp/manact_ws/src/g1_yolo_nav_py/g1_yolo_nav_py/sport_client.py	14831	da0090664f3651e234ad72ab7fe228bddbf259a78439c76bdd40ca544d68882b
+g1_navgrasp/manact_ws/src/g1_yolo_nav_py/g1_yolo_nav_py/web_panel.py	45663	43617e7236ec3d97e9ae48e4587e887efa635bd30a32f903046bacf965871582
+g1_navgrasp/manact_ws/src/g1_yolo_nav_py/g1_yolo_nav_py/yaw_align.py	6213	e536262a66730d89b27b31f3195f307c8ad80db698589b553093e70975503734
+g1_navgrasp/manact_ws/src/g1_yolo_nav_py/g1_yolo_nav_py/yolo_detector.py	9557	07b68d1e02ae83f691194aa5e6030d94556d6fe21313cb19bdf18195d93e770c
+g1_navgrasp/manact_ws/src/g1_yolo_nav_py/launch/grasp_task.launch.py	5991	998b4a352080306bf42b3bc15fe40d4426835c632be0d53deb1dd829e399f4d6
+g1_navgrasp/manact_ws/src/g1_yolo_nav_py/launch/yolo_nav.launch.py	4705	2135d48f09b8d2c8cac046e778abd9974240f1ac2242b562eb98c20394998f46
+g1_navgrasp/manact_ws/src/g1_yolo_nav_py/package.xml	992	1e7104627d183781444eb62071d4d5aa8c148039bcb566f4c1ecf4460be41f71
+g1_navgrasp/manact_ws/src/g1_yolo_nav_py/resource/g1_yolo_nav_py	0	e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+g1_navgrasp/manact_ws/src/g1_yolo_nav_py/setup.cfg	97	be2e63dc7d92cb60684c70eb5ae940d2435fed74960c4479253aebf7e2feca16
+g1_navgrasp/manact_ws/src/g1_yolo_nav_py/setup.py	3836	65fa9dc756b3c6a9f7da090ab7e76d3282c2090baf05b7163b728f8c09e8d253
+g1_navgrasp/manact_ws/src/g1_yolo_nav_py/yolo_v11s_best.pt	19223889	ace73f1f1f8abd8cdd90863fdac6b60d822450087aae5524b7a6fec6bfc4318e
+g1_navgrasp/manact_ws/src/web_frontend/css/lggc.css	1616	1c685e8d205117cd467b31c7fd0f49b1dcb30e4b4d89461f92d3d0a732f6b6cd
+g1_navgrasp/manact_ws/src/web_frontend/css/style.css	69339	87fa260a0ac49a641f4889cd666b7801cc2feba0d1350f463a4c292422d76133
+g1_navgrasp/manact_ws/src/web_frontend/dev_server.py	25763	8cc3a0f8015fbc689e965f607997ad1931fd60bf6269b1463a68db364195cdbe
+g1_navgrasp/manact_ws/src/web_frontend/index.html	55377	4f6a554b7e560f57e629faed33e3adc9d60fe2e6a8382e25888bc23c8588da0c
+g1_navgrasp/manact_ws/src/web_frontend/js/app.js	52688	6e51366f368bad0b5ae80b9635505bdb56b0e48bfdb97335d961274c9de72825
+hand_control/revo2/arm_hand_synergy_debug.py	6226	6736f19e4c6e95db72b079719b66dc9750e162d1bba66e667bd1a76430205153
+hand_control/revo2/arm_hand_synergy.py	6302	3cef4d279cf25b7bf3db5f699c6dbadc72cbb61cf7e72ff50dae1f9036a4b179
+hand_control/revo2/hand_final_align.py	2623	4b235c2fe509b7e5f6b5a7f07e2411aa915e933bf2764c5de74ce3f8cceea374
+hand_control/revo2/left_hand_safe_once.py	1652	ffb885cad331ef61fedb050dd1b1cf2e58f624a424ae8b69773499cf72c612b1
+hand_control/revo2/left_hand_safe_once.py.bak_add_grasp_20260516_215747	1463	280f7fab0d42c1526fa2d59394506e0e635d45fa4a6b731bbe0c8d122dc6cfec
+hand_control/revo2/left_hand_safe_once.py.bak_arm_in_grasp_open_20260516_223647	1745	ca6dfdb586842ddc02dd90145f364b50b0743122bfbc3c63d0e832a9c895eaf8
+hand_control/revo2/left_hand_safe_once.py.bak_bottle_pose_tuned	1282	c6aa3c16857a52819baaa51f01a15c3777b177d6b85fb9c3a56cb6c3dd67ad0a
+hand_control/revo2/left_hand_safe_once.py.bak_clean_safe_20260522_220039	1745	ca6dfdb586842ddc02dd90145f364b50b0743122bfbc3c63d0e832a9c895eaf8
+hand_control/revo2/left_hand_safe_once.py.bak_four_finger_20260516_205812	1394	f8f98047722f330a8bcd7e2925c14045a2c6e34868577d3905e4e27fdcf3d087
+hand_control/revo2/left_hand_safe_once.py.bak_grasp_wait_20260516_221448	1746	e2636cb1d3b3dddcf0c6c948299bbb46f74112d3d7b11e9ac2506df80cddb4db
+hand_control/revo2/left_hand_safe_once.py.bak_loosen_thumb_index_20260516_214428	1463	9c4ec918d257f22278b829c153e7d9da4de862488c42ad447eb14f0eefe337ca
+hand_control/revo2/left_hand_safe_once.py.bak_remove_contact_20260516_210755	1463	fc267c80ab0e0436cbe2aec3f29bfba093a9a982c16c232abe4f9c03276a3558
+hand_control/revo2/left_hand_safe_once.py.bak_remove_contact_20260516_210820	1463	9c4ec918d257f22278b829c153e7d9da4de862488c42ad447eb14f0eefe337ca
+hand_control/revo2/left_hand_safe_once.py.bak_thumb_flat_pinky_loose_20260516_222013	1746	82e613239b6450565e8abeaecf96d0ce7c21a3a82b3244cbcf699c2958cf478e
+hand_control/revo2/left_hand_safe_once.py.bak_thumb_grip	1280	4eccf43d0ecbe4a22f683b4e1caaa3cdeaf4549b3247c22b44435b3f38856132
+hand_control/revo2/left_hand_safe_once.py.bak_thumb_open_first	1337	e39c75579d9daf7c6c63e387d80e516269b3c0b613ea99da81843249b53ad656
+hand_control/revo2/left_hand_safe_once.py.bak_thumb_ready	1282	d3d9d4a254baa7697868a53683a005df9749d0d68173f808dcc59773b1dc21cc
+hand_control/revo2/left_hand_safe_once.py.bak_thumb_vertical_grasp_20260516_222319	1745	d8b3a92492e880470d99f125f51c18ce7eff70cb8fcbd48e6a06f21716c856fb
+hand_control/revo2/left_hand_safe_once.py.bak_tilt_fix_20260516_210317	1463	a0528689b2aa5941c3347ba955da8293a4af2eada02e019afb30c883fccf4d64
+hand_control/revo2/scan_hand.py	3386	0a35c930244b9fa5c352a265bbf72c0218dbe3cc9943bc0a3cb62f254d7145e7
+hand_control/revo2/scan_revo2_ports.py	1172	ed946460e2c11ed0d4cda54e32fe08c3aab7ee12664ba977d51afdf3ae7771b3
+hybrid_control_terminal/python_gui/config.py	4249	a442c4b8debafda30adab63200176a0195236dadb2c030423c579e61bafb3220
+hybrid_control_terminal/python_gui/core/__init__.py	0	e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+hybrid_control_terminal/python_gui/core/boot.py	2675	fba6b481de309b86fedda026277afbd8c28e64826f8454140353ac4973109b2c
+hybrid_control_terminal/python_gui/core/bridge.py	7333	f0b87316782e6ed5beb32c3234c2f5e3e5c5b76e6f3c268b0e5092ef6b49e623
+hybrid_control_terminal/python_gui/core/coordinates.py	1784	b5ef8d8be30048363f7e9898caa6011e5575cc298c376b1733dee19114e15c43
+hybrid_control_terminal/python_gui/core/deepseek_brain.py	2632	a4e01febc1ee9009302015751194ea71674f1b6ff80ed4118f97adc7083aaea8
+hybrid_control_terminal/python_gui/core/ik_solver.py	8502	6d4cfa14ca7d78f821409e1e3e32d4af8458c960d6ae1698ab4896a786026f03
+hybrid_control_terminal/python_gui/core/input_mapper.py	2548	cf9223f364ace63dfc8c0dbed162d1df1b1d9aab3c007b9f19ffc2ba189289eb
+hybrid_control_terminal/python_gui/core/l10_client.py	3040	5693b2dfab60781ee0a67f70a48fc38712b30e21167bae9b385f5b401dcb31c5
+hybrid_control_terminal/python_gui/core/recorder.py	4397	77b14344b01d5996d4f960a84141fc2c44197326f14d116dd155150eebe2d7ae
+hybrid_control_terminal/python_gui/core/robot_process.py	75377	f709f7d14c12efd723f6a35e031dc71ec69298857be1a95646e1efbe1c88a7a9
+hybrid_control_terminal/python_gui/core/ros_bridge.py	9885	6548be54c71f773993a73987308bfe0ad04fdff5b4ae15ef494e4d142f1b87da
+hybrid_control_terminal/python_gui/core/ros_manager.py	7342	958390fb7cd43128eaa5cc20e0f505a70dd498b641965b523f38771cffaf18c4
+hybrid_control_terminal/python_gui/core/safety_layer.py	1477	af35c913f7aaf3690d2905dbfde1305c6a74fb10b2f2bfbe61ec3b299f4e5f5d
+hybrid_control_terminal/python_gui/core/sequencer.py	8294	4abc56a9ab0ab92e967f2eb53408d3e177bb64793c606d87d00dd5a5b1f7f995
+hybrid_control_terminal/python_gui/core/settings_manager.py	3106	071db211dcbdb4e2df54af3013fc642b637bcf9af397194461c1bfc3d25a4ac7
+hybrid_control_terminal/python_gui/core/signal_server.py	3880	94e1ed91eb1d50bff79855790069da9a9643bcdec7ad20cf041e10168e1325fe
+hybrid_control_terminal/python_gui/core/sim_engine.py	7048	6d26ac619ed0a8812c74ffa6f239320b875854d7e99ffc8354edeebf559901e9
+hybrid_control_terminal/python_gui/core/task_manager.py	2393	ab5832e7774e928e1470be872ed399092c8ba73d382c18414b73af339c42ca93
+hybrid_control_terminal/python_gui/core/trajectory.py	1773	e3152117e5961938c2f02ca12405746d93d192f5b8ceb94b51c351226caab251
+hybrid_control_terminal/python_gui/core/vision_detector.py	3112	9dd7e6992096c491669e6bf2cc5c071e8b5406c1447c214deedd2132c05a404b
+hybrid_control_terminal/python_gui/core/worker.py	8051	c427b7a50138675c4a864f5b3aca0671b898c85a7eed634ed08de3a851a278de
+hybrid_control_terminal/python_gui/data_logger/lb.json	413277	69402dcc2f13864e0ba666804b2fe8cf2b9133d963f22a3bf81c7e83239c973e
+hybrid_control_terminal/python_gui/data_logger/motion_01.json	222751	34e6acee74f60f3218fbbb017695f21be0dd64723bb2fcc32a9db46bd7021f0f
+hybrid_control_terminal/python_gui/data_logger/motion_011.json	233913	00bce4b84f9e197f5ec75ab78444287bc269a4dc01edf618027d7775a1f937fc
+hybrid_control_terminal/python_gui/data_logger/motion_new.json	197468	44513c00ccf324cf2709a29ace2a9f398b908dfbfdefab2104a6370f077438cc
+hybrid_control_terminal/python_gui/data_logger/motion_new1.json	198907	b8626f5995ba66c07b87ea4c4502b1e9124a7ddc5b7e17928d7d25f07972e6c0
+hybrid_control_terminal/python_gui/data_logger/motion_new11.json	194542	0deb20d2e1ec9db8160b7ab18bf9938624aa951b1ab9c70798a92df2f0adc7c7
+hybrid_control_terminal/python_gui/data_logger/replica_left.json	1172486	472216268f71b0b11dd4353e1175ed95e89b8eb71fcaac86bd0ee2f92f27dfe2
+hybrid_control_terminal/python_gui/data_logger/replica_low_speed.json	986770	eca1f80915575dec710f4395d63990ec2fb38e7d2315ae9a5e85c47d04e5cc6b
+hybrid_control_terminal/python_gui/data_logger/replica_pull_over.json	1161839	eed22c435224fd9cbe8e66112280875422c3a8af2fdaadfc82032b53ca0c1cbe
+hybrid_control_terminal/python_gui/data_logger/replica_right.json	1188754	3d029bc68a192667be10fe3c1107bc5a164bde3bd276d80ef453167dba4a9e87
+hybrid_control_terminal/python_gui/data_logger/replica_stop.json	1252613	6bb3eafa249b7c71e587d29c2d31ee524893685176b1ac5b74034e718a4c34a6
+hybrid_control_terminal/python_gui/data_logger/replica_straight.json	1132312	e8f680830c1cb5a4fb89e4fe58ef91f68bbdc8a6f34be4501aa7f2bc4c59284b
+hybrid_control_terminal/python_gui/data_logger/replica_turn.json	1051405	244ca4f426e124d03f36d27cc7a16ed9ee168c682e42041497ed25fea20b1247
+hybrid_control_terminal/python_gui/data_logger/replica_wait_left.json	1017851	ff41a3f66453afb8b0b5e861741e9f6de5b0eb6e83570566af18d9ec449b4499
+hybrid_control_terminal/python_gui/data_logger/swing_r_hand.json	214225	0b1e6a75d3576f904d1f217c3947870f1ee572142971e3ebe1a574fbbc9d5976
+hybrid_control_terminal/python_gui/data_logger/tasks.json	781	63c2631fbd412064b1747822445e7eff5b5d7052e920935ee37d0e142fee3bb6
+hybrid_control_terminal/python_gui/data_logger/welcome left 0122.json	657897	ae359e1a722cba35b1001a49dd23350b7f199410bd4e662ba7e889636038db2a
+hybrid_control_terminal/python_gui/data_logger/welcome.json	657897	ae359e1a722cba35b1001a49dd23350b7f199410bd4e662ba7e889636038db2a
+hybrid_control_terminal/python_gui/launcher.py	8480	7c572bd4bffbe3deb75553a6c9c40aba2ee416c87e4a8b4a56937cd0bd0e4d0a
+hybrid_control_terminal/python_gui/main.py	3488	c7f87d812c3a2420ed0a3bbdfec7a9f2f66fdf1c2a9220ebdc41035ebe1e463c
+hybrid_control_terminal/python_gui/README.md	8931	eb649b91406cd032837ea3dd5ee2adda33e5bd9a1f19085d501fffa825305a34
+hybrid_control_terminal/python_gui/setting.json	791	ecffc54f4de80ab312204ec717628f5976a28d1b8b70881244b571f3a0140a4e
+hybrid_control_terminal/python_gui/settings.json	818	dcdb03742d24ee146e62ef20bca01c3c03aa34f5e77af4a856f5a4a079f6587d
+hybrid_control_terminal/python_gui/tools/check_workspace.py	7014	57cd5f36356af79088944b6f5c681d26d7c7e354b7e31f19f65d713bd7eb7087
+hybrid_control_terminal/python_gui/tools/hand_server.py	4581	b602fd801be6b6583d46fc87706b05289fd0c6744fdf185cb49a342d85b4ce29
+hybrid_control_terminal/python_gui/tools/sender.py	728	c72bc0a8dc61bea7aca2c5a293faa2fe263c0bb505137597c99c6cc29124692c
+hybrid_control_terminal/python_gui/ui/__init__.py	0	e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+hybrid_control_terminal/python_gui/ui/main_window.py	31131	79db16f1d95c17a50b9d062af1996fb14a9f3e6e52132a10449728f081ca7ad7
+hybrid_control_terminal/python_gui/ui/nav_widget.py	19974	7ab6b3f94b0cbf69f4da19798a127b9799020db5886a4e9ab2fef8d9d258a726
+hybrid_control_terminal/python_gui/ui/styles.py	14156	0e1210a2260286913086af17188f2e45701cc18a80a698239860212d51e4c1f9
+hybrid_control_terminal/python_gui/ui/tabs/hand_tab.py	5665	d02723dd76239f17339b6cbccac2d451cb2ca0fdc838f74387b7312c560efbc5
+hybrid_control_terminal/python_gui/ui/tabs/joints_tab.py	4900	2b57241e80550b57c73568b2131d282a22466c63aae11c93ac81ddd70ae7c106
+hybrid_control_terminal/python_gui/ui/tabs/monitor_tab.py	11592	a0702d21320a75b4f35ad6de0fcf1146249655e2c5a33baaab403881dbbc192c
+hybrid_control_terminal/python_gui/ui/tabs/nav_tab.py	30805	353979f0d0c72b76145c23110ee86d52d39e7ae182f4f77d18b93098695202c2
+hybrid_control_terminal/python_gui/ui/tabs/precision_tab.py	24674	7fd8b21c5dbde972ff90de44da747206031c7080e76506f8cb7ad15a67ca40b4
+hybrid_control_terminal/python_gui/ui/tabs/teach_tab.py	15484	e1116c1ca4b26a9e51d2f8cdf01bb2cd22c9e4d3ab88857bce5445ad91525043
+hybrid_control_terminal/python_gui/ui/tabs/voice_tab.py	4908	2c93ffaadd4dcdeeba77266d98797f6d224df71bb1f87ea0e163fd85879e3e2b
+hybrid_control_terminal/python_gui/ui/widgets_task.py	9173	1c94faba7980f9abd751cec6d423df421a8fa332addbb0cfa6d244403ab5360f
+hybrid_control_terminal/python_gui/ui/widgets.py	20098	d39c84303a580f01f7cf187111b87a6475e9b42a875522967fe6f559c7b6dcab
+hybrid_control_terminal/python_gui/user_config.json	132	b28f5ed898c778f6dcf0733292c7117bea6b894c538f47404ca401ff05f9f2f5
+hybrid_control_terminal/python_gui/utils.py	2171	cf7ece189fc646d0f51ff50d51b8acdd736b0aab6495fd0476e1a5815c44b461
+legacy/hand_eye_control/arm7_control.py	7154	9c7d5a6ba39115d9cd0384b145c72bb687f652c710431825b6732e024b438ccc
+models/bottle_v12_best.pt	6231850	a3444edc6a930ca2d7f1cddc2e00972ebb24c382410905d1317c5852b0707c78
+models/bottle_v12_last.pt	6231850	213dce137be8e2929bd43da4d3b1e221ffc4464a903f02a66eb1c6a3d76f8ca4
+models/detect_best.pt	6288217	ee56318213716a66f7f5a9d052c91235308e1707ab42d9b5579d0e4dc7f08a85
+models/detect1_best.pt	36628966	f7c2451626d675adaba6bee0a04b98a3fcb517aa27ad57634705bc736b4d0b5d
+models/hybrid_gui_train_best.pt	6301924	8c89c49873adb942ae78d84b3fcdc8bc3194a5740afa5addaef9861c04492df3
+models/hybrid_gui_train_last.pt	6301924	710ee22d625aa77f1c60f19bcaae7169a7b771f02b6d4321d035d2c1314734e4
+models/MODEL_MANIFEST.md	2350	f646384d260ddc77f65fdb091a0b6fdf253331863036eced489e91fb482a09fe
+models/train4_best.pt	6218723	bad03b1c77d04944d21e7ad1e1e09112e64d7246163ed843f57de075f43cb778
+models/train4_last.pt	6218723	4b3e673c57f9cda26a38346d854dc29e836e5031b9695877745252a0cc77ab69
+models/xinghg_best.pt	6288217	ee56318213716a66f7f5a9d052c91235308e1707ab42d9b5579d0e4dc7f08a85
+models/yolo_v11s_best.pt	19223889	ace73f1f1f8abd8cdd90863fdac6b60d822450087aae5524b7a6fec6bfc4318e
+models/yolov8n.pt	6549796	f59b3d833e2ff32e194b5bb8e08d211dc7c5bdf144b90d2c8412c47ccfc83b36
+README.md	2962	9cd60faee55f7cc6f1469bd5ce6c5e67feffa79fb47bd0fc8abc9171def24c66
+requirements_minimal.txt	45	95408c0d3d0e9c1480f52446eb1320014fe2ccb84d49a63bf05ca571d8066263
+ros2_arm_action/g1_arm_action_ros2/CMakeLists.txt	4004	9d5884b0af23834c09bb742c9c8b9b598303c7b1a6412fc23c018c140cfd014d
+ros2_arm_action/g1_arm_action_ros2/config/arm_action_params.yaml	611	fbdda58fa4c0680f25a63866557cf6539ad7e75645902910bbcb6827273712a5
+ros2_arm_action/g1_arm_action_ros2/launch/g1_arm_action_config.launch.py	1265	6afcbb49be3ef50ad9d15543fd184350f91f8fe0db5bebeb71db2d736ae84f84
+ros2_arm_action/g1_arm_action_ros2/launch/g1_arm_action.launch.py	1592	5b538843ca966d2c9f6a286fcaaeadac9ef5f3b17bd24044c714f308f2871a2e
+ros2_arm_action/g1_arm_action_ros2/package.xml	941	e15018de854a03f48d58a033c16c9ec03baec9b4b5896d98b57856b08bab26bc
+ros2_arm_action/g1_arm_action_ros2/README.md	5069	2ddd89ccb1f6c3d9639ecd0ee204652b24873bade23e67b3141542336879ae71
+ros2_arm_action/g1_arm_action_ros2/src/g1_arm_action_node.cpp	8040	f9cbb015f8955e8be235bb4e79e3b04e3054e7cc6084c035cf460e824860b8a3
+ros2_arm_action/g1_arm_action_ros2/srv/ExecuteArmAction.srv	1196	a441a23f2541a420b07417afae0f83a4bf2a33f8c861e497c3f085d56aaba036
+ros2_arm_action/g1_arm_action_ros2/srv/GetArmActionList.srv	299	707acc3edffd242d94cd7ce58dd119e9465db3dca6813af121005ffc134189c6
+ros2_vision_workspaces/detect/config/a4_5tags.json	2592	fd2bcdae4605b7b391a64a1edbae27d71fabd0fbc674764479719bb8a7eae0de
+ros2_vision_workspaces/detect/config/robot_center_to_camera.json	414	69117a7931fc371bd829caa274c34886697b743c256106ad43b91b0412484884
+ros2_vision_workspaces/detect/src/apriltag_static_calib/apriltag_static_calib/__init__.py	0	e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+ros2_vision_workspaces/detect/src/apriltag_static_calib/apriltag_static_calib/apriltag_static_calib_node.py	14368	62fe00f0a5933ed66959e110750b6789ef26aa3dfd163535658407274d122a50
+ros2_vision_workspaces/detect/src/apriltag_static_calib/launch/apriltag_static_calib.launch.py	3734	01fb6875703412f4847e682ec68325a7a29c24f4ff2b46a3e0c162c2afb562d3
+ros2_vision_workspaces/detect/src/apriltag_static_calib/package.xml	732	bd70d4bd1aad1bf101add1eb656652c71d476db986337c759fe6b70a96da4f2f
+ros2_vision_workspaces/detect/src/apriltag_static_calib/resource/apriltag_static_calib	0	e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+ros2_vision_workspaces/detect/src/apriltag_static_calib/setup.cfg	111	881c528c57ee92b9a958481c98ae4da3a72db36a7e9037549a5cfba62267ec56
+ros2_vision_workspaces/detect/src/apriltag_static_calib/setup.py	1508	833178b7939af2429be63f06a64a579fa11cb2521176a01dfe099411fa2cb072
+ros2_vision_workspaces/detect/src/realtime_yolo_pcd_tf/launch/realtime_yolo_pcd_tf.launch.py	3326	558d5f695e06cb4d27139e14bee49ae7cb752ffc0153e35e9d46764c88472fcd
+ros2_vision_workspaces/detect/src/realtime_yolo_pcd_tf/package.xml	780	44f01b6e11e08364e15260743208ded8ae9adc0269749caee3e65550b273f22f
+ros2_vision_workspaces/detect/src/realtime_yolo_pcd_tf/realtime_yolo_pcd_tf/__init__.py	2	e16f1596201850fd4a63680b27f603cb64e67176159be3d8ed78a4403fdb1700
+ros2_vision_workspaces/detect/src/realtime_yolo_pcd_tf/realtime_yolo_pcd_tf/realtime_node.py	22988	3dcce6b94ec0d31e7f3ccb5c93e466163959312563a4f76c62bfeca090d5226a
+ros2_vision_workspaces/detect/src/realtime_yolo_pcd_tf/resource/realtime_yolo_pcd_tf	21	0241944c83513a4c9deab0acdc72fad59b43f0cf5b04bfe7259524e6ec3c81d0
+ros2_vision_workspaces/detect/src/realtime_yolo_pcd_tf/setup.cfg	109	3e36d07727e44d70887e65be5b66e6d0ffc3a3128929df5e13c64cb31398e6b2
+ros2_vision_workspaces/detect/src/realtime_yolo_pcd_tf/setup.py	840	6be473e504449ed45a881d9b392f4f0f3f0bbb057a6738134e05a5177042fc27
+ros2_vision_workspaces/detect/src/yolo_depth_pcd_interfaces/CMakeLists.txt	487	33eb5a996a492dfcf3976e61a7303619fa45c49aa8b3e08e3f41da1e29934781
+ros2_vision_workspaces/detect/src/yolo_depth_pcd_interfaces/package.xml	549	1a3bc22b4a2892344c917ed4a5d5c7b20ce77d5f042e3c621e3b7cf0550f4331
+ros2_vision_workspaces/detect/src/yolo_depth_pcd_interfaces/srv/ProcessFrame.srv	279	7fdfb2357e5aca872d38916638ecc278e0cc77a04adee8af0626b91ab4020b29
+ros2_vision_workspaces/detect/src/yolo_depth_pcd/launch/continuous_demo.launch.py	2091	1e2b296a2b4b0ed2d7dce3e46a6f1958aeaeaf18babfe64c49e8f709db5d54a4
+ros2_vision_workspaces/detect/src/yolo_depth_pcd/launch/process_frame_server.launch.py	1857	8129d70dca7526d612fb828dc69d9c8ed2474abae9278f692b3d9fe9f8b86dcf
+ros2_vision_workspaces/detect/src/yolo_depth_pcd/launch/realsense_live.launch.py	3022	44c0138ecb508e5eb049d01ea308fd70094d4241de75a5c6f6477d845ef2c5ee
+ros2_vision_workspaces/detect/src/yolo_depth_pcd/package.xml	886	80d9ad92e6be5acec18240abec32099068c8c838e0905c4ec77730eabe5e47e6
+ros2_vision_workspaces/detect/src/yolo_depth_pcd/pyproject.toml	90	4a017048064bf853e9f8ac4a774af07985c633c8bdd164a7ceb2438c350c2e54
+ros2_vision_workspaces/detect/src/yolo_depth_pcd/resource/yolo_depth_pcd	1	01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b
+ros2_vision_workspaces/detect/src/yolo_depth_pcd/setup.cfg	97	e5de38644285d194599906291a48bfa2c9ebde54b2b3b23d44f722e26978f0e9
+ros2_vision_workspaces/detect/src/yolo_depth_pcd/setup.py	1758	8d0bd18858a74388f340aceb885e1542008a89409bc96da1bf6f3cee75bf4a8c
+ros2_vision_workspaces/detect/src/yolo_depth_pcd/yolo_depth_pcd/__init__.py	1	01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b
+ros2_vision_workspaces/detect/src/yolo_depth_pcd/yolo_depth_pcd/live_pipeline_node.py	19128	3cc691f7409262882659c670e94008b3010f0fc78b460dc6bce551e689200611
+ros2_vision_workspaces/detect/src/yolo_depth_pcd/yolo_depth_pcd/process_frame_client.py	2410	892cbca0528ba77aca5d225f5a88b9f0c18e9539410cd765a8600e716684ce2a
+ros2_vision_workspaces/detect/src/yolo_depth_pcd/yolo_depth_pcd/process_frame_server.py	22374	4fbabc769771c525612288330afbc26b3e4c615f3727cf2733c20af4fa021405
+ros2_vision_workspaces/detect1/src/apriltag_static_calib/apriltag_static_calib/__init__.py	0	e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+ros2_vision_workspaces/detect1/src/apriltag_static_calib/apriltag_static_calib/apriltag_static_calib_node.py	14368	62fe00f0a5933ed66959e110750b6789ef26aa3dfd163535658407274d122a50
+ros2_vision_workspaces/detect1/src/apriltag_static_calib/launch/apriltag_static_calib.launch.py	3734	01fb6875703412f4847e682ec68325a7a29c24f4ff2b46a3e0c162c2afb562d3
+ros2_vision_workspaces/detect1/src/apriltag_static_calib/package.xml	732	bd70d4bd1aad1bf101add1eb656652c71d476db986337c759fe6b70a96da4f2f
+ros2_vision_workspaces/detect1/src/apriltag_static_calib/resource/apriltag_static_calib	0	e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+ros2_vision_workspaces/detect1/src/apriltag_static_calib/setup.cfg	111	881c528c57ee92b9a958481c98ae4da3a72db36a7e9037549a5cfba62267ec56
+ros2_vision_workspaces/detect1/src/apriltag_static_calib/setup.py	1508	833178b7939af2429be63f06a64a579fa11cb2521176a01dfe099411fa2cb072
+ros2_vision_workspaces/detect1/src/yolo_depth_pcd_interfaces/CMakeLists.txt	487	33eb5a996a492dfcf3976e61a7303619fa45c49aa8b3e08e3f41da1e29934781
+ros2_vision_workspaces/detect1/src/yolo_depth_pcd_interfaces/package.xml	549	1a3bc22b4a2892344c917ed4a5d5c7b20ce77d5f042e3c621e3b7cf0550f4331
+ros2_vision_workspaces/detect1/src/yolo_depth_pcd_interfaces/srv/ProcessFrame.srv	279	7fdfb2357e5aca872d38916638ecc278e0cc77a04adee8af0626b91ab4020b29
+ros2_vision_workspaces/detect1/src/yolo_depth_pcd/launch/continuous_demo.launch.py	2091	1e2b296a2b4b0ed2d7dce3e46a6f1958aeaeaf18babfe64c49e8f709db5d54a4
+ros2_vision_workspaces/detect1/src/yolo_depth_pcd/launch/process_frame_server.launch.py	1857	8129d70dca7526d612fb828dc69d9c8ed2474abae9278f692b3d9fe9f8b86dcf
+ros2_vision_workspaces/detect1/src/yolo_depth_pcd/launch/realsense_live.launch.py	3002	df07b913fd6549498997249be1b3181121ccaac5db489f1e71174f4c1a9ee373
+ros2_vision_workspaces/detect1/src/yolo_depth_pcd/package.xml	886	80d9ad92e6be5acec18240abec32099068c8c838e0905c4ec77730eabe5e47e6
+ros2_vision_workspaces/detect1/src/yolo_depth_pcd/pyproject.toml	90	4a017048064bf853e9f8ac4a774af07985c633c8bdd164a7ceb2438c350c2e54
+ros2_vision_workspaces/detect1/src/yolo_depth_pcd/resource/yolo_depth_pcd	1	01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b
+ros2_vision_workspaces/detect1/src/yolo_depth_pcd/setup.cfg	97	e5de38644285d194599906291a48bfa2c9ebde54b2b3b23d44f722e26978f0e9
+ros2_vision_workspaces/detect1/src/yolo_depth_pcd/setup.py	1758	8d0bd18858a74388f340aceb885e1542008a89409bc96da1bf6f3cee75bf4a8c
+ros2_vision_workspaces/detect1/src/yolo_depth_pcd/yolo_depth_pcd/__init__.py	1	01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b
+ros2_vision_workspaces/detect1/src/yolo_depth_pcd/yolo_depth_pcd/live_pipeline_node.py	19128	3cc691f7409262882659c670e94008b3010f0fc78b460dc6bce551e689200611
+ros2_vision_workspaces/detect1/src/yolo_depth_pcd/yolo_depth_pcd/process_frame_client.py	2410	892cbca0528ba77aca5d225f5a88b9f0c18e9539410cd765a8600e716684ce2a
+ros2_vision_workspaces/detect1/src/yolo_depth_pcd/yolo_depth_pcd/process_frame_server.py	22374	4fbabc769771c525612288330afbc26b3e4c615f3727cf2733c20af4fa021405
+ros2_vision_workspaces/detect2/src/apriltag_static_calib/apriltag_static_calib/__init__.py	0	e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+ros2_vision_workspaces/detect2/src/apriltag_static_calib/apriltag_static_calib/apriltag_static_calib_node.py	15110	3e3ee100dcb951b5059c7c156f34c6e9f8348ac750941cbb792521576cb61d08
+ros2_vision_workspaces/detect2/src/apriltag_static_calib/launch/apriltag_static_calib.launch.py	4113	35c70c7a8870b8b930077004cd7f4bbc06aaa7f059b2d64f56517b729dd56020
+ros2_vision_workspaces/detect2/src/apriltag_static_calib/package.xml	732	bd70d4bd1aad1bf101add1eb656652c71d476db986337c759fe6b70a96da4f2f
+ros2_vision_workspaces/detect2/src/apriltag_static_calib/resource/apriltag_static_calib	0	e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+ros2_vision_workspaces/detect2/src/apriltag_static_calib/setup.cfg	111	881c528c57ee92b9a958481c98ae4da3a72db36a7e9037549a5cfba62267ec56
+ros2_vision_workspaces/detect2/src/apriltag_static_calib/setup.py	1508	833178b7939af2429be63f06a64a579fa11cb2521176a01dfe099411fa2cb072
+ros2_vision_workspaces/detect2/src/realtime_yolo_pcd_tf/launch/realtime_yolo_pcd_tf.launch.py	3325	7963f677716259b515a0d4e37782849449243ab7c13bfdaad27d2355fb7b5fd9
+ros2_vision_workspaces/detect2/src/realtime_yolo_pcd_tf/package.xml	780	44f01b6e11e08364e15260743208ded8ae9adc0269749caee3e65550b273f22f
+ros2_vision_workspaces/detect2/src/realtime_yolo_pcd_tf/realtime_yolo_pcd_tf/__init__.py	2	e16f1596201850fd4a63680b27f603cb64e67176159be3d8ed78a4403fdb1700
+ros2_vision_workspaces/detect2/src/realtime_yolo_pcd_tf/realtime_yolo_pcd_tf/realtime_node.py	25303	54eb4ddc68ddacecbb878b6ca8fa4ee16352e36488f52c88e960522504610804
+ros2_vision_workspaces/detect2/src/realtime_yolo_pcd_tf/resource/realtime_yolo_pcd_tf	21	0241944c83513a4c9deab0acdc72fad59b43f0cf5b04bfe7259524e6ec3c81d0
+ros2_vision_workspaces/detect2/src/realtime_yolo_pcd_tf/setup.cfg	109	3e36d07727e44d70887e65be5b66e6d0ffc3a3128929df5e13c64cb31398e6b2
+ros2_vision_workspaces/detect2/src/realtime_yolo_pcd_tf/setup.py	840	6be473e504449ed45a881d9b392f4f0f3f0bbb057a6738134e05a5177042fc27
+ros2_vision_workspaces/detect2/src/yolo_depth_pcd_interfaces/CMakeLists.txt	487	33eb5a996a492dfcf3976e61a7303619fa45c49aa8b3e08e3f41da1e29934781
+ros2_vision_workspaces/detect2/src/yolo_depth_pcd_interfaces/package.xml	549	1a3bc22b4a2892344c917ed4a5d5c7b20ce77d5f042e3c621e3b7cf0550f4331
+ros2_vision_workspaces/detect2/src/yolo_depth_pcd_interfaces/srv/ProcessFrame.srv	279	7fdfb2357e5aca872d38916638ecc278e0cc77a04adee8af0626b91ab4020b29
+ros2_vision_workspaces/detect2/src/yolo_depth_pcd/launch/continuous_demo.launch.py	2091	1e2b296a2b4b0ed2d7dce3e46a6f1958aeaeaf18babfe64c49e8f709db5d54a4
+ros2_vision_workspaces/detect2/src/yolo_depth_pcd/launch/process_frame_server.launch.py	1857	8129d70dca7526d612fb828dc69d9c8ed2474abae9278f692b3d9fe9f8b86dcf
+ros2_vision_workspaces/detect2/src/yolo_depth_pcd/launch/realsense_live.launch.py	3022	44c0138ecb508e5eb049d01ea308fd70094d4241de75a5c6f6477d845ef2c5ee
+ros2_vision_workspaces/detect2/src/yolo_depth_pcd/package.xml	886	80d9ad92e6be5acec18240abec32099068c8c838e0905c4ec77730eabe5e47e6
+ros2_vision_workspaces/detect2/src/yolo_depth_pcd/pyproject.toml	90	4a017048064bf853e9f8ac4a774af07985c633c8bdd164a7ceb2438c350c2e54
+ros2_vision_workspaces/detect2/src/yolo_depth_pcd/resource/yolo_depth_pcd	1	01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b
+ros2_vision_workspaces/detect2/src/yolo_depth_pcd/setup.cfg	97	e5de38644285d194599906291a48bfa2c9ebde54b2b3b23d44f722e26978f0e9
+ros2_vision_workspaces/detect2/src/yolo_depth_pcd/setup.py	1758	8d0bd18858a74388f340aceb885e1542008a89409bc96da1bf6f3cee75bf4a8c
+ros2_vision_workspaces/detect2/src/yolo_depth_pcd/yolo_depth_pcd/__init__.py	1	01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b
+ros2_vision_workspaces/detect2/src/yolo_depth_pcd/yolo_depth_pcd/live_pipeline_node.py	19128	3cc691f7409262882659c670e94008b3010f0fc78b460dc6bce551e689200611
+ros2_vision_workspaces/detect2/src/yolo_depth_pcd/yolo_depth_pcd/process_frame_client.py	2410	892cbca0528ba77aca5d225f5a88b9f0c18e9539410cd765a8600e716684ce2a
+ros2_vision_workspaces/detect2/src/yolo_depth_pcd/yolo_depth_pcd/process_frame_server.py	22374	4fbabc769771c525612288330afbc26b3e4c615f3727cf2733c20af4fa021405
+ros2_vision_workspaces/detect3/src/apriltag_static_calib/apriltag_static_calib/__init__.py	0	e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+ros2_vision_workspaces/detect3/src/apriltag_static_calib/apriltag_static_calib/apriltag_static_calib_node.py	15110	3e3ee100dcb951b5059c7c156f34c6e9f8348ac750941cbb792521576cb61d08
+ros2_vision_workspaces/detect3/src/apriltag_static_calib/launch/apriltag_static_calib.launch.py	4113	35c70c7a8870b8b930077004cd7f4bbc06aaa7f059b2d64f56517b729dd56020
+ros2_vision_workspaces/detect3/src/apriltag_static_calib/package.xml	732	bd70d4bd1aad1bf101add1eb656652c71d476db986337c759fe6b70a96da4f2f
+ros2_vision_workspaces/detect3/src/apriltag_static_calib/resource/apriltag_static_calib	0	e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+ros2_vision_workspaces/detect3/src/apriltag_static_calib/setup.cfg	111	881c528c57ee92b9a958481c98ae4da3a72db36a7e9037549a5cfba62267ec56
+ros2_vision_workspaces/detect3/src/apriltag_static_calib/setup.py	1508	833178b7939af2429be63f06a64a579fa11cb2521176a01dfe099411fa2cb072
+ros2_vision_workspaces/detect3/src/interactive_tf_calib/interactive_tf_calib/__init__.py	2	e16f1596201850fd4a63680b27f603cb64e67176159be3d8ed78a4403fdb1700
+ros2_vision_workspaces/detect3/src/interactive_tf_calib/interactive_tf_calib/interactive_tf_calib_node.py	7201	8ecc22657270e934468164a2758bf4064579f815891f07956a5bbb25f28c1202
+ros2_vision_workspaces/detect3/src/interactive_tf_calib/interactive_tf_calib/lidar_overlay_node.py	9190	b3621e7ec7bcdaae821c338dab0f1a9fb0a3e9d845ac15e13927fe159dc4acb9
+ros2_vision_workspaces/detect3/src/interactive_tf_calib/launch/interactive_tf_calib.launch.py	3761	1850c14fa5e6115ae4d6fd30da0b54b42e632e3384bfcbd75ad4054b9dc2f8eb
+ros2_vision_workspaces/detect3/src/interactive_tf_calib/package.xml	903	6194defca354b8710ef8ca37f69e210cd602472b340b1e17f6aef8e990533b91
+ros2_vision_workspaces/detect3/src/interactive_tf_calib/resource/interactive_tf_calib	21	33b20651418d72d088a1c3031b3ff28f241ef16f263b820853eaa55b1f4ac9fb
+ros2_vision_workspaces/detect3/src/interactive_tf_calib/setup.cfg	109	fc6b6ceb5e016ae1ddf48ec7fd96841efdb33e0f7b4a45ced4a42aba95fb1228
+ros2_vision_workspaces/detect3/src/interactive_tf_calib/setup.py	988	5533bd876daf96b0deca84c4481f91015f9a02643ad6b86830ba598ab7241d05
+ros2_vision_workspaces/detect3/src/realtime_yolo_pcd_tf/launch/realtime_yolo_pcd_tf.launch.py	3325	7963f677716259b515a0d4e37782849449243ab7c13bfdaad27d2355fb7b5fd9
+ros2_vision_workspaces/detect3/src/realtime_yolo_pcd_tf/package.xml	780	44f01b6e11e08364e15260743208ded8ae9adc0269749caee3e65550b273f22f
+ros2_vision_workspaces/detect3/src/realtime_yolo_pcd_tf/realtime_yolo_pcd_tf/__init__.py	2	e16f1596201850fd4a63680b27f603cb64e67176159be3d8ed78a4403fdb1700
+ros2_vision_workspaces/detect3/src/realtime_yolo_pcd_tf/realtime_yolo_pcd_tf/realtime_node.py	25303	54eb4ddc68ddacecbb878b6ca8fa4ee16352e36488f52c88e960522504610804
+ros2_vision_workspaces/detect3/src/realtime_yolo_pcd_tf/resource/realtime_yolo_pcd_tf	21	0241944c83513a4c9deab0acdc72fad59b43f0cf5b04bfe7259524e6ec3c81d0
+ros2_vision_workspaces/detect3/src/realtime_yolo_pcd_tf/setup.cfg	109	3e36d07727e44d70887e65be5b66e6d0ffc3a3128929df5e13c64cb31398e6b2
+ros2_vision_workspaces/detect3/src/realtime_yolo_pcd_tf/setup.py	840	6be473e504449ed45a881d9b392f4f0f3f0bbb057a6738134e05a5177042fc27
+ros2_vision_workspaces/detect3/src/yolo_depth_pcd_interfaces/CMakeLists.txt	487	33eb5a996a492dfcf3976e61a7303619fa45c49aa8b3e08e3f41da1e29934781
+ros2_vision_workspaces/detect3/src/yolo_depth_pcd_interfaces/package.xml	549	1a3bc22b4a2892344c917ed4a5d5c7b20ce77d5f042e3c621e3b7cf0550f4331
+ros2_vision_workspaces/detect3/src/yolo_depth_pcd_interfaces/srv/ProcessFrame.srv	279	7fdfb2357e5aca872d38916638ecc278e0cc77a04adee8af0626b91ab4020b29
+ros2_vision_workspaces/detect3/src/yolo_depth_pcd/launch/continuous_demo.launch.py	2091	1e2b296a2b4b0ed2d7dce3e46a6f1958aeaeaf18babfe64c49e8f709db5d54a4
+ros2_vision_workspaces/detect3/src/yolo_depth_pcd/launch/process_frame_server.launch.py	1857	8129d70dca7526d612fb828dc69d9c8ed2474abae9278f692b3d9fe9f8b86dcf
+ros2_vision_workspaces/detect3/src/yolo_depth_pcd/launch/realsense_live.launch.py	3022	44c0138ecb508e5eb049d01ea308fd70094d4241de75a5c6f6477d845ef2c5ee
+ros2_vision_workspaces/detect3/src/yolo_depth_pcd/package.xml	886	80d9ad92e6be5acec18240abec32099068c8c838e0905c4ec77730eabe5e47e6
+ros2_vision_workspaces/detect3/src/yolo_depth_pcd/pyproject.toml	90	4a017048064bf853e9f8ac4a774af07985c633c8bdd164a7ceb2438c350c2e54
+ros2_vision_workspaces/detect3/src/yolo_depth_pcd/resource/yolo_depth_pcd	1	01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b
+ros2_vision_workspaces/detect3/src/yolo_depth_pcd/setup.cfg	97	e5de38644285d194599906291a48bfa2c9ebde54b2b3b23d44f722e26978f0e9
+ros2_vision_workspaces/detect3/src/yolo_depth_pcd/setup.py	1758	8d0bd18858a74388f340aceb885e1542008a89409bc96da1bf6f3cee75bf4a8c
+ros2_vision_workspaces/detect3/src/yolo_depth_pcd/yolo_depth_pcd/__init__.py	1	01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b
+ros2_vision_workspaces/detect3/src/yolo_depth_pcd/yolo_depth_pcd/live_pipeline_node.py	19128	3cc691f7409262882659c670e94008b3010f0fc78b460dc6bce551e689200611
+ros2_vision_workspaces/detect3/src/yolo_depth_pcd/yolo_depth_pcd/process_frame_client.py	2410	892cbca0528ba77aca5d225f5a88b9f0c18e9539410cd765a8600e716684ce2a
+ros2_vision_workspaces/detect3/src/yolo_depth_pcd/yolo_depth_pcd/process_frame_server.py	22374	4fbabc769771c525612288330afbc26b3e4c615f3727cf2733c20af4fa021405

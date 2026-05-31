@@ -1,37 +1,53 @@
 # 未上传到 GitHub 的文件和原因
 
-本仓库尽量保存了继续项目所需的源码、小数据、配置和可上传模型。以下内容没有上传。
-
-## 超过普通 GitHub 单文件限制的大模型
-
-已复制到本机：
+更新时间：2026-05-31
+完整本机备份目录：
 
 ```text
-E:\CodexProjects\Unitree_Projects\手眼协同\factory_reset_backup_20260529_195834\not_uploaded_large_files\models
+E:\CodexProjects\Unitree_Projects\手眼协同\factory_reset_backup_20260531_151408
 ```
 
-| 文件 | 原机器人路径 | 大小 | 处理方式 |
-| --- | --- | ---: | --- |
-| `g1_navgrasp_yolo_v11x_best.pt` | `/home/unitree/g1act_ws/manact_ws/src/g1_yolo_nav_py/yolo_v11x_best.pt` | 114,404,889 bytes | 本机保存，不进 GitHub |
-| `g1act_ws_yolo_v11x_best.pt` | `/home/unitree/g1act_ws/g1act_ws/src/g1_yolo_nav_py/yolo_v11x_best.pt` | 114,404,889 bytes | 本机保存，不进 GitHub |
+## 本机完整备份
 
-`/home/unitree/g1act_ws/manact_ws/install/.../yolo_v11x_best.pt` 属于安装/构建输出中的重复副本，没有单独保存。
+| 文件 | 大小 bytes | 内容 |
+| --- | ---: | --- |
+| `g1_hand_arm_project_full_20260531_151408.tar.gz` | 25,071,256 | 机器人完整主项目，含日志、debug 图、缓存等 |
+| `revo2_python_full_20260531_151408.tar.gz` | 90,607 | Revo2 `python/revo2` 完整快照 |
+| `handeye_yolo_models_and_dataset_20260531_151408.tar.gz` | 258,935,404 | 水瓶 YOLO 训练 run、数据集、多个相关模型和大模型 |
+| `handeye_backup_sha256_20260531_151408.txt` | 357 | 上述压缩包 SHA256 |
 
-## 可重新下载或重建的内容
+## 没进 GitHub 的主要内容
 
-| 内容 | 原因 |
-| --- | --- |
-| `/home/unitree/unitree_sdk2_python` SDK 本体 | 可从 Unitree 官方 GitHub 重新下载；仓库只保存项目目录 `g1_hand_arm_project/` |
-| `/home/unitree/stark-serialport-example` SDK 本体 | 属于 Revo2 SDK/示例包；仓库只保存定制脚本 `left_hand_safe_once.py` |
-| ROS2 `build/`, `install/`, `log/` | 可由 `colcon build` 重新生成 |
-| Python 虚拟环境、`__pycache__`、`.pyc` | 可重新生成 |
-| RealSense ROS2 SDK 工作区 | 可按 Intel RealSense 官方 ROS2 包重新安装 |
+| 内容 | 原因 | 恢复方式 |
+| --- | --- | --- |
+| `yolo_v11x_best.pt`，约 110MB | 超过普通 GitHub 单文件限制 | 从本机 `handeye_yolo_models_and_dataset_20260531_151408.tar.gz` 解压 |
+| `YOLO_Model_Workspace/Datasets/bottle_dataset_v1` 完整数据集 | 训练数据较大，仓库只保留必要小数据和模型 | 从本机压缩包恢复 |
+| 新增运行日志和完整 debug 图片 | 运行产物，适合本地归档，不适合继续扩大 Git 历史 | 从 `g1_hand_arm_project_full_20260531_151408.tar.gz` 恢复 |
+| Unitree SDK 本体 | 可重新下载 | `git clone https://github.com/unitreerobotics/unitree_sdk2_python.git` |
+| Revo2 SDK 本体 | 属于厂商 SDK/示例包 | 从强脑 SDK 包或本机完整快照恢复 |
+| ROS2 `build/`, `install/`, `log/` | 可重建 | 恢复源码后 `colcon build` |
+| Python `__pycache__`, `.pyc`, 虚拟环境 | 可重建 | 重新安装依赖 |
 
-## 上传前检查
+## 已上传 GitHub 的替代内容
 
-本仓库已按以下原则过滤：
+- `g1_hand_arm_project/`：可继续开发的主项目代码、小 JSON/CSV、历史脚本备份。
+- `hand_control/revo2/`：本项目相关的 Revo2 手部定制脚本和历史备份，不含完整 SDK。
+- `models/`：低于普通 GitHub 单文件限制的小模型，含 `bottle_v12_best.pt`。
+- `docs/`：恢复步骤、Codex 上下文、文件说明。
 
-- 没有上传大于 100MB 的单文件。
-- 没有上传 ROS2 构建产物。
-- 没有上传 Python 缓存。
-- 小模型 `.pt` 文件保留在 `models/`，用于后续快速恢复检测。
+## 恢复大文件
+
+Windows PowerShell：
+
+```powershell
+$robot = "unitree@机器人IP"
+$backup = "E:\CodexProjects\Unitree_Projects\手眼协同\factory_reset_backup_20260531_151408"
+scp "$backup\handeye_yolo_models_and_dataset_20260531_151408.tar.gz" "$robot:/home/unitree/"
+```
+
+机器人上：
+
+```bash
+cd /home/unitree
+tar -xzf handeye_yolo_models_and_dataset_20260531_151408.tar.gz
+```

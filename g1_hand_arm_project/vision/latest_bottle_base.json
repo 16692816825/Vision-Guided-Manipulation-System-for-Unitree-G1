@@ -1,4 +1,43 @@
 {
+  "base_transform": {
+    "T_base_camera": [
+      [
+        -0.000781,
+        -0.971795,
+        0.235827,
+        0.170172
+      ],
+      [
+        -0.99994,
+        -0.001808,
+        -0.010764,
+        0.008979
+      ],
+      [
+        0.010887,
+        -0.235822,
+        -0.971735,
+        1.230231
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    ],
+    "base_xyz_m": {
+      "x": 0.821433,
+      "y": 0.196347,
+      "z": 0.012378
+    },
+    "frame_from": "camera_color_optical_frame",
+    "frame_to": "g1_base",
+    "note": "vision transform only; no arm or hand command was sent",
+    "reason": null,
+    "timestamp_s": 1780195455.442599,
+    "valid": true
+  },
   "camera_xyz_m": {
     "x": -0.201124,
     "y": -0.346035,

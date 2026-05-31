@@ -1,28 +1,32 @@
 {
   "current": {
-    "camera_x_m": -0.161963,
-    "camera_y_m": -0.195486,
-    "camera_z_m": 0.601,
-    "confidence": 0.856755,
-    "cx": 167.0,
-    "cy": 48.0,
-    "depth_mm": 601.0,
+    "camera_x_m": 0.055504,
+    "camera_y_m": -0.11543,
+    "camera_z_m": 0.752,
+    "confidence": 0.42487,
+    "cx": 375.0,
+    "cy": 152.0,
+    "depth_mm": 752.0,
     "label": "bottle"
   },
   "delta_camera_m": {
-    "x": -0.019393,
-    "y": -0.032017,
-    "z": 0.0687
+    "x": 0.198074,
+    "y": 0.048039,
+    "z": 0.2197
   },
-  "delta_depth_mm": 68.7,
+  "delta_depth_mm": 219.7,
   "delta_px": {
-    "cx": -1.0,
-    "cy": -11.0
+    "cx": 207.0,
+    "cy": 93.0
   },
   "failed_axes": [
-    "z"
+    "x",
+    "y",
+    "z",
+    "cx",
+    "cy"
   ],
-  "frame_index": 13214,
+  "frame_index": 0,
   "message": "bottle is outside the task-level target window",
   "note": "camera-frame offset only; no arm control and no hand-eye transform applied",
   "reference": {
@@ -36,7 +40,7 @@
     "label": null
   },
   "status": "out_of_range",
-  "timestamp_s": 1779895894.415213,
+  "timestamp_s": 1780059295.219305,
   "tolerance_m": {
     "x": 0.04,
     "y": 0.04,

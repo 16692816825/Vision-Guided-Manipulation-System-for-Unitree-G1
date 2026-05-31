@@ -1,37 +1,28 @@
-# Codex 新窗口恢复上下文
+# Codex 新窗口项目上下文
 
-请先读完本文件，再修改代码。这个仓库是“宇树 G1 + 强脑 Revo2 左灵巧手 + 视觉辅助抓瓶”项目的恢复备份，用户希望恢复出厂设置后继续做自动化流程。
+请先完整阅读本文件和 `docs/RESTORE_AFTER_FACTORY_RESET.md`，再修改代码。这个仓库是“宇树 G1 + 强脑 Revo2 灵巧手 + 视觉辅助抓瓶”项目在机器人恢复出厂设置前的备份。
 
-## 用户沟通要求
+## 交互要求
 
 - 用中文回答。
 - 直接、务实、工程化，优先给可执行命令和明确风险。
-- 需要用户操作机器人、相机、标定板或物理环境时再问；其余文件整理、代码检查、文档和普通命令尽量直接做。
-- 给学习建议时必须附链接。
+- 只有需要用户操作实体机器人、瓶子、相机、标定板、VNC 时再让用户做；其余文件同步、代码检查、文档和普通命令尽量直接完成。
+- 涉及学习建议必须附链接。
 
-## 当前机器人与路径
+## 当前来源和备份
 
-最近可用 SSH 地址：
+恢复前机器人：
 
 ```bash
 ssh unitree@10.88.2.69
 ```
 
-旧地址曾经包括 `10.218.112.89`、`10.218.112.69`、`192.168.123.164`。恢复出厂设置后地址可能变化，先以现场网络为准。
-
-机器人恢复前的关键路径：
+核心机器人路径：
 
 ```text
 /home/unitree/unitree_sdk2_python/g1_hand_arm_project
 /home/unitree/stark-serialport-example/python/revo2/left_hand_safe_once.py
-/home/unitree/detect/ros2_ws/src
-/home/unitree/detect1/ros2_ws/src
-/home/unitree/detect2/ros2_ws/src
-/home/unitree/detect3/ros2_ws/src
-/home/unitree/g1act_ws/manact_ws
-/home/unitree/g1act_ws/g1act_ws
-/home/unitree/G1_Docker_Deploy/python_gui
-/home/unitree/g1_arm_ws/src/g1_arm_action_ros2
+/home/unitree/YOLO_Model_Workspace/Models/Training_Runs/bottle_v12/weights/best.pt
 ```
 
 本机仓库：
@@ -40,23 +31,29 @@ ssh unitree@10.88.2.69
 E:\CodexProjects\Unitree_Projects\Vision-Guided-Manipulation-System-for-Unitree-G1
 ```
 
-本机不可上传备份：
+完整本机快照：
 
 ```text
-E:\CodexProjects\Unitree_Projects\手眼协同\factory_reset_backup_20260529_195834
+E:\CodexProjects\Unitree_Projects\手眼协同\factory_reset_backup_20260531_151408
 ```
+
+其中：
+
+- `g1_hand_arm_project_full_20260531_151408.tar.gz` 是机器人主项目完整快照，含日志/debug 图。
+- `revo2_python_full_20260531_151408.tar.gz` 是 Revo2 `python/revo2` 完整快照。
+- `handeye_yolo_models_and_dataset_20260531_151408.tar.gz` 是 YOLO 模型、数据集和大模型本地备份。
 
 ## 强制安全约束
 
-1. 不要把手臂 `arm_sdk` 控制写进 `hand_control/revo2/left_hand_safe_once.py`。这个脚本只能控制 Revo2 手指。
-2. 不要再写或运行“只设置 `motor_cmd[29].q=0` 的空 LowCmd 释放脚本”。之前这样释放导致手臂乱甩和电机卡顿声。
-3. 释放 `arm_sdk` 必须读取当前 `lowstate`，保持当前关节 `q/kp/kd`，再平滑降低 `WEIGHT=29`。
-4. 涉及机器人动作时先小幅测试、空手测试、低速测试。没有完成手眼标定前，不要让视觉结果直接闭环控制手臂。
-5. 用户当前更想推进自动化流程，但仍要把“视觉判断”和“手臂动作”分阶段验证。
+1. 不要把手臂 `arm_sdk` 控制写进 `hand_control/revo2/left_hand_safe_once.py`。
+2. 不要再使用只写 `motor_cmd[29].q = 0` 的空 `LowCmd` 释放方式。
+3. 释放 `arm_sdk` 时必须保持当前 `lowstate` 里的关节 `q/kp/kd`，再平滑降低 `WEIGHT=29`。
+4. 涉及机器人动作时先小幅、空手、低速测试。
+5. 手眼标定稳定前，不要把视觉结果直接闭环到机械臂。
 
-## G1 手臂控制关节
+## 当前 G1 手臂控制
 
-当前按 G1 23DoF 场景使用：
+23DoF 场景下当前使用：
 
 ```python
 LEFT_ARM = [15, 16, 17, 18, 19]
@@ -67,69 +64,54 @@ KP = 20.0
 KD = 1.0
 ```
 
-已知含义：
+主要关节含义：
 
-- `15`: LeftShoulderPitch，影响大臂前后/上抬。
-- `16`: LeftShoulderRoll，影响左右外扩/内收。
-- `18`: LeftElbow，影响小臂折叠/伸开。
-- `19`: LeftWristRoll，影响手腕旋转。
+- `15`: LeftShoulderPitch，大臂前后/上抬。
+- `16`: LeftShoulderRoll，左右外扩/内收。
+- `18`: LeftElbow，小臂折叠/伸开。
+- `19`: LeftWristRoll，手腕旋转。
 
-最近一次预抓预览演示用偏移：
-
-```text
-15=+0.06
-16=-0.42
-18=+0.36
-```
-
-对应命令形式：
-
-```bash
-cd /home/unitree/unitree_sdk2_python/g1_hand_arm_project
-python3 tools/arm_pregrasp_preview.py --net eth0 --offset 16=-0.42,15=0.06,18=0.36 --max-abs-offset 0.45 --hold-seconds 45 --yes
-```
-
-`tools/arm_pregrasp_preview.py` 只预览手臂预抓姿态，不闭合手，不拿瓶子。闭合手需要外部单独调用 Revo2 手脚本。
-
-当前独立全流程脚本：
+当前优先维护脚本：
 
 ```text
 g1_hand_arm_project/arm_pick_place_standalone.py
 ```
 
-这是后续优先维护的固定轨迹抓放脚本。它内置 Revo2 左手串口控制，不通过 `left_hand_safe_once.py`，流程为：
+当前流程：
 
 ```text
-open -> 到固定抓取点 -> thumb_open_max -> thumb_ready -> bottle
--> 小臂抬瓶 -> 悬停 3 秒 -> 放回原位 -> open -> 空手收回 -> 平滑释放 arm_sdk
+张手 -> 安全初始位检查 -> 折小臂 -> 大臂送到固定点
+-> 小臂展开到瓶子 -> thumb_open_max -> thumb_ready -> bottle
+-> 小臂抬瓶 -> 悬停 3 秒 -> 大臂外扩
+-> 外扩姿态下放小臂 -> 张手放瓶
+-> 空手折回、外扩收回、回初始位 -> 平滑释放 arm_sdk
 ```
 
-当前为了先验证完整抓瓶流程，`thumb_ready` 反馈不到位时只报警，不再中止流程，会继续执行 `bottle` 五指抓握。后续仍需要单独排查左手 `ThumbAux` 通道。
-
-最新小臂高度参数：
+当前关键参数：
 
 ```python
-UNFOLD_PREGRASP_DELTA = {18: -1.35, ...}
-LIFT_BOTTLE_DELTA = {18: -1.80, ...}
+UNFOLD_PREGRASP_DELTA[18] = -0.19
+LIFT_BOTTLE_DELTA[18] = -1.0
+OUTWARD_RELEASE_SHOULDER_ROLL_DELTA = 0.9
 ```
 
-调参规律：`18` 更小会让小臂更往上折，`18` 更大则小臂更低。后续如果只想调固定点和抬瓶高度，优先改这两个字典里的 `18`。
+`18` 更小会让小臂更向上折；`18` 更大则更低。
 
-## Revo2 左手控制
+## Revo2 左手
 
-定制脚本在仓库：
+GitHub 中保留的定制手部脚本：
 
 ```text
 hand_control/revo2/left_hand_safe_once.py
 ```
 
-恢复到机器人后应放回：
+恢复到机器人后应放到：
 
 ```text
 /home/unitree/stark-serialport-example/python/revo2/left_hand_safe_once.py
 ```
 
-关键配置：
+当前配置：
 
 ```python
 PORT = "/dev/ttyUSB1"
@@ -137,13 +119,13 @@ SLAVE_ID = 0x7e
 BAUDRATE = libstark.Baudrate.Baud460800
 ```
 
-手型数组顺序：
+手型顺序：
 
 ```text
 [thumb, thumb_aux, index, middle, ring, pinky]
 ```
 
-当前抓瓶手型：
+当前手型：
 
 ```python
 "open": [0, 0, 0, 0, 0, 0]
@@ -152,67 +134,81 @@ BAUDRATE = libstark.Baudrate.Baud460800
 "bottle": [180, 850, 480, 560, 540, 420]
 ```
 
-`grasp` 的动作顺序：
+独立主流程内置 Revo2 控制，不通过 `left_hand_safe_once.py` 调用，但 `left_hand_safe_once.py` 仍用于单独测手。
 
-```text
-thumb_open_max -> wait -> thumb_ready -> wait -> bottle
+## 视觉状态
+
+当前 RGB YOLO 启动脚本：
+
+```bash
+cd /home/unitree/unitree_sdk2_python/g1_hand_arm_project
+bash vision/start_bottle_rgb_fast.sh
 ```
 
-左手 `ThumbAux` 曾出现“反馈为 1000，但肉眼拇指动作不明显”的现象。右手诊断脚本为：
+默认参数：
 
 ```text
-g1_hand_arm_project/right_hand_thumb_test.py
+source=/dev/video4
+selected=/dev/video4/v4l2
+width=640
+height=480
+imgsz=640
+conf=0.15
+infer-every=2
+track-max-jump=80
+track-smooth-alpha=0.35
+track-lost-frames=12
+track-switch-frames=8
+track-lock-conf=0.25
 ```
 
-右手配置为 `/dev/ttyUSB2`、`SLAVE_ID=0x7f`，只测试右手 `open -> thumb_ready -> bottle -> open`，不动机械臂。
+`detect_bottle_2d.py` 已加入目标跟踪逻辑：锁定后优先跟随上一帧附近的框，远处新框必须连续稳定出现才切换，避免水瓶框来回横跳。
 
-## 视觉与自动化状态
-
-当前视觉主线在：
+视觉相关文件：
 
 ```text
-g1_hand_arm_project/vision/
+vision/detect_bottle_2d.py
+vision/start_bottle_rgb_fast.sh
+vision/detect_bottle_depth.py
+vision/record_bottle_positions.py
+vision/compare_bottle_to_target.py
+vision/evaluate_grasp_window.py
+vision/auto_grasp_decision.py
+vision/transform_bottle_to_base.py
+vision/handeye_g1_head_camera.json
+vision/target_grasp_reference.json
+vision/records/*.csv
 ```
 
-重要文件：
+当前还没有正式闭环路径规划。下一步应先稳定 YOLO + 深度输出，再用 ChArUco 或 AprilTag 做手眼标定。
 
-- `detect_bottle_2d.py`: YOLOv8 2D 检测水瓶，输出 `cx/cy/confidence`，保存 debug 图。
-- `detect_bottle_depth.py`: YOLO + 深度相机，输出水瓶 3D 信息。
-- `record_bottle_positions.py`: 记录位置点。
-- `compare_bottle_to_target.py`: 当前瓶子与目标抓取参考比较。
-- `evaluate_grasp_window.py`: 判断是否在抓取窗口内。
-- `auto_grasp_decision.py`: 输出是否建议抓取和偏差。
-- `target_grasp_reference.json`: 目标抓取参考。
-- `records/*.csv`: 位置 1-4、目标点、随机点 1-3。
+## GitHub 与本机备份策略
 
-现在还没有完成正式手眼标定。下一步应该先恢复检测和深度输出，再准备标定板做相机坐标到机器人坐标的转换。
+GitHub 已保留：
 
-## GitHub/本机备份策略
+- `g1_hand_arm_project/` 代码、小 JSON/CSV、历史脚本备份。
+- `hand_control/revo2/` 中与本项目相关的手部定制脚本和备份。
+- `models/` 中低于 GitHub 单文件限制的小模型。
+- `docs/` 中给用户和 Codex 的恢复说明。
 
-本仓库已经上传或准备上传：
+没有上传或不应上传：
 
-- 抓瓶主项目源码、小数据、日志和 debug 图。
-- Revo2 左手定制脚本。
-- ROS2 视觉/标定源码。
-- G1 NavGrasp 源码和可上传小模型。
-- Hybrid control terminal 核心 Python 源码。
-- 可上传的 `.pt` 小模型。
+- Unitree SDK 本体。
+- Revo2 SDK 本体。
+- Python/ROS2 构建产物和缓存。
+- 完整运行日志/debug 图新快照。
+- `yolo_v11x_best.pt` 等大于普通 GitHub 单文件限制的大模型。
 
-没有上传：
+这些在本机完整备份中。
 
-- `unitree_sdk2_python` SDK 本体，可从 Unitree 官方仓库重新下载。
-- `stark-serialport-example` SDK 本体，可从强脑/本地备份恢复，仓库只保留定制手脚本。
-- ROS2 `build/install/log`。
-- 虚拟环境、缓存。
-- `yolo_v11x_best.pt`，单文件约 114MB，超过普通 GitHub 单文件限制，已放本机不可上传目录。
+## 恢复后建议顺序
 
-## 恢复后优先级
-
-1. 恢复 SDK 和项目目录，先跑 Python 单元测试，不动机器人。
-2. 验证 `left_hand_safe_once.py open/grasp`，只控制手。
-3. 验证 `arm_pick_place_standalone.py --hand-only-test`，确认手型顺序。
-4. 验证 `tools/arm_pregrasp_preview.py --dry-run` 和小幅空手预览。
-5. 固定轨迹安全后，再跑 `arm_pick_place_standalone.py eth0`。
-6. 恢复 YOLO + 深度相机检测，确认 `latest_bottle_3d.json` 正常生成。
-7. 准备 ChArUco 或 AprilTag 标定板做手眼标定。
-8. 标定稳定后再做轨迹规划和自动抓取。
+1. 恢复 SDK 和 `g1_hand_arm_project`，先跑 `py_compile` 和单元测试。
+2. 只测 Revo2 手：`left_hand_safe_once.py open/thumb_ready/bottle/open`。
+3. 只测独立脚本手部：`python3 arm_pick_place_standalone.py --hand-only-test`。
+4. 小幅空手预抓：`tools/arm_pregrasp_preview.py`。
+5. 固定轨迹全流程：`python3 arm_pick_place_standalone.py eth0`。
+6. 打开 RGB YOLO：`bash vision/start_bottle_rgb_fast.sh`。
+7. 恢复深度和记录点。
+8. 准备标定板，做手眼标定。
+9. 标定稳定后再考虑路径规划和自动抓取。

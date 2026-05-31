@@ -1,0 +1,48 @@
+import asyncio
+import sys
+from revo2_utils import *
+
+SLAVE_ID = 0x7e
+PORT = "/dev/ttyUSB1"
+BAUDRATE = libstark.Baudrate.Baud460800
+
+POSES = {
+    "open": [0, 0, 0, 0, 0, 0],
+    "half": [200, 0, 350, 350, 350, 350],
+    "bottle": [320, 700, 560, 560, 540, 540],
+    "close": [400, 0, 1000, 1000, 1000, 1000],
+}
+
+async def main():
+    pose = sys.argv[1] if len(sys.argv) > 1 else "open"
+    if pose not in POSES:
+        print("usage: python3 left_hand_safe_once.py open|half|bottle|close")
+        sys.exit(1)
+
+    client = await libstark.modbus_open(PORT, BAUDRATE)
+    if not client:
+        print(f"failed to open {PORT}")
+        sys.exit(1)
+
+    try:
+        info = await client.get_device_info(SLAVE_ID)
+        if not info:
+            print(f"failed to get left hand info, id={SLAVE_ID}")
+            sys.exit(1)
+
+        print("Left hand:", info.description)
+
+        await client.set_finger_unit_mode(SLAVE_ID, libstark.FingerUnitMode.Normalized)
+
+        positions = POSES[pose]
+        speeds = [300] * 6
+
+        print("send pose:", pose, positions)
+        await client.set_finger_positions_and_speeds(SLAVE_ID, positions, speeds)
+        await asyncio.sleep(2.0)
+
+    finally:
+        libstark.modbus_close(client)
+
+if __name__ == "__main__":
+    asyncio.run(main())

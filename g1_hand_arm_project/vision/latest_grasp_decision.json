@@ -9,37 +9,53 @@
     "cx": 45.0,
     "cy": 45.0
   },
-  "decision": "NEEDS_CORRECTION",
-  "exceeded_correction_axes": [],
-  "exceeded_ready_axes": [
+  "decision": "REJECT",
+  "exceeded_correction_axes": [
+    "x",
+    "y",
+    "z",
+    "cx",
     "cy"
   ],
-  "message": "bottle is close enough for a small correction, but not for direct fixed-trajectory grasp",
-  "next_step": "compute a small correction after arm-side mapping is validated",
+  "exceeded_ready_axes": [
+    "x",
+    "y",
+    "z",
+    "cx",
+    "cy"
+  ],
+  "message": "bottle offset is too large for the current automated grasp stage",
+  "next_step": "ask operator to move the bottle closer to the target or use a higher-level planner",
   "offset": {
     "current": {
-      "camera_x_m": -0.154067,
-      "camera_y_m": -0.145766,
-      "camera_z_m": 0.545,
-      "confidence": 0.796059,
-      "cx": 159.0,
-      "cy": 83.0,
-      "depth_mm": 545.0,
+      "camera_x_m": 0.055504,
+      "camera_y_m": -0.11543,
+      "camera_z_m": 0.752,
+      "confidence": 0.42487,
+      "cx": 375.0,
+      "cy": 152.0,
+      "depth_mm": 752.0,
       "label": "bottle"
     },
     "delta_camera_m": {
-      "x": -0.011497,
-      "y": 0.017703,
-      "z": 0.0127
+      "x": 0.198074,
+      "y": 0.048039,
+      "z": 0.2197
     },
-    "delta_depth_mm": 12.7,
+    "delta_depth_mm": 219.7,
     "delta_px": {
-      "cx": -9.0,
-      "cy": 24.0
+      "cx": 207.0,
+      "cy": 93.0
     },
-    "failed_axes": [],
-    "frame_index": 39863,
-    "message": "bottle is inside the task-level target window",
+    "failed_axes": [
+      "x",
+      "y",
+      "z",
+      "cx",
+      "cy"
+    ],
+    "frame_index": 0,
+    "message": "bottle is outside the task-level target window",
     "note": "camera-frame offset only; no arm control and no hand-eye transform applied",
     "reference": {
       "camera_x_m": -0.14257,
@@ -51,8 +67,8 @@
       "depth_mm": 532.3,
       "label": null
     },
-    "status": "ready",
-    "timestamp_s": 1779899254.430383,
+    "status": "out_of_range",
+    "timestamp_s": 1780059295.282541,
     "tolerance_m": {
       "x": 0.04,
       "y": 0.04,
@@ -63,7 +79,7 @@
       "cy": 45.0
     },
     "valid": true,
-    "within_tolerance": true
+    "within_tolerance": false
   },
   "ready_tolerance_m": {
     "x": 0.015,
@@ -74,6 +90,6 @@
     "cx": 12.0,
     "cy": 12.0
   },
-  "reason": "inside_correction_window",
-  "risk_level": "medium"
+  "reason": "outside_correction_window",
+  "risk_level": "high"
 }
