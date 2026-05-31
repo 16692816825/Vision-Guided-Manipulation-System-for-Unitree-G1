@@ -230,6 +230,12 @@ def build_arg_parser() -> argparse.ArgumentParser:
         default=320,
         help="YOLO inference image size. Lower values reduce latency.",
     )
+    parser.add_argument(
+        "--infer-every",
+        type=int,
+        default=1,
+        help="Run YOLO every N frames and reuse the last detection between inferences.",
+    )
     return parser
 
 
@@ -292,6 +298,8 @@ def run(args: argparse.Namespace) -> int:
     frame_index = 0
     saved_count = 0
     window_name = "G1 bottle detection"
+    infer_every = max(1, int(args.infer_every))
+    last_detection: Optional[Detection] = None
 
     if args.show:
         cv2.namedWindow(window_name, cv2.WINDOW_NORMAL)
@@ -307,14 +315,16 @@ def run(args: argparse.Namespace) -> int:
                 print(f"ERROR: failed to read frame at index {frame_index}")
                 return 4
 
-            results = model(frame, conf=args.conf, imgsz=args.imgsz, verbose=False)
-            result = results[0]
-            detection = select_best_detection(
-                boxes=result.boxes,
-                names=model.names,
-                target_names=target_names,
-                min_confidence=args.conf,
-            )
+            if frame_index % infer_every == 0:
+                results = model(frame, conf=args.conf, imgsz=args.imgsz, verbose=False)
+                result = results[0]
+                last_detection = select_best_detection(
+                    boxes=result.boxes,
+                    names=model.names,
+                    target_names=target_names,
+                    min_confidence=args.conf,
+                )
+            detection = last_detection
 
             annotated = draw_detection(frame, detection)
 

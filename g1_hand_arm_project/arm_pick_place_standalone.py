@@ -1,14 +1,12 @@
 """Unitree G1 左臂 + Revo2 左手固定轨迹抓瓶脚本。
 
-这个脚本是当前推荐的独立全流程版本：
-1. 机械臂通过 Unitree DDS 的 rt/arm_sdk 控制。
-2. Revo2 左手通过串口 SDK 直接控制。
-3. 不调用左手单独测试脚本。
+这个脚本是独立全流程版本：机械臂通过 Unitree DDS 的 rt/arm_sdk 控制，
+Revo2 左手通过串口 SDK 直接控制，不调用 left_hand_safe_once.py。
 
-完整动作：
+当前动作流程：
 张手 -> 手臂到瓶子固定点 -> 大拇指预备 -> 五指抓瓶
--> 小臂抬起 -> 悬停 -> 放回原位 -> 张手 -> 空手收回
--> 平滑释放 arm_sdk。
+-> 抬小臂 -> 悬停 -> 大臂外扩 -> 外扩姿态下放小臂 -> 张手
+-> 空手收回 -> 平滑释放 arm_sdk。
 
 只想测试手型时，使用 --hand-only-test，不会初始化机械臂。
 """
@@ -27,7 +25,6 @@ for _candidate in [_THIS_FILE.parent] + list(_THIS_FILE.parents):
             sys.path.insert(0, str(_candidate))
         break
 
-# Revo2 手部 SDK 在机器人上的路径。这里只导入 SDK，不复用左手单独测试脚本的数据。
 HAND_SDK_DIR = Path("/home/unitree/stark-serialport-example/python/revo2")
 if str(HAND_SDK_DIR) not in sys.path:
     sys.path.insert(0, str(HAND_SDK_DIR))
@@ -39,31 +36,24 @@ from unitree_sdk2py.idl.unitree_hg.msg.dds_ import LowCmd_, LowState_
 from unitree_sdk2py.utils.crc import CRC
 
 
-# G1 23DoF 场景下的双臂关节编号。
-# 左臂负责抓瓶，另一侧手臂一起保持，避免肩部姿态突然变化。
 LEFT_ARM = [15, 16, 17, 18, 19]
 OTHER_ARM = [22, 23, 24, 25, 26]
 ALL_ARM = LEFT_ARM + OTHER_ARM
 WEIGHT = 29
 
-# 低层手臂控制参数。调手型和视觉时不要随意加大 KP/KD。
 DT = 0.02
 KP = 20.0
 KD = 1.0
 
-# 左手 Revo2 串口配置。恢复环境后如果串口变化，优先改 HAND_PORT。
 HAND_PORT = "/dev/ttyUSB1"
 HAND_SLAVE_ID = 0x7E
 HAND_SPEEDS = [300] * 6
-
-# ThumbAux 是第 2 个通道，对应大拇指侧摆/对掌预备动作。
-# 本项目要求先 thumb_ready，再五指收缩抓瓶。
 THUMB_AUX_INDEX = 1
 THUMB_AUX_READY_MIN = 500
 REQUIRE_THUMB_AUX_READY = True
 
-# Revo2 SDK 的手指数组顺序：
-# [thumb, thumb_aux, index, middle, ring, pinky]
+# Revo2 SDK 的手指数组顺序：[thumb, thumb_aux, index, middle, ring, pinky]。
+# 当前要求：到达固定点后先让 thumb_aux 进入大拇指预备/垂直状态，再五指收缩抓瓶。
 HAND_POSES = {
     "open": [0, 0, 0, 0, 0, 0],
     "thumb_open_max": [0, 0, 0, 0, 0, 0],
@@ -71,8 +61,8 @@ HAND_POSES = {
     "bottle": [180, 850, 480, 560, 540, 420],
 }
 
-# 这组安全初始位来自当前机器人实测。脚本启动时如果手臂不在附近，
-# 会先缓慢回到这个姿态；如果偏差过大，会停止而不是强行回位。
+# 这组安全初始位来自当前机器人实测。正式动作前如果不在附近，
+# 脚本会先缓慢回到该姿态；偏差过大时直接停止，避免强行拉回。
 SAFE_START_Q = {
     15: 0.290546,
     16: 0.130748,
@@ -90,7 +80,7 @@ SAFE_RETURN_SECONDS = 6.0
 SAFE_RETURN_HOLD_SECONDS = 0.5
 SAFE_RETURN_MAX_DELTA_RAD = 2.4
 
-# 下面所有轨迹目标都是相对 q0 的增量。q0 来自脚本启动时读取到的 lowstate，
+# 下面所有轨迹目标都是相对启动时 q0 的增量。
 # 如果触发安全回初始位，q0 会更新为 SAFE_START_Q。
 FOLD_ARM_DELTA = {
     15: 1.00,
@@ -112,7 +102,7 @@ UNFOLD_PREGRASP_DELTA = {
     15: -1.00,
     16: 0.08,
     17: 0.00,
-    18: -1.35,  # 到瓶子固定点时的小臂高度；数值更小，小臂更往上折。
+    18: -0.22,
     19: -0.25,
 }
 
@@ -120,9 +110,13 @@ LIFT_BOTTLE_DELTA = {
     15: -1.00,
     16: 0.08,
     17: 0.00,
-    18: -1.80,  # 抓住瓶子后抬小臂的高度；数值更小，抬得更高。
+    18: -1.0,
     19: -0.25,
 }
+
+# 抓住瓶子并抬小臂后，先让大臂外扩，再下放小臂和松手。
+# 这里只改 16 号肩横滚，避免覆盖最新的小臂高度和抓取点参数。
+OUTWARD_RELEASE_SHOULDER_ROLL_DELTA = 0.9
 
 RETRACT_OUT_DELTA = {
     15: 1.00,
@@ -134,7 +128,6 @@ RETRACT_OUT_DELTA = {
 
 
 def safe_start_qmap(current):
-    """在当前关节表基础上，只把双臂关节替换成安全初始位。"""
     target = dict(current)
     for joint, q in SAFE_START_Q.items():
         target[joint] = float(q)
@@ -142,7 +135,6 @@ def safe_start_qmap(current):
 
 
 def safe_start_delta_report(qmap):
-    """计算当前双臂姿态和安全初始位的最大偏差。"""
     deltas = {joint: float(qmap[joint]) - float(SAFE_START_Q[joint]) for joint in SAFE_START_Q}
     max_joint = max(deltas, key=lambda joint: abs(deltas[joint]))
     return deltas, max_joint, abs(deltas[max_joint])
@@ -154,8 +146,6 @@ def is_near_safe_start(qmap, tolerance=SAFE_START_TOLERANCE_RAD):
 
 
 class StandalonePickPlace:
-    """同时管理 G1 手臂 DDS 控制和 Revo2 左手串口控制。"""
-
     def __init__(self, hand_port=HAND_PORT):
         self.hand_port = hand_port
         self.hand_client = None
@@ -169,7 +159,6 @@ class StandalonePickPlace:
         self.low_state = msg
 
     async def connect_hand(self):
-        """连接左手 Revo2，并切换到 0-1000 的归一化位置单位。"""
         self.hand_client = await libstark.modbus_open(self.hand_port, libstark.Baudrate.Baud460800)  # noqa: F405
         if not self.hand_client:
             raise RuntimeError(f"failed to open left hand serial port {self.hand_port}")
@@ -187,7 +176,6 @@ class StandalonePickPlace:
             self.hand_client = None
 
     async def send_hand_pose(self, name, wait_s=2.0):
-        """发送一个手型，等待动作完成，并打印反馈，方便现场判断实际动作。"""
         if self.hand_client is None:
             raise RuntimeError("left hand serial is not connected")
         if name not in HAND_POSES:
@@ -204,8 +192,6 @@ class StandalonePickPlace:
         except Exception as exc:
             print(f"hand pose {name} feedback read failed: {exc}")
         if name == "thumb_ready" and REQUIRE_THUMB_AUX_READY:
-            # 如果大拇指预备通道反馈不到位，只报警但继续 bottle 抓握。
-            # 这样现场能先验证完整抓瓶流程，后续再单独排查 thumb_aux 通道。
             try:
                 self.validate_thumb_aux_ready(feedback)
             except RuntimeError as exc:
@@ -223,12 +209,13 @@ class StandalonePickPlace:
             )
 
     def build_targets(self, q0):
-        """根据 q0 和各组 DELTA 生成完整流程里会用到的目标姿态。"""
         self.q0 = dict(q0)
         self.q_fold = dict(self.q0)
         self.q_lift_folded = dict(self.q0)
         self.q_unfold_pregrasp = dict(self.q0)
         self.q_lift_bottle = dict(self.q0)
+        self.q_lift_bottle_out = dict(self.q0)
+        self.q_release_out = dict(self.q0)
         self.q_retract_out = dict(self.q0)
 
         for j, d in FOLD_ARM_DELTA.items():
@@ -239,6 +226,10 @@ class StandalonePickPlace:
             self.q_unfold_pregrasp[j] = self.q0[j] + d
         for j, d in LIFT_BOTTLE_DELTA.items():
             self.q_lift_bottle[j] = self.q0[j] + d
+        self.q_lift_bottle_out = dict(self.q_lift_bottle)
+        self.q_lift_bottle_out[16] = self.q0[16] + OUTWARD_RELEASE_SHOULDER_ROLL_DELTA
+        self.q_release_out = dict(self.q_unfold_pregrasp)
+        self.q_release_out[16] = self.q0[16] + OUTWARD_RELEASE_SHOULDER_ROLL_DELTA
         for j, d in RETRACT_OUT_DELTA.items():
             self.q_retract_out[j] = self.q0[j] + d
 
@@ -251,6 +242,8 @@ class StandalonePickPlace:
                 "lift_folded =", round(self.q_lift_folded[j], 4),
                 "unfold_pregrasp =", round(self.q_unfold_pregrasp[j], 4),
                 "lift_bottle =", round(self.q_lift_bottle[j], 4),
+                "lift_bottle_out =", round(self.q_lift_bottle_out[j], 4),
+                "release_out =", round(self.q_release_out[j], 4),
                 "retract_out =", round(self.q_retract_out[j], 4),
             )
 
@@ -263,7 +256,6 @@ class StandalonePickPlace:
         self.build_targets(q0)
 
     def ensure_safe_start(self):
-        """正式抓瓶前的安全流程：不在初始位时先缓慢回初始位。"""
         deltas, max_joint, max_delta = safe_start_delta_report(self.q0)
         print(
             "safety precheck:",
@@ -300,7 +292,6 @@ class StandalonePickPlace:
         self.build_targets(q_safe)
 
     def write(self, qmap, weight):
-        """向 rt/arm_sdk 发布一次双臂命令，并用 WEIGHT 控制接管程度。"""
         self.low_cmd.motor_cmd[WEIGHT].q = float(weight)
 
         for j in ALL_ARM:
@@ -318,7 +309,6 @@ class StandalonePickPlace:
         return {j: (1 - r) * a[j] + r * b[j] for j in ALL_ARM}
 
     def phase(self, name, seconds, a, b, wa, wb):
-        """把一个动作阶段拆成很多小步，避免手臂突然跳到目标点。"""
         print(name)
         steps = max(1, int(seconds / DT))
         for i in range(steps):
@@ -333,11 +323,6 @@ class StandalonePickPlace:
         return max(abs(float(a[j]) - float(b[j])) for j in ALL_ARM)
 
     async def abort_return(self, cause):
-        """异常时的回收路径。
-
-        先尝试张手，再按已知中间姿态收回手臂，最后平滑释放 arm_sdk。
-        不使用空 LowCmd 直接释放。
-        """
         print("abort_return:", cause)
         if self.hand_client is not None:
             try:
@@ -359,7 +344,6 @@ class StandalonePickPlace:
         self.phase("abort: release arm_sdk", 1.0, self.q0, self.q0, 1.0, 0.0)
 
     async def run(self):
-        """执行完整固定轨迹抓放流程。"""
         self.pub = ChannelPublisher("rt/arm_sdk", LowCmd_)
         self.pub.Init()
 
@@ -376,12 +360,10 @@ class StandalonePickPlace:
             self.arm_control_started = True
             self.ensure_safe_start()
 
-            # 接近瓶子：先折小臂缩短半径，再移动大臂，最后展开到固定抓取点。
             self.phase("pick: fold forearm near upper arm", 2.2, self.q0, self.q_fold, 1.0, 1.0)
             self.phase("pick: lift and move folded arm", 4.2, self.q_fold, self.q_lift_folded, 1.0, 1.0)
             self.phase("pick: unfold forearm to bottle", 3.0, self.q_lift_folded, self.q_unfold_pregrasp, 1.0, 1.0)
 
-            # 抓取顺序：先让大拇指进入预备/对掌状态，再执行瓶子抓握手型。
             self.phase("pick: hold before grasp", 0.5, self.q_unfold_pregrasp, self.q_unfold_pregrasp, 1.0, 1.0)
             await self.send_hand_pose("thumb_open_max", 1.0)
             time.sleep(0.4)
@@ -390,17 +372,16 @@ class StandalonePickPlace:
             await self.send_hand_pose("bottle", 2.0)
             self.phase("pick: hold after grasp", 1.0, self.q_unfold_pregrasp, self.q_unfold_pregrasp, 1.0, 1.0)
 
-            # 抓住后只抬小臂，悬停 3 秒，再回到同一个固定点放瓶。
             self.phase("pick: lift forearm with bottle", 2.0, self.q_unfold_pregrasp, self.q_lift_bottle, 1.0, 1.0)
             self.phase("pick: hover with bottle lifted", 3.0, self.q_lift_bottle, self.q_lift_bottle, 1.0, 1.0)
-            self.phase("pick: lower bottle back to release position", 2.0, self.q_lift_bottle, self.q_unfold_pregrasp, 1.0, 1.0)
+            self.phase("pick: move upper arm outward with lifted bottle", 2.0, self.q_lift_bottle, self.q_lift_bottle_out, 1.0, 1.0)
+            self.phase("pick: lower forearm at outward release position", 2.0, self.q_lift_bottle_out, self.q_release_out, 1.0, 1.0)
 
-            # 放回原位后张手，再空手收回，降低夹瓶或拖拽风险。
-            self.phase("place: hold before release", 0.5, self.q_unfold_pregrasp, self.q_unfold_pregrasp, 1.0, 1.0)
+            self.phase("place: hold before release", 0.5, self.q_release_out, self.q_release_out, 1.0, 1.0)
             await self.send_hand_pose("open", 2.0)
-            self.phase("place: hold after release", 1.0, self.q_unfold_pregrasp, self.q_unfold_pregrasp, 1.0, 1.0)
+            self.phase("place: hold after release", 1.0, self.q_release_out, self.q_release_out, 1.0, 1.0)
 
-            self.phase("place: fold forearm back after release", 3.0, self.q_unfold_pregrasp, self.q_lift_folded, 1.0, 1.0)
+            self.phase("place: fold forearm back after release", 3.0, self.q_release_out, self.q_lift_folded, 1.0, 1.0)
             self.phase("place: retract outward after release", 4.2, self.q_lift_folded, self.q_retract_out, 1.0, 1.0)
             self.phase("place: final empty-hand back to initial", 3.0, self.q_retract_out, self.q0, 1.0, 1.0)
 
@@ -415,7 +396,6 @@ class StandalonePickPlace:
 
 
 async def hand_only_test(hand_port=HAND_PORT):
-    """只测试左手手型，不初始化 DDS，也不会移动机械臂。"""
     runner = StandalonePickPlace(hand_port=hand_port)
     await runner.connect_hand()
     try:
