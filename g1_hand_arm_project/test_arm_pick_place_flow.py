@@ -90,17 +90,8 @@ class ArmPickPlaceFlowTest(unittest.TestCase):
         self.assertTrue(STANDALONE_SCRIPT.exists(), "arm_pick_place_standalone.py is missing")
         text = STANDALONE_SCRIPT.read_text(encoding="utf-8")
 
-        self.assertRegex(text, r"UNFOLD_PREGRASP_DELTA\s*=\s*{[^}]*18:\s*-1\.35")
-        self.assertRegex(text, r"LIFT_BOTTLE_DELTA\s*=\s*{[^}]*18:\s*-1\.80")
-
-    def test_standalone_thumb_ready_warning_does_not_abort_grasp(self):
-        self.assertTrue(STANDALONE_SCRIPT.exists(), "arm_pick_place_standalone.py is missing")
-        text = STANDALONE_SCRIPT.read_text(encoding="utf-8")
-
-        send_pose_body = text[text.index("async def send_hand_pose") : text.index("def validate_thumb_aux_ready")]
-        self.assertIn("try:", send_pose_body)
-        self.assertIn("except RuntimeError as exc:", send_pose_body)
-        self.assertIn("continuing to bottle grasp", send_pose_body)
+        self.assertRegex(text, r"UNFOLD_PREGRASP_DELTA\s*=\s*{[^}]*18:\s*-0\.19")
+        self.assertRegex(text, r"LIFT_BOTTLE_DELTA\s*=\s*{[^}]*18:\s*-1\.0")
 
     def test_standalone_hand_and_safety_order(self):
         self.assertTrue(STANDALONE_SCRIPT.exists(), "arm_pick_place_standalone.py is missing")

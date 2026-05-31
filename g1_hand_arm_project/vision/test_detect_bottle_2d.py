@@ -18,9 +18,11 @@ from detect_bottle_depth import (
 )
 from detect_bottle_2d import (
     Detection,
+    TargetTracker,
     backend_names_for_candidate,
     box_center,
     camera_candidates,
+    collect_target_detections,
     normalize_target_names,
     parse_source,
     read_latest_frame,
@@ -52,8 +54,9 @@ class DetectBottle2DTests(unittest.TestCase):
         self.assertEqual(parse_source("/dev/video4"), "/dev/video4")
         self.assertEqual(parse_source("/tmp/input.mp4"), "/tmp/input.mp4")
 
-    def test_integer_camera_tries_default_backend_before_v4l2(self):
-        self.assertEqual(backend_names_for_candidate(1), ["default", "v4l2"])
+    def test_camera_prefers_v4l2_backend_for_realsense_capture(self):
+        self.assertEqual(backend_names_for_candidate(1), ["v4l2", "default"])
+        self.assertEqual(backend_names_for_candidate("/dev/video4"), ["v4l2", "default"])
         self.assertEqual(backend_names_for_candidate("/tmp/input.mp4"), ["default"])
 
     def test_camera_candidates_prioritizes_realsense_color_paths(self):
@@ -125,6 +128,79 @@ class DetectBottle2DTests(unittest.TestCase):
         )
 
         self.assertIsNone(detection)
+
+    def test_collect_target_detections_returns_all_valid_target_boxes(self):
+        boxes = [
+            FakeBox([0, 0, 10, 10], 0.92, 1),
+            FakeBox([20, 30, 80, 110], 0.61, 0),
+            FakeBox([40, 50, 140, 170], 0.83, 0),
+        ]
+
+        detections = collect_target_detections(
+            boxes=boxes,
+            names={0: "bottle", 1: "person"},
+            target_names={"bottle"},
+            min_confidence=0.3,
+        )
+
+        self.assertEqual([item.center for item in detections], [(50, 70), (90, 110)])
+
+    def test_target_tracker_rejects_single_far_jump(self):
+        tracker = TargetTracker(
+            max_jump_px=40,
+            smooth_alpha=1.0,
+            lost_frames=3,
+            switch_frames=3,
+        )
+        first = Detection("bottle", 0.8, (80.0, 80.0, 120.0, 160.0), (100, 120))
+        far = Detection("bottle", 0.95, (300.0, 80.0, 340.0, 160.0), (320, 120))
+
+        self.assertEqual(tracker.update([first]), first)
+        self.assertEqual(tracker.update([far]), first)
+
+    def test_target_tracker_accepts_near_slow_motion_and_smooths(self):
+        tracker = TargetTracker(
+            max_jump_px=80,
+            smooth_alpha=0.5,
+            lost_frames=3,
+            switch_frames=3,
+        )
+        first = Detection("bottle", 0.8, (80.0, 80.0, 120.0, 160.0), (100, 120))
+        moved = Detection("bottle", 0.7, (100.0, 90.0, 140.0, 170.0), (120, 130))
+
+        tracker.update([first])
+        tracked = tracker.update([moved])
+
+        self.assertEqual(tracked.center, (110, 125))
+        self.assertEqual(tracked.xyxy, (90.0, 85.0, 130.0, 165.0))
+
+    def test_target_tracker_switches_after_far_target_persists(self):
+        tracker = TargetTracker(
+            max_jump_px=40,
+            smooth_alpha=1.0,
+            lost_frames=5,
+            switch_frames=2,
+        )
+        first = Detection("bottle", 0.8, (80.0, 80.0, 120.0, 160.0), (100, 120))
+        far = Detection("bottle", 0.95, (300.0, 80.0, 340.0, 160.0), (320, 120))
+
+        tracker.update([first])
+        self.assertEqual(tracker.update([far]), first)
+        self.assertEqual(tracker.update([far]), far)
+
+    def test_target_tracker_requires_confidence_to_lock_initial_target(self):
+        tracker = TargetTracker(
+            max_jump_px=40,
+            smooth_alpha=1.0,
+            lost_frames=3,
+            switch_frames=3,
+            lock_confidence=0.25,
+        )
+        weak = Detection("bottle", 0.19, (80.0, 80.0, 120.0, 160.0), (100, 120))
+        strong = Detection("bottle", 0.45, (80.0, 80.0, 120.0, 160.0), (100, 120))
+
+        self.assertIsNone(tracker.update([weak]))
+        self.assertEqual(tracker.update([strong]), strong)
 
 
 class DetectBottleDepthTests(unittest.TestCase):

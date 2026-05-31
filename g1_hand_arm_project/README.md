@@ -6,7 +6,8 @@
 
 ```text
 左手自然张开 -> 左臂到固定抓取点 -> 大拇指先到预备/垂直位置 -> 五指收缩抓瓶
--> 小臂抬起瓶子 -> 悬停 3 秒 -> 放回原位 -> 张手 -> 空手收回 -> 平滑释放 arm_sdk
+-> 小臂抬起瓶子 -> 悬停 3 秒 -> 大臂外扩 -> 下放小臂 -> 张手放瓶
+-> 空手收回 -> 平滑释放 arm_sdk
 ```
 
 ## 路径
@@ -77,8 +78,6 @@ HAND_SLAVE_ID = 0x7E
 "bottle": [180, 850, 480, 560, 540, 420]
 ```
 
-当前左手 `thumb_ready` 反馈可能读不到预期值。全流程脚本会打印警告，但不会因此中止，会继续执行 `bottle` 五指抓握；这只是为了先验证完整抓瓶流程，后续仍应单独排查 `ThumbAux` 通道。
-
 流程：
 
 ```text
@@ -90,7 +89,7 @@ HAND_SLAVE_ID = 0x7E
 6. 折小臂，送大臂，到固定抓取点。
 7. 执行 thumb_open_max -> thumb_ready -> bottle。
 8. 抓住后小臂抬起，悬停 3 秒。
-9. 小臂放回抓取点，张手释放。
+9. 大臂外扩，外扩姿态下放小臂，张手释放。
 10. 空手折回、外扩避让、回初始姿态。
 11. 平滑释放 arm_sdk，关闭手部串口。
 ```
@@ -111,8 +110,8 @@ python3 arm_pick_place_standalone.py --hand-only-test
 当前小臂高度参数：
 
 ```python
-UNFOLD_PREGRASP_DELTA[18] = -1.35
-LIFT_BOTTLE_DELTA[18] = -1.80
+UNFOLD_PREGRASP_DELTA[18] = -0.19
+LIFT_BOTTLE_DELTA[18] = -1.00
 ```
 
 调参规律：
@@ -120,8 +119,8 @@ LIFT_BOTTLE_DELTA[18] = -1.80
 ```text
 UNFOLD_PREGRASP_DELTA[18] 控制到瓶子固定点时的小臂高度。
 LIFT_BOTTLE_DELTA[18] 控制抓住后抬瓶时的小臂高度。
-18 的值更小，例如 -1.45 / -1.90，小臂更往上折。
-18 的值更大，例如 -1.25 / -1.70，小臂会低一些。
+18 的值更小，例如 -0.24 / -1.05，小臂更往上折。
+18 的值更大，例如 -0.14 / -0.95，小臂会低一些。
 ```
 
 ## 调抓瓶姿态：arm_grasp_hold.py
@@ -235,6 +234,31 @@ vision/record_bottle_positions.py
 vision/compare_bottle_to_target.py
 vision/evaluate_grasp_window.py
 vision/auto_grasp_decision.py
+vision/transform_bottle_to_base.py
+vision/start_bottle_rgb_fast.sh
+```
+
+打开 RGB YOLO 识别窗口：
+
+```bash
+cd /home/unitree/unitree_sdk2_python/g1_hand_arm_project
+bash vision/start_bottle_rgb_fast.sh
+```
+
+当前启动参数：
+
+```text
+/dev/video4 RGB 相机，V4L2 后端，640x480，YOLO imgsz 640
+conf=0.15，infer-every=2
+tracking enabled：max_jump=80px，smooth_alpha=0.35，lock_conf=0.25
+```
+
+跟踪逻辑用于减少误检跳变：初次锁定和远距离切换需要较高置信度，锁定后优先跟随上一帧附近的目标，适合瓶子缓慢移动的场景。
+
+关闭视觉窗口：
+
+```bash
+pkill -f "vision/detect_bottle_2d.py"
 ```
 
 下一步如果继续自动化，应先完成稳定检测、深度输出和手眼标定，再把视觉目标接入轨迹规划。

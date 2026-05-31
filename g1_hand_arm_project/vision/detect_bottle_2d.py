@@ -62,13 +62,17 @@ def _label_for_class(names, class_id: int) -> str:
         return str(class_id)
 
 
-def select_best_detection(
+def center_distance(a: Tuple[int, int], b: Tuple[int, int]) -> float:
+    return ((float(a[0] - b[0]) ** 2) + (float(a[1] - b[1]) ** 2)) ** 0.5
+
+
+def collect_target_detections(
     boxes: Iterable,
     names,
     target_names: Set[str],
     min_confidence: float,
-) -> Optional[Detection]:
-    best: Optional[Detection] = None
+) -> List[Detection]:
+    detections: List[Detection] = []
 
     for box in boxes or []:
         confidence = _as_scalar(box.conf)
@@ -81,16 +85,140 @@ def select_best_detection(
             continue
 
         xyxy = _as_xyxy(box.xyxy[0])
-        detection = Detection(
-            label=label,
-            confidence=round(confidence, 6),
-            xyxy=xyxy,
-            center=box_center(xyxy),
+        detections.append(
+            Detection(
+                label=label,
+                confidence=round(confidence, 6),
+                xyxy=xyxy,
+                center=box_center(xyxy),
+            )
         )
-        if best is None or detection.confidence > best.confidence:
-            best = detection
 
-    return best
+    return detections
+
+
+def select_best_detection(
+    boxes: Iterable,
+    names,
+    target_names: Set[str],
+    min_confidence: float,
+) -> Optional[Detection]:
+    detections = collect_target_detections(
+        boxes=boxes,
+        names=names,
+        target_names=target_names,
+        min_confidence=min_confidence,
+    )
+    return max(detections, key=lambda item: item.confidence, default=None)
+
+
+def smooth_detection(previous: Detection, current: Detection, alpha: float) -> Detection:
+    alpha = min(1.0, max(0.0, alpha))
+    xyxy = tuple(
+        (old_value * (1.0 - alpha)) + (new_value * alpha)
+        for old_value, new_value in zip(previous.xyxy, current.xyxy)
+    )
+    return Detection(
+        label=current.label,
+        confidence=current.confidence,
+        xyxy=xyxy,  # type: ignore[arg-type]
+        center=box_center(xyxy),
+    )
+
+
+class TargetTracker:
+    """Keep the bottle target stable when YOLO briefly detects another object."""
+
+    def __init__(
+        self,
+        max_jump_px: float,
+        smooth_alpha: float,
+        lost_frames: int,
+        switch_frames: int,
+        lock_confidence: float = 0.0,
+    ):
+        self.max_jump_px = max(1.0, float(max_jump_px))
+        self.smooth_alpha = min(1.0, max(0.0, float(smooth_alpha)))
+        self.lost_frames = max(0, int(lost_frames))
+        self.switch_frames = max(1, int(switch_frames))
+        self.lock_confidence = max(0.0, float(lock_confidence))
+        self.current: Optional[Detection] = None
+        self.missed_frames = 0
+        self.pending: Optional[Detection] = None
+        self.pending_frames = 0
+
+    def update(self, detections: Iterable[Detection]) -> Optional[Detection]:
+        candidates = list(detections)
+        if not candidates:
+            self.pending = None
+            self.pending_frames = 0
+            self.missed_frames += 1
+            if self.current is not None and self.missed_frames <= self.lost_frames:
+                return self.current
+            self.current = None
+            return None
+
+        if self.current is None:
+            confident = [
+                item for item in candidates if item.confidence >= self.lock_confidence
+            ]
+            if not confident:
+                return None
+            return self._accept(max(confident, key=lambda item: item.confidence))
+
+        nearby = [
+            item
+            for item in candidates
+            if center_distance(item.center, self.current.center) <= self.max_jump_px
+        ]
+        if nearby:
+            selected = max(
+                nearby,
+                key=lambda item: item.confidence
+                - 0.25 * center_distance(item.center, self.current.center) / self.max_jump_px,
+            )
+            return self._accept(selected)
+
+        switch_candidates = [
+            item for item in candidates if item.confidence >= self.lock_confidence
+        ]
+        if not switch_candidates:
+            self.missed_frames += 1
+            if self.missed_frames <= self.lost_frames:
+                return self.current
+            self.current = None
+            return None
+
+        strongest = max(switch_candidates, key=lambda item: item.confidence)
+        if (
+            self.pending is not None
+            and center_distance(strongest.center, self.pending.center) <= self.max_jump_px
+        ):
+            self.pending_frames += 1
+            self.pending = strongest
+        else:
+            self.pending = strongest
+            self.pending_frames = 1
+
+        if self.pending_frames >= self.switch_frames:
+            return self._accept(strongest)
+
+        self.missed_frames += 1
+        if self.missed_frames <= self.lost_frames:
+            return self.current
+
+        self.current = None
+        return None
+
+    def _accept(self, detection: Detection) -> Detection:
+        if self.current is None:
+            self.current = detection
+        else:
+            self.current = smooth_detection(self.current, detection, self.smooth_alpha)
+        self.missed_frames = 0
+        self.pending = None
+        self.pending_frames = 0
+        return self.current
 
 
 def parse_source(value: str):
@@ -112,7 +240,9 @@ def camera_candidates(source) -> List:
 
 def backend_names_for_candidate(candidate) -> List[str]:
     if isinstance(candidate, int):
-        return ["default", "v4l2"]
+        return ["v4l2", "default"]
+    if re.fullmatch(r"/dev/video\d+", str(candidate)):
+        return ["v4l2", "default"]
     return ["default"]
 
 
@@ -236,6 +366,41 @@ def build_arg_parser() -> argparse.ArgumentParser:
         default=1,
         help="Run YOLO every N frames and reuse the last detection between inferences.",
     )
+    parser.add_argument(
+        "--no-track",
+        action="store_true",
+        help="Disable target tracking and always use the highest-confidence detection.",
+    )
+    parser.add_argument(
+        "--track-max-jump",
+        type=float,
+        default=80.0,
+        help="Maximum accepted center jump in pixels before treating a box as a new target.",
+    )
+    parser.add_argument(
+        "--track-smooth-alpha",
+        type=float,
+        default=0.35,
+        help="Smoothing factor for tracked boxes. Lower values reduce jitter.",
+    )
+    parser.add_argument(
+        "--track-lost-frames",
+        type=int,
+        default=12,
+        help="Keep the last tracked target for this many inference frames after missed detections.",
+    )
+    parser.add_argument(
+        "--track-switch-frames",
+        type=int,
+        default=8,
+        help="Require a far-away new target to persist this many inference frames before switching.",
+    )
+    parser.add_argument(
+        "--track-lock-conf",
+        type=float,
+        default=0.25,
+        help="Minimum confidence needed to lock the first target or switch to a far new target.",
+    )
     return parser
 
 
@@ -292,6 +457,25 @@ def run(args: argparse.Namespace) -> int:
     print(f"model: {model_path}")
     print(f"source: {args.source} (selected: {selected_source})")
     print(f"targets: {', '.join(sorted(target_names))}")
+    tracker = None
+    if not args.no_track:
+        tracker = TargetTracker(
+            max_jump_px=args.track_max_jump,
+            smooth_alpha=args.track_smooth_alpha,
+            lost_frames=args.track_lost_frames,
+            switch_frames=args.track_switch_frames,
+            lock_confidence=args.track_lock_conf,
+        )
+        print(
+            "tracking: enabled "
+            f"max_jump={tracker.max_jump_px:.1f}px "
+            f"smooth_alpha={tracker.smooth_alpha:.2f} "
+            f"lost_frames={tracker.lost_frames} "
+            f"switch_frames={tracker.switch_frames} "
+            f"lock_conf={tracker.lock_confidence:.2f}"
+        )
+    else:
+        print("tracking: disabled")
     print("vision-only mode: no arm control will be used")
     print("press Ctrl+C to stop")
 
@@ -318,12 +502,20 @@ def run(args: argparse.Namespace) -> int:
             if frame_index % infer_every == 0:
                 results = model(frame, conf=args.conf, imgsz=args.imgsz, verbose=False)
                 result = results[0]
-                last_detection = select_best_detection(
+                candidates = collect_target_detections(
                     boxes=result.boxes,
                     names=model.names,
                     target_names=target_names,
                     min_confidence=args.conf,
                 )
+                if tracker is None:
+                    last_detection = max(
+                        candidates,
+                        key=lambda item: item.confidence,
+                        default=None,
+                    )
+                else:
+                    last_detection = tracker.update(candidates)
             detection = last_detection
 
             annotated = draw_detection(frame, detection)

@@ -1,17 +1,17 @@
-"""Unitree G1 左臂 + Revo2 左手固定轨迹抓瓶脚本。
+"""Unitree G1 左臂 + Revo2 左手独立抓放水瓶脚本。
 
-这个脚本是独立全流程版本：机械臂通过 Unitree DDS 的 rt/arm_sdk 控制，
-Revo2 左手通过串口 SDK 直接控制，不调用 left_hand_safe_once.py。
+脚本内部同时包含机械臂固定轨迹、Revo2 左手串口控制、手型参数、
+安全初始位检查和 arm_sdk 平滑释放逻辑，不调用外部手部测试脚本。
 
-当前动作流程：
-张手 -> 手臂到瓶子固定点 -> 大拇指预备 -> 五指抓瓶
--> 抬小臂 -> 悬停 -> 大臂外扩 -> 外扩姿态下放小臂 -> 张手
+当前流程：
+张手 -> 到固定抓取点 -> 大拇指预备/垂直 -> 五指抓瓶
+-> 抬小臂悬停 -> 大臂外扩 -> 下放小臂 -> 张手放瓶
 -> 空手收回 -> 平滑释放 arm_sdk。
 
-只想测试手型时，使用 --hand-only-test，不会初始化机械臂。
+只测试手部时使用 --hand-only-test，不会初始化机械臂。
 """
 
-# 兼容两种目录结构：既可以放在 unitree_sdk2_python 内，也可以放在整理后的 GitHub 仓库内。
+# 兼容整理后的 GitHub 仓库目录和机器人上的 unitree_sdk2_python 目录。
 from pathlib import Path
 import argparse
 import asyncio
@@ -52,8 +52,8 @@ THUMB_AUX_INDEX = 1
 THUMB_AUX_READY_MIN = 500
 REQUIRE_THUMB_AUX_READY = True
 
-# Revo2 SDK 的手指数组顺序：[thumb, thumb_aux, index, middle, ring, pinky]。
-# 当前要求：到达固定点后先让 thumb_aux 进入大拇指预备/垂直状态，再五指收缩抓瓶。
+# Revo2 左手顺序：[thumb, thumb_aux, index, middle, ring, pinky]。
+# 到达固定点后先让 thumb_aux 做大拇指预备/垂直动作，再闭合五指抓瓶。
 HAND_POSES = {
     "open": [0, 0, 0, 0, 0, 0],
     "thumb_open_max": [0, 0, 0, 0, 0, 0],
@@ -61,8 +61,8 @@ HAND_POSES = {
     "bottle": [180, 850, 480, 560, 540, 420],
 }
 
-# 这组安全初始位来自当前机器人实测。正式动作前如果不在附近，
-# 脚本会先缓慢回到该姿态；偏差过大时直接停止，避免强行拉回。
+# 安全初始位来自当前机器人实测。若启动时不在附近，脚本会先缓慢回到该姿态；
+# 若偏差过大则直接停止，避免从危险姿态强行拉回。
 SAFE_START_Q = {
     15: 0.290546,
     16: 0.130748,
@@ -80,8 +80,7 @@ SAFE_RETURN_SECONDS = 6.0
 SAFE_RETURN_HOLD_SECONDS = 0.5
 SAFE_RETURN_MAX_DELTA_RAD = 2.4
 
-# 下面所有轨迹目标都是相对启动时 q0 的增量。
-# 如果触发安全回初始位，q0 会更新为 SAFE_START_Q。
+# 以下轨迹目标都是相对启动 q0 的增量。若触发安全回初始位，q0 会更新为 SAFE_START_Q。
 FOLD_ARM_DELTA = {
     15: 1.00,
     16: 0.32,
@@ -102,7 +101,7 @@ UNFOLD_PREGRASP_DELTA = {
     15: -1.00,
     16: 0.08,
     17: 0.00,
-    18: -0.22,
+    18: -0.19,
     19: -0.25,
 }
 

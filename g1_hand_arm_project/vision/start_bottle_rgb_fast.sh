@@ -6,20 +6,25 @@ MODEL="/home/unitree/YOLO_Model_Workspace/Models/Training_Runs/bottle_v12/weight
 SOURCE="/dev/video4"
 LOG="/tmp/detect_bottle_2d.log"
 
-pkill -f "python3 vision/detect_bottle_2d.py" 2>/dev/null || true
+pkill -f "vision/detect_bottle_2d.py" 2>/dev/null || true
 sleep 1
 
 cd "$PROJECT_DIR"
-DISPLAY=:99 nohup python3 vision/detect_bottle_2d.py \
+DISPLAY=:99 nohup python3 -u vision/detect_bottle_2d.py \
   --model "$MODEL" \
   --source "$SOURCE" \
   --width 640 \
-  --height 360 \
+  --height 480 \
   --show \
   --frames 0 \
-  --imgsz 320 \
-  --conf 0.25 \
-  --infer-every 3 \
+  --imgsz 640 \
+  --conf 0.15 \
+  --infer-every 2 \
+  --track-max-jump 80 \
+  --track-smooth-alpha 0.35 \
+  --track-lost-frames 12 \
+  --track-switch-frames 8 \
+  --track-lock-conf 0.25 \
   --flush-frames 0 \
   --save-every 0 \
   --print-every 30 \
