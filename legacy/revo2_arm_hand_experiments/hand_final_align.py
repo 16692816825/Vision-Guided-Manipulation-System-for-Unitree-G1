@@ -28,7 +28,7 @@ class HandPowerOff:
         ChannelFactoryInitialize(0, self.iface)
         # 尝试关闭串口连接
         self.hand_client = await libstark.modbus_open(self.usb_port, libstark.Baudrate.Baud460800)
-        
+
         self.pub_arm = ChannelPublisher("rt/arm_sdk", LowCmd_)
         self.pub_arm.Init()
         self.sub = ChannelSubscriber("rt/lowstate", LowState_)
@@ -37,7 +37,7 @@ class HandPowerOff:
         print("[System] 正在捕获位置以锁定手臂...")
         while self.low_state is None:
             await asyncio.sleep(0.1)
-        
+
         lock_q = {j: self.low_state.motor_state[j].q for j in range(35)}
 
         print("[Action] 正在切断灵巧手动力电源 (WEIGHT -> 0.0)...")
@@ -50,12 +50,12 @@ class HandPowerOff:
                 msg.motor_cmd[j].q = lock_q[j] # 锁定当前位置
                 msg.motor_cmd[j].kp = 20.0
                 msg.motor_cmd[j].kd = 1.0
-            
+
             # 【核心】将 29 号关节设为 0，切断末端 24V 供电
-            msg.motor_cmd[29].q = 0.0 
+            msg.motor_cmd[29].q = 0.0
             msg.motor_cmd[29].kp = 10.0
             msg.motor_cmd[29].kd = 1.0
-            
+
             msg.crc = self.crc.Crc(msg)
             self.pub_arm.Write(msg)
             await asyncio.sleep(0.02)

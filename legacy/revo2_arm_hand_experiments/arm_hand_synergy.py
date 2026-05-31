@@ -69,7 +69,7 @@ class HandArmSynergy:
     def write_arm_cmd(self, qmap, weight_val):
         msg = unitree_hg_msg_dds__LowCmd_()
         msg.motor_cmd[WEIGHT_JOINT].q = float(weight_val)
-        
+
         for j in ALL_ARM:
             msg.motor_cmd[j].mode = 0x01 # 关键：确保控制权
             msg.motor_cmd[j].q = float(qmap[j])
@@ -97,7 +97,7 @@ class HandArmSynergy:
         print(f"[System] 连接灵巧手 {hand_port}...")
         self.hand_client = await libstark.modbus_open(hand_port, libstark.Baudrate.Baud460800)
         await self.hand_client.set_finger_unit_mode(self.slave_id, libstark.FingerUnitMode.Normalized)
-        
+
         self.pub_arm = ChannelPublisher("rt/arm_sdk", LowCmd_)
         self.pub_arm.Init()
         self.sub = ChannelSubscriber("rt/lowstate", LowState_)
@@ -106,7 +106,7 @@ class HandArmSynergy:
         await self.wait_state()
 
         # --- 动作序列 ---
-        
+
         # A. 初始位：全张开 (使用 20 避开 0 零位保护)
         # 拇指旋转设为 500 (外旋位)，四指设为 20 (张开)
         await self.set_hand_safe([20, 500, 20, 20, 20, 20])
@@ -116,26 +116,26 @@ class HandArmSynergy:
         await self.phase_arm("fold forearm near upper arm", 3.0, self.q0, self.q_fold, 1.0, 1.0)
         await self.phase_arm("lift and move folded arm", 6.0, self.q_fold, self.q_lift_folded, 1.0, 1.0)
         await self.phase_arm("unfold forearm to pregrasp", 4.0, self.q_lift_folded, self.q_unfold_pregrasp, 1.0, 1.0)
-        
+
         # C. 灵巧手抓取动作 (分两步，确保能抓紧)
         print("\n=== 执行大幅度抓取动作 ===")
         # 步骤 1: 大拇指旋转到对掌位置 (0)
         print("步骤 1: 大拇指对掌...")
         await self.set_hand_safe([20, 20, 20, 20, 20, 20])
         await asyncio.sleep(1.0)
-        
+
         # 步骤 2: 五指全力闭合
         # 拇指弯曲限制在 400，四指推到 980 满行程
         print("步骤 2: 五指全力闭合...")
         await self.set_hand_safe([400, 20, 980, 980, 980, 980])
-        
+
         await self.phase_arm("hold pregrasp and grabbing", 4.0, self.q_unfold_pregrasp, self.q_unfold_pregrasp, 1.0, 1.0)
 
         # D. 复位返回
         await self.phase_arm("fold forearm back", 4.0, self.q_unfold_pregrasp, self.q_lift_folded, 1.0, 1.0)
         await self.phase_arm("shoulder back while folded", 6.0, self.q_lift_folded, self.q_fold, 1.0, 1.0)
         await self.phase_arm("unfold back to initial", 3.0, self.q_fold, self.q0, 1.0, 1.0)
-        
+
         print("松开手指...")
         await self.set_hand_safe([20, 500, 20, 20, 20, 20])
         await asyncio.sleep(1.0)

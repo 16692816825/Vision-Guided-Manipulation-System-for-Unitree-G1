@@ -188,6 +188,7 @@ GitHub 已保留：
 
 - `g1_hand_arm_project/` 代码、小 JSON/CSV、历史脚本备份。
 - `hand_control/revo2/` 中与本项目相关的手部定制脚本和备份。
+- `legacy/revo2_arm_hand_experiments/` 中早期手臂/手部混合实验脚本，仅供追溯，不作为当前推荐流程。
 - `models/` 中低于 GitHub 单文件限制的小模型。
 - `docs/` 中给用户和 Codex 的恢复说明。
 

@@ -44,6 +44,7 @@ tracking: max_jump=80px, smooth_alpha=0.35, lock_conf=0.25
 | `g1_hand_arm_project/` | 当前最重要的固定轨迹抓瓶主项目 |
 | `g1_hand_arm_project/vision/` | YOLO、深度、记录点、抓取窗口判断、坐标转换 |
 | `hand_control/revo2/` | Revo2 左手定制脚本和历史备份，不含完整 SDK |
+| `legacy/revo2_arm_hand_experiments/` | 早期手臂/手部混合实验脚本，仅作历史参考，不作为当前流程运行 |
 | `models/` | 可上传的小模型，详情见 `models/MODEL_MANIFEST.md` |
 | `docs/RESTORE_AFTER_FACTORY_RESET.md` | 给用户看的恢复步骤 |
 | `docs/CODEX_PROJECT_CONTEXT.md` | 给新 Codex 对话读取的上下文 |

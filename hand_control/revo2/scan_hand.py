@@ -30,10 +30,10 @@ class SafeReset:
         # 1. 建立连接
         ChannelFactoryInitialize(0, self.iface)
         self.hand_client = await libstark.modbus_open(self.usb_port, libstark.Baudrate.Baud460800)
-        
+
         # 强制设置模式，避免 IllegalDataValue
         await self.hand_client.set_finger_unit_mode(self.slave_id, libstark.FingerUnitMode.Normalized)
-        
+
         self.pub_arm = ChannelPublisher("rt/arm_sdk", LowCmd_)
         self.pub_arm.Init()
         self.sub = ChannelSubscriber("rt/lowstate", LowState_)
@@ -42,12 +42,12 @@ class SafeReset:
         print("[System] 正在读取当前手臂姿态...")
         while self.low_state is None:
             await asyncio.sleep(0.1)
-        
+
         # 记录当前原地位置，确保手臂不动
         current_q = {j: self.low_state.motor_state[j].q for j in range(35)}
 
         print("[Action] 正在原地锁定手臂并张开手指 (慢速)...")
-        
+
         # 持续发送 3 秒复位指令
         for i in range(150):
             # A. 锁定手臂：发送当前实时读到的位置
@@ -57,7 +57,7 @@ class SafeReset:
                 msg.motor_cmd[j].q = current_q[j]
                 msg.motor_cmd[j].kp = 20.0
                 msg.motor_cmd[j].kd = 1.0
-            
+
             msg.motor_cmd[29].q = 1.0 # 保持灵巧手供电
             msg.crc = self.crc.Crc(msg)
             self.pub_arm.Write(msg)
@@ -73,7 +73,7 @@ class SafeReset:
                     await self.hand_client.set_finger_positions(self.slave_id, [500, 500, 500, 500, 500, 500])
                 except:
                     pass
-            
+
             await asyncio.sleep(0.02)
 
         # 最后尝试全张开
@@ -82,7 +82,7 @@ class SafeReset:
             await self.hand_client.set_finger_positions(self.slave_id, [0, 0, 0, 0, 0, 0])
         except:
             pass
-            
+
         libstark.modbus_close(self.hand_client)
         print("[Done] 复位尝试结束。请检查手指状态。")
 

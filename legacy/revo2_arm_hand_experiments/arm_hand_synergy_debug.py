@@ -59,10 +59,10 @@ class HandArmSynergyFinal:
             # 1. 设置 6 指速度 (寄存器 941-946)
             await self.hand_client.set_finger_speeds(self.slave_id, [speed]*6)
             await asyncio.sleep(0.05)
-            
+
             # 2. 设置 6 指位置 (寄存器 931-936)
             await self.hand_client.set_finger_positions(self.slave_id, positions)
-            
+
             # 3. 读取反馈，观察后三位是否从 0 变为非零
             fb = await self.hand_client.get_finger_positions(self.slave_id)
             print(f"[Hand Status] 指令: {positions} | 实时位置反馈: {fb}")
@@ -103,7 +103,7 @@ class HandArmSynergyFinal:
         # 1. 硬件连接
         self.hand_client = await libstark.modbus_open(hand_port, libstark.Baudrate.Baud460800)
         await self.hand_client.set_finger_unit_mode(self.slave_id, libstark.FingerUnitMode.Normalized)
-        
+
         self.pub_arm = ChannelPublisher("rt/arm_sdk", LowCmd_)
         self.pub_arm.Init()
         self.sub = ChannelSubscriber("rt/lowstate", LowState_)
@@ -111,7 +111,7 @@ class HandArmSynergyFinal:
         await self.wait_state()
 
         # --- 执行动作 ---
-        
+
         # A. 初始位：全力张开 (Normalized 模式 0 为张开)
         # 注意：如果发现手指动作反向，请将 0 和 1000 对调
         print("\n[Action] 动力上电并初始化位置...")
@@ -122,7 +122,7 @@ class HandArmSynergyFinal:
         await self.phase_arm("fold arm", 3.0, self.q0, self.q_fold, 1.0, 1.0)
         await self.phase_arm("lift arm", 5.0, self.q_fold, self.q_lift_folded, 1.0, 1.0)
         await self.phase_arm("unfold to pregrasp", 4.0, self.q_lift_folded, self.q_unfold_pregrasp, 1.0, 1.0)
-        
+
         # C. 灵巧手闭合抓取 (使用 1000 满行程)
         print("\n=== 执行深度抓取动作 ===")
         # 步骤 1: 大拇指旋转对掌 (Index 1)
@@ -144,7 +144,7 @@ class HandArmSynergyFinal:
 if __name__ == "__main__":
     net = sys.argv[1] if len(sys.argv) > 1 else "eth0"
     usb = sys.argv[2] if len(sys.argv) > 2 else "/dev/ttyUSB1"
-    
+
     ChannelFactoryInitialize(0, net)
     try:
         asyncio.run(HandArmSynergyFinal().run(usb))
