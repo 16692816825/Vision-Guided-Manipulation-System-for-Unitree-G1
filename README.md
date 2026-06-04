@@ -8,7 +8,7 @@
 docs/PROJECT_SHOWCASE.md
 ```
 
-如果需要在机器人恢复出厂设置后继续开发，再看恢复文档和 Codex 上下文。
+如果需要在机器人恢复出厂设置后继续开发，再看恢复文档和项目恢复说明。
 
 仓库保存适合公开展示和继续开发的源码、小数据、标定/记录 JSON/CSV、Revo2 定制脚本和小模型。完整厂商 SDK、训练数据集、大模型、本地运行配置和个人密钥不放入公开仓库；恢复细节见 `docs/RESTORE_AFTER_FACTORY_RESET.md` 和 `docs/EXCLUDED_FILES_MANIFEST.md`。
 
