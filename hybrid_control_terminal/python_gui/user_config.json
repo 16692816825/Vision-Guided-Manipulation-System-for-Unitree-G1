@@ -1,6 +1,0 @@
-{
-    "iface": "enp2s0",
-    "model_path": "models/ppo_g1_left_23dof_final_new.zip",
-    "sim_only": false,
-    "right_arm": false
-}

@@ -25,6 +25,7 @@ E:\CodexProjects\Unitree_Projects\手眼协同\factory_reset_backup_20260531_151
 | 新增运行日志和完整 debug 图片 | 运行产物，适合本地归档，不适合继续扩大 Git 历史 | 从 `g1_hand_arm_project_full_20260531_151408.tar.gz` 恢复 |
 | Unitree SDK 本体 | 可重新下载 | `git clone https://github.com/unitreerobotics/unitree_sdk2_python.git` |
 | Revo2 SDK 本体 | 属于厂商 SDK/示例包 | 从强脑 SDK 包或本机完整快照恢复 |
+| `hybrid_control_terminal/python_gui/` | 本地 GUI 终端目录，不作为公开展示仓库内容，且可能包含本机配置、运行记录或个人参数 | 保留在本机，需要时从本机工作区或完整备份恢复 |
 | ROS2 `build/`, `install/`, `log/` | 可重建 | 恢复源码后 `colcon build` |
 | Python `__pycache__`, `.pyc`, 虚拟环境 | 可重建 | 重新安装依赖 |
 

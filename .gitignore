@@ -28,8 +28,8 @@ env/
 g1_hand_arm_project/logs/
 g1_hand_arm_project/vision/debug/
 
-# Local GUI settings can contain DeepSeek API keys or robot-specific paths.
-hybrid_control_terminal/python_gui/settings.json
+# Local GUI terminal is not part of the public showcase repository.
+hybrid_control_terminal/python_gui/
 
 # Large exported inference artifacts. Small .pt files in models/ are intentional.
 *.engine
