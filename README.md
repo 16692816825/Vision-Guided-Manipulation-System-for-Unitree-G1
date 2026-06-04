@@ -52,7 +52,6 @@ tracking: max_jump=80px, smooth_alpha=0.35, lock_conf=0.25
 | `models/` | 可上传的小模型，详情见 `models/MODEL_MANIFEST.md` |
 | `docs/PROJECT_SHOWCASE.md` | 面向老师、同学或评审的项目展示说明 |
 | `docs/RESTORE_AFTER_FACTORY_RESET.md` | 给用户看的恢复步骤 |
-| `docs/CODEX_PROJECT_CONTEXT.md` | 给新 Codex 对话读取的上下文 |
 | `docs/EXCLUDED_FILES_MANIFEST.md` | 没上传 GitHub 的本机备份内容 |
 
 ## 安全约束
