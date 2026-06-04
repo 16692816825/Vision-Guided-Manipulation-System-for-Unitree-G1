@@ -1,12 +1,16 @@
 # Vision-Guided Manipulation System for Unitree G1
 
-这个仓库是“宇树 G1 + 强脑 Revo2 灵巧手 + RGB/深度相机”手眼协同抓瓶项目的恢复备份。当前文件以机器人 `unitree@10.88.2.69` 在 2026-05-31 的状态为基准整理。
+这个仓库展示并维护一个“宇树 G1 + 强脑 Revo2 灵巧手 + RGB/深度相机”的视觉辅助抓瓶项目。项目当前已经完成固定轨迹抓瓶、灵巧手抓握、YOLOv8 水瓶检测和目标跟踪，正在向手眼标定、深度定位和自动化抓取继续迭代。
 
-仓库保存适合上传 GitHub 的源码、小数据、标定/记录 JSON/CSV、Revo2 定制脚本和小模型。完整机器人快照、训练数据集和超过 GitHub 普通限制的大模型放在本机：
+如果只是想快速了解项目，请先看：
 
 ```text
-E:\CodexProjects\Unitree_Projects\手眼协同\factory_reset_backup_20260531_151408
+docs/PROJECT_SHOWCASE.md
 ```
+
+如果需要在机器人恢复出厂设置后继续开发，再看恢复文档和 Codex 上下文。
+
+仓库保存适合公开展示和继续开发的源码、小数据、标定/记录 JSON/CSV、Revo2 定制脚本和小模型。完整厂商 SDK、训练数据集、大模型、本地运行配置和个人密钥不放入公开仓库；恢复细节见 `docs/RESTORE_AFTER_FACTORY_RESET.md` 和 `docs/EXCLUDED_FILES_MANIFEST.md`。
 
 ## 当前状态
 
@@ -46,6 +50,7 @@ tracking: max_jump=80px, smooth_alpha=0.35, lock_conf=0.25
 | `hand_control/revo2/` | Revo2 左手定制脚本和历史备份，不含完整 SDK |
 | `legacy/revo2_arm_hand_experiments/` | 早期手臂/手部混合实验脚本，仅作历史参考，不作为当前流程运行 |
 | `models/` | 可上传的小模型，详情见 `models/MODEL_MANIFEST.md` |
+| `docs/PROJECT_SHOWCASE.md` | 面向老师、同学或评审的项目展示说明 |
 | `docs/RESTORE_AFTER_FACTORY_RESET.md` | 给用户看的恢复步骤 |
 | `docs/CODEX_PROJECT_CONTEXT.md` | 给新 Codex 对话读取的上下文 |
 | `docs/EXCLUDED_FILES_MANIFEST.md` | 没上传 GitHub 的本机备份内容 |
